@@ -2,39 +2,49 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col bg-cream overflow-hidden">
-      {/* Vertical rule — editorial accent */}
-      <div className="absolute left-[calc(50%-0.5px)] top-0 bottom-0 w-px bg-border opacity-30 hidden lg:block" />
-
-      {/* Push content to bottom */}
+    <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden">
       <div className="flex-1" />
 
-      <div className="container-site w-full pb-20 md:pb-28 lg:pb-32">
-        <div className="grid md:grid-cols-12 gap-y-10 md:gap-x-8">
+      <div className="container-site w-full pb-20 md:pb-28">
+        <div className="space-y-10 md:space-y-12">
+          {/* Headline */}
+          <h1
+            className="font-display leading-[0.92] tracking-display text-primary"
+            style={{ fontSize: "clamp(3.5rem, 11vw, 10rem)" }}
+          >
+            EMAIL MARKETING
+            <br />
+            CHE GENERA
+            <br />
+            REVENUE.
+            <br />
+            <span className="text-accent">NON SOLO</span>
+            <br />
+            APERTURE.
+          </h1>
 
-          {/* Headline: wide, asymmetric */}
-          <div className="md:col-span-11">
-            <h1 className="font-display font-light text-display text-ink">
-              L&apos;email marketing che il tuo e-commerce non sta ancora usando davvero.
-            </h1>
-          </div>
-
-          {/* Subtitle + CTA: offset right */}
-          <div className="md:col-span-6 md:col-start-7">
-            <p className="text-base md:text-[1.0625rem] text-muted leading-relaxed mb-10 font-light">
-              Reach Media lavora con brand che vendono prodotti che meritano.
-              Costruiamo i sistemi Klaviyo che trasformano la lista email in un
-              canale di revenue prevedibile.
-            </p>
-            <Link
-              href="#contatti"
-              className="inline-flex items-center gap-4 text-sm font-medium px-8 py-4 bg-olive text-cream hover:bg-olive-dark transition-colors duration-300 group"
-            >
-              Parliamo del tuo progetto
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
-                &rarr;
-              </span>
-            </Link>
+          {/* Subtitle + CTA — offset right on desktop */}
+          <div className="grid md:grid-cols-12 gap-x-8 gap-y-6">
+            <div className="md:col-span-5 md:col-start-8">
+              <p className="text-sm md:text-[0.9375rem] text-secondary leading-relaxed mb-8">
+                Reach Media costruisce sistemi Klaviyo per e-commerce premium
+                italiani. Dalla strategia alla deliverability.
+              </p>
+              <div className="flex flex-col items-start gap-3">
+                <Link
+                  href="#quiz"
+                  className="inline-flex items-center gap-3 px-7 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
+                >
+                  Scopri dove stai perdendo soldi
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">
+                    &rarr;
+                  </span>
+                </Link>
+                <p className="text-[11px] text-[#444]">
+                  Nessuna call. Nessun impegno. Solo dati concreti.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

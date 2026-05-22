@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import { DM_Sans, Cormorant_Garamond } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import CookieBanner from "./components/CookieBanner";
+import ChecklistPopup from "./components/ChecklistPopup";
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const bebas = Bebas_Neue({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  weight: "400",
+  variable: "--font-bebas",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Reach Media — Email Marketing e Klaviyo per E-commerce Premium",
+  title: "Reach Media | Email Marketing e Klaviyo per E-commerce Premium",
   description:
-    "Reach Media costruisce sistemi Klaviyo che trasformano la lista email in un canale di revenue prevedibile. Per brand e-commerce con prodotti che meritano.",
+    "Reach Media costruisce sistemi Klaviyo per e-commerce premium italiani. Dalla strategia alla deliverability.",
   keywords: [
     "email marketing",
     "Klaviyo",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
     "consulenza email",
   ],
   openGraph: {
-    title: "Reach Media — Email Marketing e Klaviyo per E-commerce Premium",
+    title: "Reach Media | Email Marketing e Klaviyo per E-commerce Premium",
     description:
-      "Sistemi Klaviyo e email marketing per brand e-commerce italiani con prodotti premium.",
+      "Sistemi Klaviyo e email marketing per e-commerce premium italiani.",
     type: "website",
     locale: "it_IT",
   },
@@ -40,12 +40,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="it" className={`${dmSans.variable} ${cormorant.variable}`}>
-      <body className="font-sans">{children}</body>
+    <html lang="it" className={`${inter.variable} ${bebas.variable}`}>
+      <body className="font-sans">
+        {children}
+        <CookieBanner />
+        <ChecklistPopup />
+      </body>
     </html>
   );
 }

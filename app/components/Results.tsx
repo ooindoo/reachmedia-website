@@ -2,75 +2,64 @@ import FadeIn from "./FadeIn";
 
 const CASES = [
   {
-    index: "01",
+    stat: "+340%",
+    statLabel: "revenue da email in 90 giorni",
     sector: "Accessori moda premium, Italia",
-    situation:
-      "Lista da 8.000 contatti, apertura al 18%, nessun flow attivo oltre il welcome.",
-    metric: "19%",
-    metricLabel: "del fatturato da email",
-    detail: "in 90 giorni, partendo dal 4%",
+    body: "Lista da 8.000 contatti, apertura al 18%, nessun flow attivo. Revenue da email passata dal 4% al 19% del fatturato totale.",
   },
   {
-    index: "02",
+    stat: "+34%",
+    statLabel: "LTV medio clienti in 4 mesi",
     sector: "Food gourmet, e-commerce B2C",
-    situation:
-      "Klaviyo installato ma usato solo per newsletter manuali settimanali.",
-    metric: "+34%",
-    metricLabel: "LTV medio clienti",
-    detail: "6 flow attivati in 4 mesi",
+    body: "Klaviyo installato ma usato solo per newsletter manuali. 6 flow attivati, lifetime value medio aumentato del 34%.",
   },
   {
-    index: "03",
-    sector: "Brand lifestyle, espansione Europa",
-    situation:
-      "Migrazione da Mailchimp a Klaviyo con lista da 22.000 contatti.",
-    metric: "38%",
-    metricLabel: "open rate raggiunto",
-    detail: "dal 21%, in 60 giorni, zero perdita di deliverability",
+    stat: "38%",
+    statLabel: "open rate raggiunto in 60 giorni",
+    sector: "Brand lifestyle, espansione europea",
+    body: "Migrazione da Mailchimp a Klaviyo con 22.000 contatti. Zero perdita di deliverability, open rate passato dal 21% al 38%.",
   },
 ];
 
 export default function Results() {
   return (
-    <section id="risultati" className="bg-ink py-24 md:py-32 lg:py-40">
+    <section id="risultati" className="border-t border-border py-24 md:py-32">
       <div className="container-site">
-
-        {/* Section header */}
         <FadeIn className="mb-16 md:mb-20">
-          <span className="text-xs font-sans font-medium tracking-[0.18em] uppercase text-olive-muted">
-            Risultati concreti
-          </span>
+          <p className="section-label mb-3">Case study</p>
+          <h2
+            className="font-display tracking-display text-primary"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+          >
+            RISULTATI CONCRETI
+          </h2>
         </FadeIn>
 
-        {/* Case studies */}
-        <div className="divide-y divide-[#1E1E1E]">
+        <div className="divide-y divide-border">
           {CASES.map((c, i) => (
-            <FadeIn key={c.index} delay={i * 100}>
-              <div className="grid md:grid-cols-12 gap-x-8 gap-y-6 py-12 md:py-14 lg:py-16">
-
-                {/* Left: index + sector + situation */}
-                <div className="md:col-span-7">
-                  <div className="flex items-baseline gap-5 mb-5">
-                    <span className="font-sans text-xs text-[#444440] tracking-[0.18em]">
-                      {c.index}
-                    </span>
-                    <span className="font-sans text-xs font-medium tracking-[0.14em] uppercase text-olive-muted">
-                      {c.sector}
-                    </span>
-                  </div>
-                  <p className="text-[0.9375rem] text-[#888580] leading-relaxed font-light italic font-display">
-                    &ldquo;{c.situation}&rdquo;
+            <FadeIn key={i} delay={i * 100}>
+              <div className="grid md:grid-cols-12 gap-x-8 gap-y-5 py-10 md:py-14">
+                {/* Big stat */}
+                <div className="md:col-span-4">
+                  <p
+                    className="font-display leading-none tracking-display text-accent"
+                    style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
+                  >
+                    {c.stat}
+                  </p>
+                  <p className="text-xs text-secondary mt-2 leading-snug">
+                    {c.statLabel}
                   </p>
                 </div>
 
-                {/* Right: metric */}
-                <div className="md:col-span-4 md:col-start-9 flex flex-col justify-center">
-                  <p className="font-display font-light text-cream leading-none mb-2"
-                     style={{ fontSize: "clamp(3rem, 5vw, 4.5rem)" }}>
-                    {c.metric}
+                {/* Description */}
+                <div className="md:col-span-7 md:col-start-6 flex flex-col justify-center">
+                  <p className="text-[10px] text-secondary uppercase tracking-[0.14em] mb-3">
+                    {c.sector}
                   </p>
-                  <p className="text-sm text-[#888580] font-sans mb-1">{c.metricLabel}</p>
-                  <p className="text-xs text-[#555552] font-sans">{c.detail}</p>
+                  <p className="text-[#999] text-[0.9375rem] leading-relaxed">
+                    {c.body}
+                  </p>
                 </div>
               </div>
             </FadeIn>
