@@ -2,14 +2,8 @@
 
 import { useState, useEffect } from "react";
 
-type Phase = "popup" | "form" | "sent";
-
 export default function ChecklistPopup() {
   const [visible, setVisible] = useState(false);
-  const [phase, setPhase] = useState<Phase>("popup");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem("popup-shown")) return;
@@ -41,19 +35,17 @@ export default function ChecklistPopup() {
 
   const close = () => setVisible(false);
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 600));
-    setLoading(false);
-    setPhase("sent");
+  const scrollToQuiz = () => {
+    close();
+    const el = document.getElementById("quiz");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   if (!visible) return null;
 
   return (
-    <div className="popup-enter fixed bottom-5 right-5 z-40 w-76 bg-surface border border-border-mid shadow-[0_8px_48px_rgba(0,0,0,0.7)]">
-      <div className="p-6 relative">
+    <div className="popup-enter fixed bottom-5 right-5 z-40 bg-surface border border-border-mid shadow-[0_12px_64px_rgba(0,0,0,0.9)]" style={{ width: "280px" }}>
+      <div className="p-7 relative">
         <button
           onClick={close}
           className="absolute top-4 right-4 text-[#444] hover:text-secondary transition-colors text-xs w-6 h-6 flex items-center justify-center"
@@ -62,67 +54,24 @@ export default function ChecklistPopup() {
           &#x2715;
         </button>
 
-        {phase === "popup" && (
-          <>
-            <p className="text-[10px] text-accent uppercase tracking-widest mb-3">
-              Gratis per te
-            </p>
-            <p className="text-sm text-primary font-medium mb-2 leading-snug pr-6">
-              La checklist audit email in 10 punti.
-            </p>
-            <p className="text-xs text-secondary mb-5 leading-relaxed">
-              Scopri dove stai perdendo revenue ogni mese.
-            </p>
-            <button
-              onClick={() => setPhase("form")}
-              className="w-full py-3 bg-accent text-bg text-xs font-medium hover:bg-accent-hover transition-colors"
-            >
-              Scarica ora
-            </button>
-          </>
-        )}
+        <p className="text-[10px] text-accent uppercase tracking-widest mb-4">
+          Gratis per te
+        </p>
 
-        {phase === "form" && (
-          <form onSubmit={submit} className="space-y-4" noValidate>
-            <p className="text-xs text-secondary mb-4 pr-6">
-              Inserisci i tuoi dati.
-            </p>
-            <input
-              type="text"
-              required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Nome"
-              className="w-full bg-transparent border-b border-border text-primary text-xs py-2.5 placeholder-[#333] focus:outline-none focus:border-accent transition-colors"
-            />
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email aziendale"
-              className="w-full bg-transparent border-b border-border text-primary text-xs py-2.5 placeholder-[#333] focus:outline-none focus:border-accent transition-colors"
-            />
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-accent text-bg text-xs font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 mt-2"
-            >
-              {loading ? "..." : "Invia la checklist"}
-            </button>
-          </form>
-        )}
+        <p className="text-base text-primary font-medium mb-3 leading-snug pr-6">
+          La checklist audit email in 10 punti.
+        </p>
 
-        {phase === "sent" && (
-          <div>
-            <p className="font-display text-xl tracking-display text-accent mb-2">
-              CONTROLLA L&apos;EMAIL.
-            </p>
-            <p className="text-xs text-secondary">
-              Ti abbiamo mandato la checklist.
-            </p>
-          </div>
-        )}
+        <p className="text-sm text-secondary mb-6 leading-relaxed">
+          Scopri esattamente dove stai perdendo revenue ogni mese. Fai il quiz e ricevi la tua analisi personalizzata.
+        </p>
+
+        <button
+          onClick={scrollToQuiz}
+          className="w-full py-4 bg-accent text-bg text-sm font-semibold hover:bg-accent-hover transition-colors"
+        >
+          Fai il quiz gratis &rarr;
+        </button>
       </div>
     </div>
   );

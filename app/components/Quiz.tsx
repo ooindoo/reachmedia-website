@@ -72,11 +72,12 @@ const RESULTS = [
   },
 ];
 
-type Phase = "quiz" | "result" | "form" | "sent";
+type Phase = "quiz" | "form" | "result";
 
 export default function Quiz() {
   const [step, setStep] = useState(0);
   const [scores, setScores] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
   const [phase, setPhase] = useState<Phase>("quiz");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -86,19 +87,22 @@ export default function Quiz() {
   const result =
     RESULTS.find((r) => total >= r.min && total <= r.max) ?? RESULTS[1];
 
-  const pick = (score: number) => {
-    const next = [...scores, score];
-    setScores(next);
+  const pick = (score: number, answer: string) => {
+    const nextScores = [...scores, score];
+    const nextAnswers = [...answers, answer];
+    setScores(nextScores);
+    setAnswers(nextAnswers);
     if (step < QUESTIONS.length - 1) {
       setStep(step + 1);
     } else {
-      setPhase("result");
+      setPhase("form");
     }
   };
 
   const restart = () => {
     setStep(0);
     setScores([]);
+    setAnswers([]);
     setPhase("quiz");
     setName("");
     setEmail("");
@@ -107,9 +111,41 @@ export default function Quiz() {
   const handleForm = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 700));
+
+    const apiKey = process.env.NEXT_PUBLIC_KLAVIYO_API_KEY;
+    if (apiKey) {
+      const quizProperties: Record<string, string | number> = {};
+      QUESTIONS.forEach((q, i) => {
+        quizProperties[`quiz_q${i + 1}`] = answers[i] ?? "";
+      });
+      quizProperties["quiz_score"] = total;
+      quizProperties["quiz_result"] = result.title;
+
+      try {
+        await fetch("https://a.klaviyo.com/api/profiles/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Klaviyo ${apiKey}`,
+          },
+          body: JSON.stringify({
+            data: {
+              type: "profile",
+              attributes: {
+                email,
+                first_name: name,
+                properties: quizProperties,
+              },
+            },
+          }),
+        });
+      } catch (err) {
+        console.error("Klaviyo error:", err);
+      }
+    }
+
     setLoading(false);
-    setPhase("sent");
+    setPhase("result");
   };
 
   const INPUT =
@@ -129,8 +165,7 @@ export default function Quiz() {
             IL TUO EMAIL MARKETING?
           </h2>
           <p className="text-secondary mt-4 text-sm">
-            5 domande. Risultato immediato. Nessuna email richiesta per vedere
-            il risultato.
+            5 domande. Risultato personalizzato in meno di 2 minuti.
           </p>
         </FadeIn>
 
@@ -165,7 +200,7 @@ export default function Quiz() {
                   {QUESTIONS[step].options.map((opt, i) => (
                     <button
                       key={i}
-                      onClick={() => pick(QUESTIONS[step].scores[i])}
+                      onClick={() => pick(QUESTIONS[step].scores[i], opt)}
                       className="w-full text-left px-5 py-4 border border-border hover:border-accent text-secondary hover:text-accent transition-all duration-200 text-sm group"
                     >
                       <span className="font-display tracking-display text-xs mr-3 text-[#444] group-hover:text-accent transition-colors">
@@ -179,44 +214,14 @@ export default function Quiz() {
             </>
           )}
 
-          {/* RESULT */}
-          {phase === "result" && (
-            <div key="result" className="quiz-enter">
-              <div className="border-t-2 border-accent pt-8 mb-8">
-                <p className="section-label mb-4">Il tuo risultato</p>
-                <h3
-                  className="font-display tracking-display text-accent leading-tight mb-6"
-                  style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}
-                >
-                  {result.title}
-                </h3>
-                <p className="text-secondary text-sm leading-relaxed mb-8">
-                  {result.body}
-                </p>
-                <button
-                  onClick={() => setPhase("form")}
-                  className="inline-flex items-center gap-3 px-7 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
-                >
-                  Scarica la checklist gratuita
-                  <span className="transition-transform duration-200 group-hover:translate-x-1">
-                    &rarr;
-                  </span>
-                </button>
-              </div>
-              <button
-                onClick={restart}
-                className="text-xs text-[#444] hover:text-secondary transition-colors"
-              >
-                Rifai il quiz
-              </button>
-            </div>
-          )}
-
-          {/* FORM */}
+          {/* FORM — shown before result */}
           {phase === "form" && (
             <div key="form" className="quiz-enter border border-border p-7 md:p-8">
-              <p className="text-sm text-secondary mb-6">
-                Inserisci i tuoi dati per ricevere la checklist.
+              <p className="text-[10px] text-accent uppercase tracking-widest mb-2">
+                Quasi fatto
+              </p>
+              <p className="text-sm text-secondary mb-6 leading-relaxed">
+                Inserisci i tuoi dati per vedere il risultato personalizzato e scaricare la checklist.
               </p>
               <form onSubmit={handleForm} className="space-y-6" noValidate>
                 <div>
@@ -250,25 +255,44 @@ export default function Quiz() {
                   disabled={loading}
                   className="w-full py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors disabled:opacity-50"
                 >
-                  {loading ? "Invio in corso..." : "Invia la checklist"}
+                  {loading ? "Un attimo..." : "Mostra il mio risultato"}
                 </button>
               </form>
             </div>
           )}
 
-          {/* SENT */}
-          {phase === "sent" && (
-            <div key="sent" className="quiz-enter border-t-2 border-accent pt-8">
-              <p
-                className="font-display tracking-display text-accent mb-3"
-                style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+          {/* RESULT — shown after form */}
+          {phase === "result" && (
+            <div key="result" className="quiz-enter">
+              <div className="border-t-2 border-accent pt-8 mb-8">
+                <p className="section-label mb-4">Il tuo risultato</p>
+                <h3
+                  className="font-display tracking-display text-accent leading-tight mb-6"
+                  style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}
+                >
+                  {result.title}
+                </h3>
+                <p className="text-secondary text-sm leading-relaxed mb-8">
+                  {result.body}
+                </p>
+                <a
+                  href="/checklist.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-7 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
+                >
+                  Scarica la checklist
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">
+                    &rarr;
+                  </span>
+                </a>
+              </div>
+              <button
+                onClick={restart}
+                className="text-xs text-[#444] hover:text-secondary transition-colors"
               >
-                CONTROLLA LA TUA EMAIL.
-              </p>
-              <p className="text-secondary text-sm">
-                Ti abbiamo inviato la checklist. Controlla anche la cartella
-                spam se non la trovi.
-              </p>
+                Rifai il quiz
+              </button>
             </div>
           )}
         </div>
