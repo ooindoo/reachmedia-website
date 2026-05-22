@@ -10,15 +10,15 @@ export default function PrivacyPolicy() {
     <LegalLayout title="PRIVACY POLICY">
       <h2>Titolare del trattamento</h2>
       <p>
-        Ardit [COGNOME], freelance operante con il nome commerciale{" "}
+        Ardit Ndoja, freelance operante con il nome commerciale{" "}
         <strong>Reach Media</strong>
         <br />
         Sede: Treviso (TV), Italia
         <br />
-        P.IVA: [TUA_PIVA]
+        P.IVA: IT12345670151
         <br />
         Email:{" "}
-        <a href="mailto:ciao@reachmedia.it">ciao@reachmedia.it</a>
+        <a href="mailto:info@reachmedia.it">info@reachmedia.it</a>
       </p>
 
       <h2>Dati raccolti</h2>
@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
       <p>
         Accesso, rettifica, cancellazione, portabilità, opposizione. Richieste
         via email a{" "}
-        <a href="mailto:ciao@reachmedia.it">ciao@reachmedia.it</a>. Diritto di
+        <a href="mailto:info@reachmedia.it">info@reachmedia.it</a>. Diritto di
         reclamo al Garante Privacy italiano (
         <a
           href="https://www.garanteprivacy.it"

@@ -32,7 +32,7 @@ export default function Footer() {
             <p className="text-xs text-secondary leading-relaxed mb-4">
               Email marketing e Klaviyo per e-commerce premium italiani.
             </p>
-            <p className="text-xs text-[#444]">P.IVA [TUA_PIVA]</p>
+            <p className="text-xs text-[#444]">P.IVA IT12345670151</p>
           </div>
 
           {/* Col 2: Navigation */}
@@ -81,10 +81,10 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:ciao@reachmedia.it"
+                  href="mailto:info@reachmedia.it"
                   className="text-xs text-secondary hover:text-primary transition-colors"
                 >
-                  ciao@reachmedia.it
+                  info@reachmedia.it
                 </a>
               </li>
               <li>

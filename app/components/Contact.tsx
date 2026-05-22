@@ -47,10 +47,10 @@ export default function Contact() {
                 Email
               </p>
               <a
-                href="mailto:ciao@reachmedia.it"
+                href="mailto:info@reachmedia.it"
                 className="text-primary hover:text-accent transition-colors text-sm"
               >
-                ciao@reachmedia.it
+                info@reachmedia.it
               </a>
             </div>
           </FadeIn>
