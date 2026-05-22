@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Color tokens ── */
+:root {
+  /* Dark mode — default */
+  --color-bg: 10 10 10;           /* #0A0A0A */
+  --color-surface: 17 17 17;      /* #111111 */
+  --color-surface-2: 22 22 22;    /* #161616 */
+  --color-primary: 240 240 240;   /* #F0F0F0 */
+  --color-secondary: 136 136 136; /* #888888 */
+  --color-border: 26 26 26;       /* #1A1A1A */
+  --color-border-mid: 34 34 34;   /* #222222 */
+  --grid-dot: rgba(255, 255, 255, 0.04);
+}
+
+html.light {
+  /* Light mode */
+  --color-bg: 255 255 255;        /* #FFFFFF */
+  --color-surface: 245 245 245;   /* #F5F5F5 */
+  --color-surface-2: 235 235 235; /* #EBEBEB */
+  --color-primary: 13 13 13;      /* #0D0D0D */
+  --color-secondary: 85 85 85;    /* #555555 */
+  --color-border: 224 224 224;    /* #E0E0E0 */
+  --color-border-mid: 204 204 204;/* #CCCCCC */
+  --grid-dot: rgba(0, 0, 0, 0.05);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -9,6 +34,7 @@
 
   body {
     @apply bg-bg text-primary antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
   ::selection {
@@ -41,10 +67,7 @@
   }
 
   .hero-grid {
-    background-image: radial-gradient(
-      rgba(255, 255, 255, 0.04) 1px,
-      transparent 1px
-    );
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
     background-size: 48px 48px;
   }
 }

@@ -13,15 +13,16 @@ const config: Config = {
         display: ["var(--font-bebas)", "Impact", "sans-serif"],
       },
       colors: {
-        bg: "#0A0A0A",
-        surface: "#111111",
-        "surface-2": "#161616",
-        primary: "#F0F0F0",
-        secondary: "#888888",
+        // All themeable colors use CSS vars so dark/light mode works via html.light class
+        bg: "rgb(var(--color-bg) / <alpha-value>)",
+        surface: "rgb(var(--color-surface) / <alpha-value>)",
+        "surface-2": "rgb(var(--color-surface-2) / <alpha-value>)",
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+        secondary: "rgb(var(--color-secondary) / <alpha-value>)",
         accent: "#E8FF47",
         "accent-hover": "#D4EB3A",
-        border: "#1A1A1A",
-        "border-mid": "#222222",
+        border: "rgb(var(--color-border) / <alpha-value>)",
+        "border-mid": "rgb(var(--color-border-mid) / <alpha-value>)",
       },
       letterSpacing: {
         display: "-0.02em",

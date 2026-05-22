@@ -38,14 +38,22 @@ export const metadata: Metadata = {
   },
 };
 
+// Inline script — runs synchronously before first paint to prevent FOUC.
+// Reads localStorage and adds `light` class to <html> if needed.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light');}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="it" className={`${inter.variable} ${bebas.variable}`}>
+    // suppressHydrationWarning: the inline script may add `light` class before
+    // React hydrates, causing a mismatch between server and client HTML.
+    <html lang="it" className={`${inter.variable} ${bebas.variable}`} suppressHydrationWarning>
       <body className="font-sans">
+        {/* Theme init — must be first child to run before any paint */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
         <CookieBanner />
         <ChecklistPopup />
