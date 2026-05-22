@@ -32,26 +32,25 @@ export default function Services() {
           </h2>
         </FadeIn>
 
-        <div className="divide-y divide-border">
+        <div className="grid md:grid-cols-3 gap-6">
           {SERVICES.map((s, i) => (
-            <FadeIn key={s.index} delay={i * 80}>
-              <div className="grid md:grid-cols-12 gap-x-8 gap-y-5 py-10 md:py-14">
-                <div className="md:col-span-5">
-                  <span className="text-xs text-secondary font-display tracking-display block mb-3">
-                    {s.index}
-                  </span>
-                  <h3
-                    className="font-display tracking-display text-primary leading-tight"
-                    style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}
-                  >
-                    {s.title}
-                  </h3>
-                </div>
-                <div className="md:col-span-6 md:col-start-7 flex items-center">
-                  <p className="text-secondary text-[0.9375rem] leading-relaxed">
-                    {s.body}
-                  </p>
-                </div>
+            <FadeIn key={s.index} delay={i * 80} className="h-full">
+              <div className="flex flex-col h-full border border-border bg-surface p-8 md:p-10">
+                <span
+                  className="font-display tracking-display text-accent block mb-6"
+                  style={{ fontSize: "clamp(2rem, 3vw, 3rem)" }}
+                >
+                  {s.index}
+                </span>
+                <h3
+                  className="font-display tracking-display text-primary leading-tight mb-5"
+                  style={{ fontSize: "clamp(1.5rem, 2vw, 2rem)" }}
+                >
+                  {s.title}
+                </h3>
+                <p className="font-sans text-secondary text-[0.9375rem] leading-relaxed mt-auto">
+                  {s.body}
+                </p>
               </div>
             </FadeIn>
           ))}
