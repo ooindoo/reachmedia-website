@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden">
+    <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden pt-14 md:pt-16">
       <div className="flex-1" />
 
       <div className="container-site w-full pb-20 md:pb-28">
