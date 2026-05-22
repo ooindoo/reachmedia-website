@@ -8,32 +8,40 @@
   }
 
   body {
-    @apply bg-white text-[#111111] antialiased;
+    @apply bg-cream text-ink antialiased;
+    cursor: crosshair;
   }
 
-  * {
-    @apply box-border;
+  a,
+  button,
+  [role="button"] {
+    cursor: crosshair;
+  }
+
+  ::selection {
+    background-color: #4a4a2f;
+    color: #f7f5f2;
   }
 }
 
-@layer components {
-  .section-padding {
-    @apply px-6 py-24 md:px-12 lg:px-24 xl:px-32;
+@layer utilities {
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .container-max {
-    @apply max-w-6xl mx-auto;
+  .fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .eyebrow {
-    @apply flex items-center gap-3 mb-6;
+  .section-label {
+    @apply text-xs font-sans font-medium tracking-[0.18em] uppercase text-olive;
   }
 
-  .eyebrow-line {
-    @apply w-8 h-px bg-accent;
-  }
-
-  .eyebrow-text {
-    @apply text-xs font-medium tracking-[0.2em] uppercase text-[#888888];
+  .container-site {
+    @apply max-w-7xl mx-auto px-6 md:px-12 lg:px-16;
   }
 }

@@ -1,37 +1,38 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Playfair_Display } from "next/font/google";
+import { DM_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  weight: ["300", "400", "500", "600"],
   style: ["normal", "italic"],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Reach Media — Email Marketing & Shopify per Brand Premium",
+  title: "Reach Media — Email Marketing e Klaviyo per E-commerce Premium",
   description:
-    "Consulenza freelance specializzata in email marketing, Klaviyo automation e sviluppo Shopify per brand premium e luxury. Dal 2023.",
+    "Reach Media costruisce sistemi Klaviyo che trasformano la lista email in un canale di revenue prevedibile. Per brand e-commerce con prodotti che meritano.",
   keywords: [
     "email marketing",
     "Klaviyo",
     "Shopify",
-    "consulenza e-commerce",
-    "luxury brand",
+    "e-commerce",
     "marketing automation",
+    "consulenza email",
   ],
   openGraph: {
-    title: "Reach Media — Email Marketing & Shopify per Brand Premium",
+    title: "Reach Media — Email Marketing e Klaviyo per E-commerce Premium",
     description:
-      "Consulenza freelance specializzata in email marketing, Klaviyo automation e sviluppo Shopify per brand premium e luxury.",
+      "Sistemi Klaviyo e email marketing per brand e-commerce italiani con prodotti premium.",
     type: "website",
     locale: "it_IT",
   },
@@ -43,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="it" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="it" className={`${dmSans.variable} ${cormorant.variable}`}>
       <body className="font-sans">{children}</body>
     </html>
   );
