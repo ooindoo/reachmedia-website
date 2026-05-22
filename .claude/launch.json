@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "reachmedia",
+      "runtimeExecutable": "/Users/arditndoja/.nvm/versions/node/v24.16.0/bin/node",
+      "runtimeArgs": [
+        "/Users/arditndoja/Desktop/reachmedia-website/node_modules/.bin/next",
+        "dev",
+        "--webpack"
+      ],
+      "port": 3000
+    }
+  ]
+}
