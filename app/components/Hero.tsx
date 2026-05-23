@@ -35,7 +35,7 @@ export default function Hero() {
       <section className="h-screen flex flex-col bg-bg hero-grid overflow-hidden">
         <div
           ref={containerRef}
-          className="container-site w-full flex-1 flex flex-col justify-end pt-14 md:pt-16 pb-0"
+          className="container-site w-full flex-1 flex flex-col justify-start md:justify-end pt-14 md:pt-16 pb-0"
         >
           <h1
             className="font-display leading-[0.92] tracking-display text-primary"
@@ -56,7 +56,7 @@ export default function Hero() {
 
       {/* Sottotitolo e CTA — primo contenuto dopo lo scroll */}
       <div className="bg-bg border-b border-border">
-        <div className="container-site py-12 md:py-16">
+        <div className="container-site py-8 md:py-16">
           <div className="max-w-lg">
             <p className="text-sm md:text-[0.9375rem] text-secondary leading-relaxed mb-6">
               Reach Media costruisce sistemi Klaviyo per e-commerce premium

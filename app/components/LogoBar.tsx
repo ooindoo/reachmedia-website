@@ -30,7 +30,7 @@ const doubled = [...LOGOS, ...LOGOS];
 
 export default function LogoBar() {
   return (
-    <section className="border-t border-border py-14 overflow-hidden">
+    <section className="border-t border-border py-10 md:py-14 overflow-hidden">
       <div className="container-site mb-10">
         <FadeIn>
           <p className="section-label">Strumenti che usiamo</p>

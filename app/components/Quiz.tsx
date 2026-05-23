@@ -165,9 +165,9 @@ export default function Quiz() {
     "w-full bg-transparent border-b border-border text-primary text-sm py-3 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
 
   return (
-    <section id="quiz" className="border-t border-border py-24 md:py-32">
+    <section id="quiz" className="border-t border-border py-14 md:py-32">
       <div className="container-site">
-        <FadeIn className="mb-14">
+        <FadeIn className="mb-8 md:mb-14">
           <p className="section-label mb-4">Quiz</p>
           <h2
             className="font-display tracking-display text-primary leading-tight"

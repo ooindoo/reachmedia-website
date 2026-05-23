@@ -3,7 +3,7 @@ import FadeIn from "./FadeIn";
 
 export default function CtaRepeat() {
   return (
-    <section className="border-t border-border py-24 md:py-32">
+    <section className="border-t border-border py-14 md:py-32">
       <div className="container-site">
         <FadeIn>
           <h2

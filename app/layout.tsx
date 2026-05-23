@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     "marketing automation",
     "consulenza email",
   ],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.ico",
+  },
   openGraph: {
     title: "Reach Media | Email Marketing e Klaviyo per E-commerce Premium",
     description:
