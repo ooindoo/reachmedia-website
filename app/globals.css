@@ -12,6 +12,8 @@
   --color-secondary: 136 136 136; /* #888888 */
   --color-border: 26 26 26;       /* #1A1A1A */
   --color-border-mid: 34 34 34;   /* #222222 */
+  --color-accent: 232 255 71;     /* #E8FF47 */
+  --color-accent-hover: 212 235 58; /* #D4EB3A */
   --grid-dot: rgba(255, 255, 255, 0.04);
 }
 
@@ -24,6 +26,8 @@ html.light {
   --color-secondary: 85 85 85;    /* #555555 */
   --color-border: 224 224 224;    /* #E0E0E0 */
   --color-border-mid: 204 204 204;/* #CCCCCC */
+  --color-accent: 45 74 30;       /* #2D4A1E */
+  --color-accent-hover: 61 98 40; /* #3D6228 */
   --grid-dot: rgba(0, 0, 0, 0.05);
 }
 
@@ -38,8 +42,8 @@ html.light {
   }
 
   ::selection {
-    background-color: #e8ff47;
-    color: #0a0a0a;
+    background-color: rgb(var(--color-accent));
+    color: rgb(var(--color-bg));
   }
 }
 
