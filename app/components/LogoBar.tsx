@@ -1,20 +1,42 @@
 import FadeIn from "./FadeIn";
 
-const LOGOS = [
-  { name: "Klaviyo", slug: "klaviyo" },
-  { name: "Shopify", slug: "shopify" },
-  { name: "Meta", slug: "meta" },
-  { name: "Google Ads", slug: "googleads" },
-  { name: "Figma", slug: "figma" },
-  { name: "Notion", slug: "notion" },
-  { name: "Make", slug: "make" },
-  { name: "Zapier", slug: "zapier" },
-  { name: "Vercel", slug: "vercel" },
-  { name: "GitHub", slug: "github" },
-  { name: "Google Analytics", slug: "googleanalytics" },
-  { name: "ChatGPT", slug: "openai" },
-  { name: "Claude", slug: "anthropic" },
-  { name: "Google AI Studio", slug: "googlegemini" },
+type LogoItem = {
+  name: string;
+  url: string;
+  label?: string;
+};
+
+const LOGOS: LogoItem[] = [
+  {
+    name: "Klaviyo",
+    url: "https://www.vectorlogo.zone/logos/klaviyo/klaviyo-icon.svg",
+  },
+  { name: "Shopify", url: "https://cdn.simpleicons.org/shopify" },
+  { name: "Meta", url: "https://cdn.simpleicons.org/meta" },
+  { name: "Google Ads", url: "https://cdn.simpleicons.org/googleads" },
+  { name: "Figma", url: "https://cdn.simpleicons.org/figma" },
+  { name: "Notion", url: "https://cdn.simpleicons.org/notion" },
+  { name: "Make", url: "https://cdn.simpleicons.org/make" },
+  { name: "Zapier", url: "https://cdn.simpleicons.org/zapier" },
+  { name: "Vercel", url: "https://cdn.simpleicons.org/vercel" },
+  { name: "GitHub", url: "https://cdn.simpleicons.org/github" },
+  {
+    name: "Google Analytics",
+    url: "https://cdn.simpleicons.org/googleanalytics",
+  },
+  {
+    name: "ChatGPT",
+    url: "https://www.vectorlogo.zone/logos/openai/openai-icon.svg",
+  },
+  {
+    name: "Claude",
+    url: "https://www.vectorlogo.zone/logos/anthropic/anthropic-icon.svg",
+  },
+  {
+    name: "Google AI Studio",
+    url: "https://cdn.simpleicons.org/google",
+    label: "AI Studio",
+  },
 ];
 
 const doubled = [...LOGOS, ...LOGOS];
@@ -30,21 +52,26 @@ export default function LogoBar() {
 
       {/* Full-width scrolling strip */}
       <div className="logo-fade-mask overflow-hidden">
-        <div className="flex gap-14 marquee-track">
+        <div className="flex items-center gap-14 marquee-track">
           {doubled.map((logo, i) => (
             <div
               key={i}
-              className="flex-shrink-0 flex items-center justify-center"
+              className="flex-shrink-0 flex flex-col items-center gap-1"
               title={logo.name}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={`https://cdn.simpleicons.org/${logo.slug}`}
+                src={logo.url}
                 alt={logo.name}
                 width={36}
                 height={36}
                 className="logo-img h-8 w-auto"
               />
+              {logo.label && (
+                <span className="font-display tracking-display text-[7px] text-secondary opacity-60 whitespace-nowrap">
+                  {logo.label}
+                </span>
+              )}
             </div>
           ))}
         </div>
