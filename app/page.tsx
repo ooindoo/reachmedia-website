@@ -5,6 +5,7 @@ import Quiz from "./components/Quiz";
 import Services from "./components/Services";
 import Results from "./components/Results";
 import CtaRepeat from "./components/CtaRepeat";
+import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <Services />
       <Results />
       <CtaRepeat />
+      <FAQ />
       <Contact />
       <Footer />
     </main>
