@@ -2,14 +2,13 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden pt-14 md:pt-16">
-      <div className="flex-1" />
-
-      <div className="container-site w-full pb-20 md:pb-28">
+    // pt-36 = 144px (navbar ~56-64px + 80px distanza minima dal titolo)
+    <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden">
+      <div className="container-site w-full pt-36 md:pt-40 pb-20 md:pb-28">
         <div className="space-y-10 md:space-y-12">
           {/* Headline */}
           <h1
-            className="font-display leading-[0.92] tracking-display text-primary"
+            className="font-display leading-[0.92] tracking-display text-primary text-left"
             style={{ fontSize: "clamp(3.5rem, 11vw, 10rem)" }}
           >
             EMAIL MARKETING
@@ -48,6 +47,9 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      {/* Spazio residuo sotto il contenuto */}
+      <div className="flex-1" />
     </section>
   );
 }
