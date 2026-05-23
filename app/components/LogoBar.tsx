@@ -7,10 +7,7 @@ type LogoItem = {
 };
 
 const LOGOS: LogoItem[] = [
-  {
-    name: "Klaviyo",
-    url: "https://www.vectorlogo.zone/logos/klaviyo/klaviyo-icon.svg",
-  },
+  { name: "Klaviyo", url: "/logos/klaviyo.svg" },
   { name: "Shopify", url: "https://cdn.simpleicons.org/shopify" },
   { name: "Meta", url: "https://cdn.simpleicons.org/meta" },
   { name: "Google Ads", url: "https://cdn.simpleicons.org/googleads" },
@@ -24,14 +21,8 @@ const LOGOS: LogoItem[] = [
     name: "Google Analytics",
     url: "https://cdn.simpleicons.org/googleanalytics",
   },
-  {
-    name: "ChatGPT",
-    url: "https://www.vectorlogo.zone/logos/openai/openai-icon.svg",
-  },
-  {
-    name: "Claude",
-    url: "https://www.vectorlogo.zone/logos/anthropic/anthropic-icon.svg",
-  },
+  { name: "ChatGPT", url: "/logos/openai.svg" },
+  { name: "Claude", url: "/logos/anthropic.svg" },
   {
     name: "Google AI Studio",
     url: "https://cdn.simpleicons.org/google",
