@@ -56,19 +56,32 @@ const RESULTS = [
     min: 0,
     max: 5,
     title: "IL TUO EMAIL MARKETING NON ESISTE ANCORA.",
-    body: "Hai un potenziale significativo non sfruttato. Con un e-commerce attivo, un sistema email ben costruito genera mediamente tra il 15% e il 30% del fatturato totale. Parti dalla checklist gratuita per capire da dove iniziare.",
+    body: "Hai un potenziale significativo non sfruttato. Con un e-commerce attivo, un sistema email ben costruito genera mediamente tra il 15% e il 30% del fatturato totale. Parti dalla guida gratuita per capire da dove iniziare.",
+    cta: {
+      type: "low" as const,
+      primary: { label: "Scarica la guida gratuita", href: "/rm_guida_zero.pdf" },
+      secondary: { label: "Parliamo, ti dico da dove partire", href: "#contatti" },
+    },
   },
   {
     min: 6,
     max: 10,
     title: "STAI LASCIANDO SOLDI SUL TAVOLO OGNI MESE.",
     body: "Hai le basi ma i gap sono significativi. Flow incompleti, segmentazione assente o campagne non ottimizzate si traducono in revenue persa ogni settimana. La checklist ti mostra esattamente dove intervenire.",
+    cta: {
+      type: "mid" as const,
+      primary: { label: "Scarica la checklist", href: "/rm_checklist.pdf" },
+    },
   },
   {
     min: 11,
     max: 15,
     title: "STAI LAVORANDO BENE. MA C'È ANCORA MARGINE.",
-    body: "Il tuo email marketing è già un canale attivo. Le ottimizzazioni avanzate (segmentazione predittiva, test sistematici, espansione internazionale) sono il prossimo livello. Scarica la checklist per identificare i gap residui.",
+    body: "Il tuo email marketing è già un canale attivo. Le ottimizzazioni avanzate (segmentazione predittiva, test sistematici, espansione internazionale) sono il prossimo livello. Scarica i flow avanzati per identificare i gap residui.",
+    cta: {
+      type: "high" as const,
+      primary: { label: "Scarica i flow avanzati", href: "/rm_flow_avanzati.pdf" },
+    },
   },
 ];
 
@@ -275,17 +288,31 @@ export default function Quiz() {
                 <p className="text-secondary text-sm leading-relaxed mb-8">
                   {result.body}
                 </p>
+
+                {/* Primary CTA — PDF download */}
                 <a
-                  href="/checklist-reachmedia.pdf"
+                  href={result.cta.primary.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-7 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
                 >
-                  Scarica la checklist
+                  {result.cta.primary.label}
                   <span className="transition-transform duration-200 group-hover:translate-x-1">
                     &rarr;
                   </span>
                 </a>
+
+                {/* Secondary CTA — solo per risultato basso */}
+                {result.cta.type === "low" && (
+                  <div className="mt-5">
+                    <a
+                      href={result.cta.secondary.href}
+                      className="text-sm text-secondary hover:text-primary underline underline-offset-4 transition-colors duration-200"
+                    >
+                      {result.cta.secondary.label}
+                    </a>
+                  </div>
+                )}
               </div>
               <button
                 onClick={restart}
