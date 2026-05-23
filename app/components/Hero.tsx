@@ -6,10 +6,10 @@ export default function Hero() {
     <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden">
       <div className="container-site w-full pt-[72px] md:pt-20 pb-20 md:pb-28">
         <div className="space-y-10 md:space-y-12">
-          {/* Headline — desktop ridotto del 20%: 11vw→8.8vw, max 10rem→8rem */}
+          {/* Headline — clamp su vw e vh per garantire visibilità su qualsiasi dispositivo */}
           <h1
             className="font-display leading-[0.92] tracking-display text-primary text-left"
-            style={{ fontSize: "clamp(3.5rem, 8.8vw, 8rem)" }}
+            style={{ fontSize: "clamp(1.8rem, min(8.5vw, 10vh), 5rem)" }}
           >
             EMAIL MARKETING
             <br />
