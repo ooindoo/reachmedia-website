@@ -23,11 +23,7 @@ const LOGOS: LogoItem[] = [
   },
   { name: "ChatGPT", url: "/logos/openai.svg" },
   { name: "Claude", url: "/logos/anthropic.svg" },
-  {
-    name: "Google AI Studio",
-    url: "https://cdn.simpleicons.org/google",
-    label: "AI Studio",
-  },
+  { name: "Google AI Studio", url: "/logos/google-ai-studio.svg" },
 ];
 
 const doubled = [...LOGOS, ...LOGOS];
