@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import StatsBar from "./components/StatsBar";
+import LogoBar from "./components/LogoBar";
 import Quiz from "./components/Quiz";
 import Services from "./components/Services";
 import Results from "./components/Results";
@@ -15,6 +16,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <StatsBar />
+      <LogoBar />
       <Quiz />
       <Services />
       <Results />

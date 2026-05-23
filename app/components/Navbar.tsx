@@ -114,7 +114,7 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`text-sm transition-colors tracking-wide ${linkClass}`}
+                className={`nav-underline text-sm transition-colors tracking-wide ${linkClass}`}
               >
                 {l.label}
               </Link>

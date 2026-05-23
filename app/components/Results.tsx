@@ -38,11 +38,11 @@ export default function Results() {
         <div className="divide-y divide-border">
           {CASES.map((c, i) => (
             <FadeIn key={i} delay={i * 100}>
-              <div className="grid md:grid-cols-12 gap-x-8 gap-y-5 py-10 md:py-14">
+              <div className="grid md:grid-cols-12 gap-x-8 gap-y-5 py-10 md:py-14 group">
                 {/* Big stat */}
                 <div className="md:col-span-4">
                   <p
-                    className="font-display leading-none tracking-display text-primary"
+                    className="font-display leading-none tracking-display text-primary group-hover:text-[#E8FF47] transition-colors duration-300"
                     style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
                   >
                     {c.stat}

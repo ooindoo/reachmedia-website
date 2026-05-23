@@ -76,6 +76,81 @@ html.light {
   }
 }
 
+/* ── Nav link underline animation ───────────────────────────────────────── */
+.nav-underline {
+  position: relative;
+}
+.nav-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background-color: currentColor;
+  transition: width 0.25s ease;
+}
+.nav-underline:hover::after {
+  width: 100%;
+}
+
+/* ── Marquee / logo bar ─────────────────────────────────────────────────── */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+  width: max-content;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* Edge fade mask */
+.logo-fade-mask {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* Logo images — dark mode: invert to white; light mode: grayscale */
+.logo-img {
+  filter: brightness(0) invert(1);
+  opacity: 0.25;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.logo-img:hover {
+  opacity: 1;
+}
+html.light .logo-img {
+  filter: grayscale(1);
+  opacity: 0.4;
+}
+html.light .logo-img:hover {
+  filter: none;
+  opacity: 1;
+}
+
+/* ── Custom cursor — desktop only ───────────────────────────────────────── */
+@media (min-width: 768px) {
+  *, *::before, *::after {
+    cursor: none !important;
+  }
+}
+
 /* Hero headline accent:
    - Dark mode: "NON SOLO" in giallo #E8FF47
    - Light mode: stesso colore del resto (niente giallo) */

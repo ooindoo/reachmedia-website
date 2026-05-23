@@ -51,7 +51,7 @@ export default function FAQ() {
         <div className="max-w-3xl">
           {FAQS.map((item, i) => (
             <FadeIn key={i} delay={i * 60}>
-              <div className="border-t border-border last:border-b">
+              <div className={`border-t border-border last:border-b transition-colors duration-200 ${open === i ? "bg-surface/60" : "hover:bg-surface/40"}`}>
                 <button
                   onClick={() => toggle(i)}
                   className="w-full flex items-start justify-between gap-6 py-6 text-left group"
@@ -65,14 +65,13 @@ export default function FAQ() {
                     {item.q}
                   </span>
                   <span
-                    className={`flex-shrink-0 mt-0.5 text-secondary transition-transform duration-300 ${
-                      open === i ? "rotate-45" : ""
+                    className={`flex-shrink-0 mt-1 text-secondary transition-transform duration-300 ${
+                      open === i ? "rotate-180" : ""
                     }`}
                     aria-hidden="true"
                   >
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <line x1="7" y1="0" x2="7" y2="14" stroke="currentColor" strokeWidth="1.5" />
-                      <line x1="0" y1="7" x2="14" y2="7" stroke="currentColor" strokeWidth="1.5" />
+                    <svg width="14" height="8" viewBox="0 0 14 8" fill="none">
+                      <polyline points="1,1 7,7 13,1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </span>
                 </button>
