@@ -21,7 +21,7 @@ export default function Hero() {
       // "EMAIL MARKETING" è la riga più lunga — Bebas Neue ≈ 7.0 larghezze per em
       const byWidth = availW / 7.0;
 
-      setFontSize(Math.min(byHeight, byWidth));
+      setFontSize(Math.min(byHeight, byWidth) * 0.95);
     };
 
     compute();
@@ -37,20 +37,22 @@ export default function Hero() {
           ref={containerRef}
           className="container-site w-full flex-1 flex flex-col justify-end pt-14 md:pt-16 pb-0"
         >
-          <h1
-            className="font-display leading-[0.92] tracking-display text-primary"
-            style={{ fontSize: `${fontSize}px` }}
-          >
-            EMAIL MARKETING
-            <br />
-            CHE GENERA
-            <br />
-            REVENUE.
-            <br />
-            <span className="hero-accent">NON SOLO</span>
-            <br />
-            APERTURE.
-          </h1>
+          <div className="mx-auto" style={{ width: "fit-content" }}>
+            <h1
+              className="font-display leading-[0.92] tracking-display text-primary"
+              style={{ fontSize: `${fontSize}px` }}
+            >
+              EMAIL MARKETING
+              <br />
+              CHE GENERA
+              <br />
+              REVENUE.
+              <br />
+              <span className="hero-accent">NON SOLO</span>
+              <br />
+              APERTURE.
+            </h1>
+          </div>
         </div>
       </section>
 
