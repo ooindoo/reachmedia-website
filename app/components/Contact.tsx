@@ -4,9 +4,10 @@ import { useState } from "react";
 import FadeIn from "./FadeIn";
 
 type Form = { name: string; email: string; message: string };
-type Errors = { name?: string; email?: string };
+type Errors = { name?: string; email?: string; message?: string };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const FORMSPREE_URL = "https://formspree.io/f/xpqnldne";
 
 const INPUT =
   "w-full bg-transparent border-b border-border text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
@@ -19,6 +20,7 @@ export default function Contact() {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,7 +34,9 @@ export default function Contact() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setServerError("");
 
+    // Validazione client-side
     const newErrors: Errors = {};
     if (!form.name.trim()) newErrors.name = "Il nome è obbligatorio.";
     if (!form.email.trim()) {
@@ -40,16 +44,40 @@ export default function Contact() {
     } else if (!EMAIL_RE.test(form.email)) {
       newErrors.email = "Inserisci un indirizzo email valido.";
     }
+    if (!form.message.trim()) newErrors.message = "Il messaggio è obbligatorio.";
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
     setErrors({});
-
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 700));
-    setLoading(false);
-    setSent(true);
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+
+      if (res.ok) {
+        setSent(true);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setServerError(
+          data?.errors?.[0]?.message ??
+            "Errore nell'invio. Riprova o scrivi a info@reachmedia.it."
+        );
+      }
+    } catch {
+      setServerError("Errore di rete. Riprova o scrivi a info@reachmedia.it.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,8 +94,7 @@ export default function Contact() {
               CONTATTI
             </h2>
             <p className="text-secondary text-sm leading-relaxed mb-8">
-              Hai già la checklist e vuoi parlare della tua situazione
-              specifica? Scrivici.
+              Vuoi capire se ha senso lavorare insieme? Scrivici.
             </p>
             <div>
               <p className="text-[10px] text-secondary uppercase tracking-widest mb-2">
@@ -91,7 +118,7 @@ export default function Contact() {
                     className="font-display tracking-display text-primary mb-3"
                     style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
                   >
-                    MESSAGGIO INVIATO.
+                    MESSAGGIO RICEVUTO.
                   </p>
                   <p className="text-secondary text-sm">
                     Ti rispondo entro 24 ore.
@@ -106,6 +133,7 @@ export default function Contact() {
                     <input
                       type="text"
                       name="name"
+                      required
                       value={form.name}
                       onChange={onChange}
                       placeholder="Il tuo nome"
@@ -122,6 +150,7 @@ export default function Contact() {
                     <input
                       type="email"
                       name="email"
+                      required
                       value={form.email}
                       onChange={onChange}
                       placeholder="tua@email.it"
@@ -138,12 +167,21 @@ export default function Contact() {
                     <textarea
                       name="message"
                       rows={4}
+                      required
                       value={form.message}
                       onChange={onChange}
                       placeholder="Descrivi la tua situazione attuale."
-                      className={`${INPUT} resize-none`}
+                      className={`${errors.message ? INPUT_ERR : INPUT} resize-none`}
                     />
+                    {errors.message && (
+                      <p className="text-xs text-red-400 mt-1.5">{errors.message}</p>
+                    )}
                   </div>
+
+                  {serverError && (
+                    <p className="text-xs text-red-400">{serverError}</p>
+                  )}
+
                   <button
                     type="submit"
                     disabled={loading}
