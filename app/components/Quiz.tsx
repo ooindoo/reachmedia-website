@@ -126,32 +126,57 @@ export default function Quiz() {
     setLoading(true);
 
     const apiKey = process.env.NEXT_PUBLIC_KLAVIYO_API_KEY;
+    const listId = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID;
+
     if (apiKey) {
+      // Costruisce le proprietà custom del profilo con le risposte al quiz
       const quizProperties: Record<string, string | number> = {};
       QUESTIONS.forEach((q, i) => {
-        quizProperties[`quiz_q${i + 1}`] = answers[i] ?? "";
+        quizProperties[`quiz_q${i + 1}_domanda`] = q.q;
+        quizProperties[`quiz_q${i + 1}_risposta`] = answers[i] ?? "";
       });
       quizProperties["quiz_score"] = total;
       quizProperties["quiz_result"] = result.title;
+      quizProperties["quiz_source"] = "Quiz Reach Media";
+
+      const profileAttributes = {
+        email,
+        first_name: name,
+        properties: quizProperties,
+      };
+
+      const subscriptionAttributes: Record<string, unknown> = {
+        custom_source: "Quiz Reach Media",
+        profile: {
+          data: {
+            type: "profile",
+            attributes: profileAttributes,
+          },
+        },
+      };
+
+      // list_id è opzionale — se impostato, iscrive alla lista specifica
+      if (listId) {
+        subscriptionAttributes.list_id = listId;
+      }
 
       try {
-        await fetch("https://a.klaviyo.com/api/profiles/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Klaviyo ${apiKey}`,
-          },
-          body: JSON.stringify({
-            data: {
-              type: "profile",
-              attributes: {
-                email,
-                first_name: name,
-                properties: quizProperties,
-              },
+        await fetch(
+          `https://a.klaviyo.com/client/subscriptions/?company_id=${apiKey}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              revision: "2024-02-15",
             },
-          }),
-        });
+            body: JSON.stringify({
+              data: {
+                type: "subscription",
+                attributes: subscriptionAttributes,
+              },
+            }),
+          }
+        );
       } catch (err) {
         console.error("Klaviyo error:", err);
       }
