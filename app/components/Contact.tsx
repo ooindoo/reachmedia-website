@@ -115,7 +115,7 @@ export default function Contact() {
               {sent ? (
                 <div className="border-t-2 border-primary pt-8">
                   <p
-                    className="font-display tracking-display text-primary mb-3"
+                    className="font-display tracking-display text-accent mb-3"
                     style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
                   >
                     MESSAGGIO RICEVUTO.
