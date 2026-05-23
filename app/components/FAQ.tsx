@@ -36,10 +36,9 @@ export default function FAQ() {
   const toggle = (i: number) => setOpen(open === i ? null : i);
 
   return (
-    <section className="border-t border-border py-14 md:py-32">
+    <section className="border-t border-border py-12 md:py-32">
       <div className="container-site">
         <FadeIn className="mb-8 md:mb-14">
-          <p className="section-label mb-4">FAQ</p>
           <h2
             className="font-display tracking-display text-primary leading-tight"
             style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}

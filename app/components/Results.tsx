@@ -23,10 +23,9 @@ const CASES = [
 
 export default function Results() {
   return (
-    <section id="risultati" className="border-t border-border py-14 md:py-32">
+    <section id="risultati" className="border-t border-border py-12 md:py-32">
       <div className="container-site">
         <FadeIn className="mb-10 md:mb-20">
-          <p className="section-label mb-3">Case study</p>
           <h2
             className="font-display tracking-display text-primary"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}

@@ -3,7 +3,7 @@ import FadeIn from "./FadeIn";
 
 export default function CtaRepeat() {
   return (
-    <section className="border-t border-border py-14 md:py-32">
+    <section className="border-t border-border py-12 md:py-32">
       <div className="container-site">
         <FadeIn>
           <h2
@@ -18,7 +18,7 @@ export default function CtaRepeat() {
           </p>
           <Link
             href="#quiz"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
+            className="inline-flex w-full md:w-auto items-center justify-center md:justify-start gap-3 px-8 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
           >
             Fai il quiz ora
             <span className="transition-transform duration-200 group-hover:translate-x-1">

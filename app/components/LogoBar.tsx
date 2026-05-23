@@ -52,7 +52,7 @@ export default function LogoBar() {
                 alt={logo.name}
                 width={36}
                 height={36}
-                className="logo-img h-8 w-auto"
+                className="logo-img h-11 md:h-8 w-auto"
               />
               {logo.label && (
                 <span className="font-display tracking-display text-[7px] text-secondary opacity-60 whitespace-nowrap">

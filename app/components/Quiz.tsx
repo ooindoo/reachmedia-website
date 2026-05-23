@@ -220,10 +220,9 @@ export default function Quiz() {
     "w-full bg-transparent border-b border-border text-primary text-sm py-3 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
 
   return (
-    <section id="quiz" className="border-t border-border py-14 md:py-32">
+    <section id="quiz" className="border-t border-border py-12 md:py-32">
       <div className="container-site">
         <FadeIn className="mb-8 md:mb-14">
-          <p className="section-label mb-4">Quiz</p>
           <h2
             className="font-display tracking-display text-primary leading-tight"
             style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
@@ -269,7 +268,7 @@ export default function Quiz() {
                     <button
                       key={i}
                       onClick={() => pick(QUESTIONS[step].scores[i], opt)}
-                      className="w-full text-left px-5 py-4 border border-border hover:border-primary text-secondary hover:text-primary transition-all duration-200 text-sm group"
+                      className="w-full text-left px-5 py-4 min-h-[52px] border border-border hover:border-primary text-secondary hover:text-primary transition-all duration-200 text-sm group"
                     >
                       <span className="font-display tracking-display text-xs mr-3 text-[#444] group-hover:text-primary transition-colors">
                         {String.fromCharCode(65 + i)}

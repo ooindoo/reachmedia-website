@@ -81,17 +81,16 @@ export default function Contact() {
   };
 
   return (
-    <section id="contatti" className="border-t border-border py-14 md:py-32">
+    <section id="contatti" className="border-t border-border py-12 md:py-32">
       <div className="container-site">
         <div className="grid md:grid-cols-12 gap-x-8 gap-y-12">
           {/* Left */}
           <FadeIn className="md:col-span-4">
-            <p className="section-label mb-4">Contatti</p>
             <h2
               className="font-display tracking-display text-primary mb-6 leading-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
             >
-              CONTATTI
+              PARLIAMO
             </h2>
             <p className="text-secondary text-sm leading-relaxed mb-8">
               Vuoi capire se ha senso lavorare insieme? Scrivici.
