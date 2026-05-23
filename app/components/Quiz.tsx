@@ -166,28 +166,32 @@ export default function Quiz() {
         properties: quizProperties,
       };
 
-      const subscriptionAttributes: Record<string, unknown> = {
-        custom_source: "Quiz Reach Media",
-        profile: {
-          data: {
-            type: "profile",
-            attributes: profileAttributes,
+      const payload = {
+        data: {
+          type: "subscription",
+          attributes: {
+            custom_source: "Quiz Reach Media",
+            profile: {
+              data: {
+                type: "profile",
+                attributes: profileAttributes,
+              },
+            },
           },
+          ...(listId && {
+            relationships: {
+              list: {
+                data: {
+                  type: "list",
+                  id: listId,
+                },
+              },
+            },
+          }),
         },
       };
 
-      // list_id è opzionale — se impostato, iscrive alla lista specifica
-      if (listId) {
-        subscriptionAttributes.list_id = listId;
-      }
-
       try {
-        const payload = {
-          data: {
-            type: "subscription",
-            attributes: subscriptionAttributes,
-          },
-        };
         console.log("[Klaviyo debug] payload:", JSON.stringify(payload, null, 2));
         const res = await fetch(
           `https://a.klaviyo.com/client/subscriptions/?company_id=${apiKey}`,
