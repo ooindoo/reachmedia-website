@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
 import ChecklistPopup from "./components/ChecklistPopup";
@@ -62,6 +63,10 @@ export default function RootLayout({
       <body className="font-sans">
         {/* Theme init — must be first child to run before any paint */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script
+          src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VhAfyx"
+          strategy="afterInteractive"
+        />
         {children}
         <MobileQuizBar />
         <CookieBanner />
