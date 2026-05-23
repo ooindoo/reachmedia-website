@@ -78,13 +78,9 @@ html.light {
 
 /* Hero headline accent:
    - Dark mode: "NON SOLO" in giallo #E8FF47
-   - Light mode: stesso colore del resto (niente giallo) */
+   - Light mode: "NON SOLO" in giallo #E8FF47 (stesso) */
 .hero-accent {
   color: #e8ff47;
-}
-
-html.light .hero-accent {
-  color: rgb(var(--color-primary));
 }
 
 @keyframes quizSlide {
