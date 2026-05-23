@@ -32,7 +32,7 @@ export default function Hero() {
       <section className="bg-bg hero-grid overflow-hidden md:h-screen md:flex md:flex-col">
         <div
           ref={containerRef}
-          className="container-site w-full md:flex-1 md:flex md:flex-col md:justify-end pt-14 md:pt-16 pb-4 md:pb-0"
+          className="container-site w-full md:flex-1 md:flex md:flex-col md:justify-end pt-[100px] md:pt-[120px] pb-4 md:pb-0"
         >
           <h1
             className="font-display leading-[0.92] tracking-display text-primary"
