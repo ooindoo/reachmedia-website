@@ -54,7 +54,7 @@ export default function ChecklistPopup() {
           &#x2715;
         </button>
 
-        <p className="text-[10px] text-accent uppercase tracking-widest mb-4">
+        <p className="text-[10px] text-secondary uppercase tracking-widest mb-4">
           Gratis per te
         </p>
 
@@ -68,7 +68,7 @@ export default function ChecklistPopup() {
 
         <button
           onClick={scrollToQuiz}
-          className="w-full py-4 bg-accent text-bg text-sm font-semibold hover:bg-accent-hover transition-colors"
+          className="w-full py-4 bg-primary text-bg text-sm font-semibold hover:opacity-90 transition-opacity"
         >
           Fai il quiz gratis &rarr;
         </button>

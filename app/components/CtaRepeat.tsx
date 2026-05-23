@@ -18,7 +18,7 @@ export default function CtaRepeat() {
           </p>
           <Link
             href="#quiz"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
           >
             Fai il quiz ora
             <span className="transition-transform duration-200 group-hover:translate-x-1">

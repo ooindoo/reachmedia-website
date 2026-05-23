@@ -7,28 +7,28 @@
   /* Dark mode — default */
   --color-bg: 10 10 10;           /* #0A0A0A */
   --color-surface: 17 17 17;      /* #111111 */
-  --color-surface-2: 22 22 22;    /* #161616 */
+  --color-surface-2: 17 17 17;    /* #111111 */
   --color-primary: 240 240 240;   /* #F0F0F0 */
-  --color-secondary: 136 136 136; /* #888888 */
-  --color-border: 26 26 26;       /* #1A1A1A */
+  --color-secondary: 102 102 102; /* #666666 */
+  --color-border: 34 34 34;       /* #222222 */
   --color-border-mid: 34 34 34;   /* #222222 */
-  --color-accent: 232 255 71;     /* #E8FF47 */
+  --color-accent: 232 255 71;     /* #E8FF47 — usato SOLO in 3 posti */
   --color-accent-hover: 212 235 58; /* #D4EB3A */
   --grid-dot: rgba(255, 255, 255, 0.04);
 }
 
 html.light {
-  /* Light mode */
+  /* Light mode — niente giallo, accento nero */
   --color-bg: 245 243 239;        /* #F5F3EF */
-  --color-surface: 245 245 245;   /* #F5F5F5 */
-  --color-surface-2: 235 235 235; /* #EBEBEB */
-  --color-primary: 13 13 13;      /* #0D0D0D */
+  --color-surface: 235 233 229;   /* slightly darker */
+  --color-surface-2: 225 223 219;
+  --color-primary: 10 10 10;      /* #0A0A0A */
   --color-secondary: 85 85 85;    /* #555555 */
-  --color-border: 224 224 224;    /* #E0E0E0 */
-  --color-border-mid: 204 204 204;/* #CCCCCC */
-  --color-accent: 10 10 10;       /* #0A0A0A */
-  --color-accent-hover: 26 26 26; /* #1A1A1A */
-  --grid-dot: rgba(0, 0, 0, 0.05);
+  --color-border: 221 221 221;    /* #DDDDDD */
+  --color-border-mid: 204 204 204;
+  --color-accent: 10 10 10;       /* #0A0A0A — niente giallo in light */
+  --color-accent-hover: 30 30 30;
+  --grid-dot: rgba(0, 0, 0, 0.04);
 }
 
 @layer base {
@@ -76,26 +76,20 @@ html.light {
   }
 }
 
-/* Hero headline accent — giallo come testo in dark, giallo come sfondo in light */
+/* Hero headline accent:
+   - Dark mode: "NON SOLO" in giallo #E8FF47
+   - Light mode: stesso colore del resto (niente giallo) */
 .hero-accent {
-  color: rgb(var(--color-accent));
+  color: #e8ff47;
 }
 
 html.light .hero-accent {
-  color: #0a0a0a;
-  background-color: #e8ff47;
-  padding: 0 0.12em;
+  color: rgb(var(--color-primary));
 }
 
 @keyframes quizSlide {
-  from {
-    opacity: 0;
-    transform: translateX(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 .quiz-enter {
@@ -103,14 +97,8 @@ html.light .hero-accent {
 }
 
 @keyframes popupSlide {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .popup-enter {

@@ -162,7 +162,7 @@ export default function Quiz() {
   };
 
   const INPUT =
-    "w-full bg-transparent border-b border-border text-primary text-sm py-3 placeholder-[#333] focus:outline-none focus:border-accent transition-colors duration-200";
+    "w-full bg-transparent border-b border-border text-primary text-sm py-3 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
 
   return (
     <section id="quiz" className="border-t border-border py-24 md:py-32">
@@ -196,7 +196,7 @@ export default function Quiz() {
                 </div>
                 <div className="h-px bg-border-mid">
                   <div
-                    className="h-px bg-accent transition-all duration-500"
+                    className="h-px bg-primary transition-all duration-500"
                     style={{
                       width: `${(step / QUESTIONS.length) * 100}%`,
                     }}
@@ -214,9 +214,9 @@ export default function Quiz() {
                     <button
                       key={i}
                       onClick={() => pick(QUESTIONS[step].scores[i], opt)}
-                      className="w-full text-left px-5 py-4 border border-border hover:border-accent text-secondary hover:text-accent transition-all duration-200 text-sm group"
+                      className="w-full text-left px-5 py-4 border border-border hover:border-primary text-secondary hover:text-primary transition-all duration-200 text-sm group"
                     >
-                      <span className="font-display tracking-display text-xs mr-3 text-[#444] group-hover:text-accent transition-colors">
+                      <span className="font-display tracking-display text-xs mr-3 text-[#444] group-hover:text-primary transition-colors">
                         {String.fromCharCode(65 + i)}
                       </span>
                       {opt}
@@ -230,7 +230,7 @@ export default function Quiz() {
           {/* FORM — shown before result */}
           {phase === "form" && (
             <div key="form" className="quiz-enter border border-border p-7 md:p-8">
-              <p className="text-[10px] text-accent uppercase tracking-widest mb-2">
+              <p className="text-[10px] text-secondary uppercase tracking-widest mb-2">
                 Quasi fatto
               </p>
               <p className="text-sm text-secondary mb-6 leading-relaxed">
@@ -266,7 +266,7 @@ export default function Quiz() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors disabled:opacity-50"
+                  className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
                 >
                   {loading ? "Un attimo..." : "Mostra il mio risultato"}
                 </button>
@@ -277,10 +277,10 @@ export default function Quiz() {
           {/* RESULT — shown after form */}
           {phase === "result" && (
             <div key="result" className="quiz-enter">
-              <div className="border-t-2 border-accent pt-8 mb-8">
+              <div className="border-t-2 border-primary pt-8 mb-8">
                 <p className="section-label mb-4">Il tuo risultato</p>
                 <h3
-                  className="font-display tracking-display text-accent leading-tight mb-6"
+                  className="font-display tracking-display text-primary leading-tight mb-6"
                   style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}
                 >
                   {result.title}
@@ -294,7 +294,7 @@ export default function Quiz() {
                   href={result.cta.primary.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-7 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
+                  className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
                 >
                   {result.cta.primary.label}
                   <span className="transition-transform duration-200 group-hover:translate-x-1">

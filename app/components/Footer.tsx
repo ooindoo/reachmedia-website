@@ -25,7 +25,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link
               href="/"
-              className="font-display text-xl tracking-display text-primary block mb-4 hover:text-accent transition-colors"
+              className="font-display text-xl tracking-display text-primary block mb-4 hover:text-secondary transition-colors"
             >
               REACHMEDIA.IT
             </Link>

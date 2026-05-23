@@ -6,7 +6,7 @@ import FadeIn from "./FadeIn";
 type Form = { name: string; email: string; message: string };
 
 const INPUT =
-  "w-full bg-transparent border-b border-border text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-accent transition-colors duration-200";
+  "w-full bg-transparent border-b border-border text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
 
 export default function Contact() {
   const [form, setForm] = useState<Form>({ name: "", email: "", message: "" });
@@ -48,7 +48,7 @@ export default function Contact() {
               </p>
               <a
                 href="mailto:info@reachmedia.it"
-                className="text-primary hover:text-accent transition-colors text-sm"
+                className="text-primary hover:text-secondary transition-colors text-sm"
               >
                 info@reachmedia.it
               </a>
@@ -59,9 +59,9 @@ export default function Contact() {
           <div className="md:col-span-6 md:col-start-6">
             <FadeIn delay={120}>
               {sent ? (
-                <div className="border-t-2 border-accent pt-8">
+                <div className="border-t-2 border-primary pt-8">
                   <p
-                    className="font-display tracking-display text-accent mb-3"
+                    className="font-display tracking-display text-primary mb-3"
                     style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
                   >
                     MESSAGGIO INVIATO.
@@ -116,7 +116,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors disabled:opacity-50 tracking-wide"
+                    className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 tracking-wide"
                   >
                     {loading ? "Invio in corso..." : "Invia"}
                   </button>

@@ -17,7 +17,7 @@ export default function StatsBar() {
             <FadeIn key={i} delay={i * 80}>
               <div>
                 <p
-                  className="font-display leading-none text-accent mb-2 tracking-display"
+                  className="font-display leading-none text-primary mb-2 tracking-display"
                   style={{ fontSize: "clamp(2.8rem, 5vw, 4.5rem)" }}
                 >
                   <CountUp to={s.value} suffix={s.suffix} />

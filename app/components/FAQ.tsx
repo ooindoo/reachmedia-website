@@ -59,13 +59,13 @@ export default function FAQ() {
                 >
                   <span
                     className={`text-sm md:text-base font-medium transition-colors duration-200 ${
-                      open === i ? "text-accent" : "text-primary group-hover:text-accent"
+                      open === i ? "text-primary" : "text-secondary group-hover:text-primary"
                     }`}
                   >
                     {item.q}
                   </span>
                   <span
-                    className={`flex-shrink-0 mt-0.5 text-accent transition-transform duration-300 ${
+                    className={`flex-shrink-0 mt-0.5 text-secondary transition-transform duration-300 ${
                       open === i ? "rotate-45" : ""
                     }`}
                     aria-hidden="true"

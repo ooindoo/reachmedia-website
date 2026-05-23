@@ -42,7 +42,7 @@ export default function Results() {
                 {/* Big stat */}
                 <div className="md:col-span-4">
                   <p
-                    className="font-display leading-none tracking-display text-accent"
+                    className="font-display leading-none tracking-display text-primary"
                     style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
                   >
                     {c.stat}
@@ -57,7 +57,7 @@ export default function Results() {
                   <p className="text-[10px] text-secondary uppercase tracking-[0.14em] mb-3">
                     {c.sector}
                   </p>
-                  <p className="text-[#999] text-[0.9375rem] leading-relaxed">
+                  <p className="text-secondary text-[0.9375rem] leading-relaxed">
                     {c.body}
                   </p>
                 </div>

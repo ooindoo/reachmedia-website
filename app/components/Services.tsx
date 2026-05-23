@@ -37,7 +37,7 @@ export default function Services() {
             <FadeIn key={s.index} delay={i * 80} className="h-full">
               <div className="flex flex-col h-full border border-border bg-surface p-8 md:p-10">
                 <span
-                  className="font-display tracking-display text-accent block mb-6"
+                  className="font-display tracking-display text-primary block mb-6"
                   style={{ fontSize: "clamp(2rem, 3vw, 3rem)" }}
                 >
                   {s.index}
