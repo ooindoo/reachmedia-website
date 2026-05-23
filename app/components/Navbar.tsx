@@ -39,10 +39,10 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    // Sync toggle state with whatever the inline script already applied
     setIsDark(!document.documentElement.classList.contains("light"));
 
     const h = () => setScrolled(window.scrollY > 20);
+    h(); // set initial state
     window.addEventListener("scroll", h, { passive: true });
     return () => window.removeEventListener("scroll", h);
   }, []);
@@ -59,19 +59,51 @@ export default function Navbar() {
     }
   };
 
+  // ── Stili condizionali ──────────────────────────────────────────────────────
+  // In cima (hero visibile): sempre giallo #E8FF47 + testo nero, in entrambi i temi.
+  // Dopo scroll: dark → #0A0A0A + testo bianco | light → #F5F3EF + testo nero.
+
+  const navBg = scrolled
+    ? "bg-bg/95 backdrop-blur-sm border-b border-border"
+    : "bg-[#E8FF47]";
+
+  const logoClass = scrolled
+    ? "text-primary hover:text-accent"
+    : "text-[#0A0A0A] hover:opacity-70";
+
+  const linkClass = scrolled
+    ? "text-secondary hover:text-primary"
+    : "text-[#0A0A0A]/70 hover:text-[#0A0A0A]";
+
+  const quizBtnClass = scrolled
+    ? "border border-accent text-accent hover:bg-accent hover:text-bg"
+    : "border border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#E8FF47]";
+
+  const toggleClass = scrolled
+    ? "text-secondary hover:text-primary"
+    : "text-[#0A0A0A]/60 hover:text-[#0A0A0A]";
+
+  const hamburgerBg = scrolled ? "bg-primary" : "bg-[#0A0A0A]";
+
+  const drawerBg = scrolled
+    ? "bg-bg border-t border-border"
+    : "bg-[#E8FF47] border-t border-[#0A0A0A]/15";
+
+  const drawerLinkClass = scrolled
+    ? "text-secondary hover:text-primary"
+    : "text-[#0A0A0A]/70 hover:text-[#0A0A0A]";
+
+  const drawerQuizClass = scrolled
+    ? "border border-accent text-accent text-center hover:bg-accent hover:text-bg"
+    : "border border-[#0A0A0A] text-[#0A0A0A] text-center hover:bg-[#0A0A0A] hover:text-[#E8FF47]";
+
   return (
-    <nav
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-bg/95 backdrop-blur-sm border-b border-border"
-          : "bg-transparent"
-      }`}
-    >
+    <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${navBg}`}>
       <div className="container-site">
         <div className="flex items-center justify-between h-14 md:h-16">
           <Link
             href="/"
-            className="font-display text-2xl md:text-3xl tracking-display text-primary hover:text-accent transition-colors duration-200"
+            className={`font-display text-2xl md:text-3xl tracking-display transition-all duration-200 ${logoClass}`}
           >
             REACHMEDIA.IT
           </Link>
@@ -82,14 +114,14 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-sm text-secondary hover:text-primary transition-colors tracking-wide"
+                className={`text-sm transition-colors tracking-wide ${linkClass}`}
               >
                 {l.label}
               </Link>
             ))}
             <Link
               href="#quiz"
-              className="text-sm font-medium px-5 py-2.5 border border-accent text-accent hover:bg-accent hover:text-bg transition-all duration-200"
+              className={`text-sm font-medium px-5 py-2.5 transition-all duration-200 ${quizBtnClass}`}
             >
               Fai il quiz
             </Link>
@@ -97,7 +129,7 @@ export default function Navbar() {
             {/* Theme toggle */}
             <button
               onClick={toggleTheme}
-              className="w-8 h-8 flex items-center justify-center text-secondary hover:text-primary transition-colors duration-200"
+              className={`w-8 h-8 flex items-center justify-center transition-colors duration-200 ${toggleClass}`}
               aria-label={isDark ? "Passa alla modalità chiara" : "Passa alla modalità scura"}
               title={isDark ? "Light mode" : "Dark mode"}
             >
@@ -109,7 +141,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-3">
             <button
               onClick={toggleTheme}
-              className="w-8 h-8 flex items-center justify-center text-secondary hover:text-primary transition-colors duration-200"
+              className={`w-8 h-8 flex items-center justify-center transition-colors duration-200 ${toggleClass}`}
               aria-label={isDark ? "Passa alla modalità chiara" : "Passa alla modalità scura"}
             >
               {isDark ? <SunIcon /> : <MoonIcon />}
@@ -119,39 +151,23 @@ export default function Navbar() {
               className="flex flex-col gap-[5px] w-9 h-9 items-center justify-center -mr-1"
               aria-label={open ? "Chiudi menu" : "Apri menu"}
             >
-              <span
-                className={`block w-5 h-px bg-primary transition-all duration-300 ${
-                  open ? "rotate-45 translate-y-[6px]" : ""
-                }`}
-              />
-              <span
-                className={`block w-5 h-px bg-primary transition-all duration-300 ${
-                  open ? "opacity-0" : ""
-                }`}
-              />
-              <span
-                className={`block w-5 h-px bg-primary transition-all duration-300 ${
-                  open ? "-rotate-45 -translate-y-[6px]" : ""
-                }`}
-              />
+              <span className={`block w-5 h-px transition-all duration-300 ${hamburgerBg} ${open ? "rotate-45 translate-y-[6px]" : ""}`} />
+              <span className={`block w-5 h-px transition-all duration-300 ${hamburgerBg} ${open ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-px transition-all duration-300 ${hamburgerBg} ${open ? "-rotate-45 -translate-y-[6px]" : ""}`} />
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile drawer */}
-      <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="bg-bg border-t border-border px-6 py-6 flex flex-col gap-5">
+      <div className={`md:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-64 opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className={`px-6 py-6 flex flex-col gap-5 ${drawerBg}`}>
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-secondary hover:text-primary transition-colors text-sm"
+              className={`text-sm transition-colors ${drawerLinkClass}`}
             >
               {l.label}
             </Link>
@@ -159,7 +175,7 @@ export default function Navbar() {
           <Link
             href="#quiz"
             onClick={() => setOpen(false)}
-            className="text-sm font-medium px-5 py-3 border border-accent text-accent text-center hover:bg-accent hover:text-bg transition-all duration-200 mt-1"
+            className={`text-sm font-medium px-5 py-3 transition-all duration-200 mt-1 ${drawerQuizClass}`}
           >
             Fai il quiz
           </Link>
