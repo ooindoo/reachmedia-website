@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const LINKS = [
-  { href: "#servizi", label: "Servizi" },
-  { href: "#risultati", label: "Risultati" },
-  { href: "#contatti", label: "Contatti" },
+  { href: "/#servizi", label: "Servizi" },
+  { href: "/#risultati", label: "Risultati" },
+  { href: "/blog", label: "Insights" },
+  { href: "/#contatti", label: "Contatti" },
 ];
 
 function SunIcon() {
@@ -37,6 +39,12 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const pathname = usePathname();
+
+  // On non-homepage routes (blog, legal pages) there's no yellow hero —
+  // always render in the "scrolled" visual state.
+  const isHome = pathname === "/";
+  const showYellow = isHome && !scrolled;
 
   useEffect(() => {
     setIsDark(!document.documentElement.classList.contains("light"));
@@ -63,39 +71,39 @@ export default function Navbar() {
   // In cima (hero visibile): sempre giallo #E8FF47 + testo nero, in entrambi i temi.
   // Dopo scroll: dark → #0A0A0A + testo bianco | light → #F5F3EF + testo nero.
 
-  const navBg = scrolled
-    ? "bg-bg/95 backdrop-blur-sm border-b border-border"
-    : "bg-[#E8FF47]";
+  const navBg = showYellow
+    ? "bg-[#E8FF47]"
+    : "bg-bg/95 backdrop-blur-sm border-b border-border";
 
-  const logoClass = scrolled
-    ? "text-primary hover:text-accent"
-    : "text-[#0A0A0A] hover:opacity-70";
+  const logoClass = showYellow
+    ? "text-[#0A0A0A] hover:opacity-70"
+    : "text-primary hover:text-accent";
 
-  const linkClass = scrolled
-    ? "text-secondary hover:text-primary"
-    : "text-[#0A0A0A]/70 hover:text-[#0A0A0A]";
+  const linkClass = showYellow
+    ? "text-[#0A0A0A]/70 hover:text-[#0A0A0A]"
+    : "text-secondary hover:text-primary";
 
-  const quizBtnClass = scrolled
-    ? "border border-accent text-accent hover:bg-accent hover:text-bg"
-    : "border border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#E8FF47]";
+  const quizBtnClass = showYellow
+    ? "border border-[#0A0A0A] text-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-[#E8FF47]"
+    : "border border-accent text-accent hover:bg-accent hover:text-bg";
 
-  const toggleClass = scrolled
-    ? "text-secondary hover:text-primary"
-    : "text-[#0A0A0A]/60 hover:text-[#0A0A0A]";
+  const toggleClass = showYellow
+    ? "text-[#0A0A0A]/60 hover:text-[#0A0A0A]"
+    : "text-secondary hover:text-primary";
 
-  const hamburgerBg = scrolled ? "bg-primary" : "bg-[#0A0A0A]";
+  const hamburgerBg = showYellow ? "bg-[#0A0A0A]" : "bg-primary";
 
-  const drawerBg = scrolled
-    ? "bg-bg border-t border-border"
-    : "bg-[#E8FF47] border-t border-[#0A0A0A]/15";
+  const drawerBg = showYellow
+    ? "bg-[#E8FF47] border-t border-[#0A0A0A]/15"
+    : "bg-bg border-t border-border";
 
-  const drawerLinkClass = scrolled
-    ? "text-secondary hover:text-primary"
-    : "text-[#0A0A0A]/70 hover:text-[#0A0A0A]";
+  const drawerLinkClass = showYellow
+    ? "text-[#0A0A0A]/70 hover:text-[#0A0A0A]"
+    : "text-secondary hover:text-primary";
 
-  const drawerQuizClass = scrolled
-    ? "border border-accent text-accent text-center hover:bg-accent hover:text-bg"
-    : "border border-[#0A0A0A] text-[#0A0A0A] text-center hover:bg-[#0A0A0A] hover:text-[#E8FF47]";
+  const drawerQuizClass = showYellow
+    ? "border border-[#0A0A0A] text-[#0A0A0A] text-center hover:bg-[#0A0A0A] hover:text-[#E8FF47]"
+    : "border border-accent text-accent text-center hover:bg-accent hover:text-bg";
 
   return (
     <nav className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${navBg}`}>

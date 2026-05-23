@@ -2,9 +2,10 @@ import Link from "next/link";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "#servizi", label: "Servizi" },
-  { href: "#risultati", label: "Risultati" },
-  { href: "#contatti", label: "Contatti" },
+  { href: "/#servizi", label: "Servizi" },
+  { href: "/#risultati", label: "Risultati" },
+  { href: "/blog", label: "Insights" },
+  { href: "/#contatti", label: "Contatti" },
 ];
 
 const LEGAL_LINKS = [
