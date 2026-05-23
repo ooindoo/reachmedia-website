@@ -26,8 +26,8 @@ html.light {
   --color-secondary: 85 85 85;    /* #555555 */
   --color-border: 224 224 224;    /* #E0E0E0 */
   --color-border-mid: 204 204 204;/* #CCCCCC */
-  --color-accent: 45 74 30;       /* #2D4A1E */
-  --color-accent-hover: 61 98 40; /* #3D6228 */
+  --color-accent: 10 10 10;       /* #0A0A0A */
+  --color-accent-hover: 26 26 26; /* #1A1A1A */
   --grid-dot: rgba(0, 0, 0, 0.05);
 }
 
@@ -74,6 +74,17 @@ html.light {
     background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
     background-size: 48px 48px;
   }
+}
+
+/* Hero headline accent — giallo come testo in dark, giallo come sfondo in light */
+.hero-accent {
+  color: rgb(var(--color-accent));
+}
+
+html.light .hero-accent {
+  color: #0a0a0a;
+  background-color: #e8ff47;
+  padding: 0 0.12em;
 }
 
 @keyframes quizSlide {

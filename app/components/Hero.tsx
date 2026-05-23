@@ -18,7 +18,7 @@ export default function Hero() {
             <br />
             REVENUE.
             <br />
-            <span className="text-accent">NON SOLO</span>
+            <span className="hero-accent">NON SOLO</span>
             <br />
             APERTURE.
           </h1>
