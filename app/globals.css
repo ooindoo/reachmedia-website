@@ -17,7 +17,7 @@
 
 html.light {
   /* Light mode */
-  --color-bg: 255 255 255;        /* #FFFFFF */
+  --color-bg: 245 243 239;        /* #F5F3EF */
   --color-surface: 245 245 245;   /* #F5F5F5 */
   --color-surface-2: 235 235 235; /* #EBEBEB */
   --color-primary: 13 13 13;      /* #0D0D0D */
