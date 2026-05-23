@@ -92,6 +92,7 @@ export default function Quiz() {
   const [scores, setScores] = useState<number[]>([]);
   const [answers, setAnswers] = useState<string[]>([]);
   const [phase, setPhase] = useState<Phase>("quiz");
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -103,16 +104,21 @@ export default function Quiz() {
   const result =
     RESULTS.find((r) => total >= r.min && total <= r.max) ?? RESULTS[1];
 
-  const pick = (score: number, answer: string) => {
-    const nextScores = [...scores, score];
-    const nextAnswers = [...answers, answer];
-    setScores(nextScores);
-    setAnswers(nextAnswers);
-    if (step < QUESTIONS.length - 1) {
-      setStep(step + 1);
-    } else {
-      setPhase("form");
-    }
+  const pick = (score: number, answer: string, idx: number) => {
+    if (selectedIndex !== null) return;
+    setSelectedIndex(idx);
+    setTimeout(() => {
+      const nextScores = [...scores, score];
+      const nextAnswers = [...answers, answer];
+      setScores(nextScores);
+      setAnswers(nextAnswers);
+      setSelectedIndex(null);
+      if (step < QUESTIONS.length - 1) {
+        setStep(step + 1);
+      } else {
+        setPhase("form");
+      }
+    }, 280);
   };
 
   const restart = () => {
@@ -120,6 +126,7 @@ export default function Quiz() {
     setScores([]);
     setAnswers([]);
     setPhase("quiz");
+    setSelectedIndex(null);
     setName("");
     setEmail("");
     setErrors({});
@@ -207,6 +214,8 @@ export default function Quiz() {
     }
 
     setLoading(false);
+    localStorage.setItem("rm_quiz_completed", "1");
+    window.dispatchEvent(new Event("rm_quiz_done"));
     setPhase("result");
   };
 
@@ -254,17 +263,30 @@ export default function Quiz() {
 
               {/* Question */}
               <div key={step} className="quiz-enter">
-                <p className="text-base md:text-lg text-primary leading-relaxed mb-8">
+                <p className="text-base md:text-lg text-primary leading-relaxed mb-1">
                   {QUESTIONS[step].q}
+                </p>
+                <p className="text-xs mb-8" style={{ color: "#666666" }}>
+                  Scegli una risposta
                 </p>
                 <div className="space-y-3">
                   {QUESTIONS[step].options.map((opt, i) => (
                     <button
                       key={i}
-                      onClick={() => pick(QUESTIONS[step].scores[i], opt)}
-                      className="w-full text-left px-5 py-4 min-h-[52px] border border-border hover:border-primary text-secondary hover:text-primary transition-all duration-200 text-sm group"
+                      onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
+                      className={`w-full text-left px-5 py-4 min-h-[52px] border transition-all duration-200 text-sm group ${
+                        selectedIndex === i
+                          ? "border-[#E8FF47] bg-[#1A1A1A] text-primary"
+                          : "border-border hover:border-primary text-secondary hover:text-primary"
+                      }`}
                     >
-                      <span className="font-display tracking-display text-xs mr-3 text-[#444] group-hover:text-primary transition-colors">
+                      <span
+                        className={`font-display tracking-display text-xs mr-3 transition-colors duration-200 ${
+                          selectedIndex === i
+                            ? "text-[#E8FF47]"
+                            : "text-[#444] group-hover:text-primary"
+                        }`}
+                      >
                         {String.fromCharCode(65 + i)}
                       </span>
                       {opt}
