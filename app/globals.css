@@ -95,21 +95,35 @@ html.light {
 }
 
 /* ── Marquee / logo bar ─────────────────────────────────────────────────── */
+@-webkit-keyframes marquee {
+  0%   { -webkit-transform: translateX(0);    transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+}
 @keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { -webkit-transform: translateX(0);    transform: translateX(0); }
+  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
 }
 .marquee-track {
-  animation: marquee 40s linear infinite;
+  -webkit-animation: marquee 40s linear infinite;
+          animation: marquee 40s linear infinite;
   will-change: transform;
+  /* Force GPU compositing on iOS Safari */
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
   width: max-content;
 }
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-track {
+    -webkit-animation: none;
+            animation: none;
+  }
 }
 
-/* Edge fade mask */
+/* Edge fade mask — translateZ(0) prevents mask from blocking GPU layer on iOS */
 .logo-fade-mask {
+  overflow: hidden;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
