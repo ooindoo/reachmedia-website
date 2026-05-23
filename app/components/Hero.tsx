@@ -4,12 +4,12 @@ export default function Hero() {
   return (
     // pt-36 = 144px (navbar ~56-64px + 80px distanza minima dal titolo)
     <section className="relative min-h-screen flex flex-col bg-bg hero-grid overflow-hidden">
-      <div className="container-site w-full pt-36 md:pt-40 pb-20 md:pb-28">
+      <div className="container-site w-full pt-[72px] md:pt-20 pb-20 md:pb-28">
         <div className="space-y-10 md:space-y-12">
-          {/* Headline */}
+          {/* Headline — desktop ridotto del 20%: 11vw→8.8vw, max 10rem→8rem */}
           <h1
             className="font-display leading-[0.92] tracking-display text-primary text-left"
-            style={{ fontSize: "clamp(3.5rem, 11vw, 10rem)" }}
+            style={{ fontSize: "clamp(3.5rem, 8.8vw, 8rem)" }}
           >
             EMAIL MARKETING
             <br />
