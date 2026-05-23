@@ -41,7 +41,7 @@ export default function Results() {
                 {/* Big stat */}
                 <div className="md:col-span-4">
                   <p
-                    className="font-display leading-none tracking-display text-primary group-hover:text-[#E8FF47] transition-colors duration-300"
+                    className="font-display leading-none tracking-display text-primary group-hover:text-accent transition-colors duration-300"
                     style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
                   >
                     {c.stat}
