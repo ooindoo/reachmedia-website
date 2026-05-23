@@ -276,7 +276,7 @@ export default function Quiz() {
                   {result.body}
                 </p>
                 <a
-                  href="/checklist.pdf"
+                  href="/checklist-reachmedia.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-7 py-4 bg-accent text-bg text-sm font-medium hover:bg-accent-hover transition-colors duration-200 group"
