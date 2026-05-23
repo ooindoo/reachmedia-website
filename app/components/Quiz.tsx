@@ -143,11 +143,9 @@ export default function Quiz() {
     setErrors({});
     setLoading(true);
 
-    const apiKey = process.env.NEXT_PUBLIC_KLAVIYO_API_KEY;
-    const listId = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID;
-
-    console.log("[Klaviyo debug] NEXT_PUBLIC_KLAVIYO_API_KEY:", apiKey ?? "undefined/missing");
-    console.log("[Klaviyo debug] NEXT_PUBLIC_KLAVIYO_LIST_ID:", listId ?? "undefined/missing");
+    // VhAfyx è la public company key — già visibile nel sorgente tramite klaviyo.js
+    const apiKey = process.env.NEXT_PUBLIC_KLAVIYO_API_KEY ?? "VhAfyx";
+    const listId = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID ?? "YqRu4p";
 
     if (apiKey) {
       // Costruisce le proprietà custom del profilo con le risposte al quiz
@@ -192,8 +190,7 @@ export default function Quiz() {
       };
 
       try {
-        console.log("[Klaviyo debug] payload:", JSON.stringify(payload, null, 2));
-        const res = await fetch(
+        await fetch(
           `https://a.klaviyo.com/client/subscriptions/?company_id=${apiKey}`,
           {
             method: "POST",
@@ -204,11 +201,8 @@ export default function Quiz() {
             body: JSON.stringify(payload),
           }
         );
-        const text = await res.text();
-        console.log("[Klaviyo debug] response status:", res.status, res.statusText);
-        console.log("[Klaviyo debug] response body:", text || "(empty — success)");
       } catch (err) {
-        console.error("[Klaviyo debug] fetch error:", err);
+        console.error("Klaviyo subscription error:", err);
       }
     }
 
