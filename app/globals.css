@@ -188,3 +188,11 @@ html.light .hero-accent {
 .popup-enter {
   animation: popupSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Contact section background — distinguishes it from the rest of the page */
+.bg-contact-section {
+  background-color: #111111;
+}
+html.light .bg-contact-section {
+  background-color: #EEEBE6;
+}

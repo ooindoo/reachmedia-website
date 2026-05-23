@@ -81,7 +81,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contatti" className="border-t border-border py-12 md:py-32">
+    <section id="contatti" className="bg-contact-section border-t border-border py-20">
       <div className="container-site">
         <div className="grid md:grid-cols-12 gap-x-8 gap-y-12">
           {/* Left */}

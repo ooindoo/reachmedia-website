@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FooterNewsletter from "./FooterNewsletter";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -94,6 +95,8 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+
+        <FooterNewsletter />
 
         {/* Bottom bar */}
         <div className="border-t border-border pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
