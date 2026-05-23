@@ -156,6 +156,7 @@ html.light .hero-accent {
   color: rgb(var(--color-primary));
 }
 
+
 @keyframes quizSlide {
   from { opacity: 0; transform: translateX(24px); }
   to   { opacity: 1; transform: translateX(0); }
