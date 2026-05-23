@@ -3,6 +3,7 @@ import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
 import ChecklistPopup from "./components/ChecklistPopup";
+import MobileQuizBar from "./components/MobileQuizBar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
         {/* Theme init — must be first child to run before any paint */}
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
+        <MobileQuizBar />
         <CookieBanner />
         <ChecklistPopup />
       </body>
