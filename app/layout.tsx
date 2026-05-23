@@ -20,9 +20,13 @@ const bebas = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Reach Media | Email Marketing e Klaviyo per E-commerce Premium",
+  // Default — overridden per-page where needed
+  title: {
+    default: "Reach Media | Email Marketing e Klaviyo per E-commerce Premium",
+    template: "%s | Reach Media",
+  },
   description:
-    "Reach Media costruisce sistemi Klaviyo per e-commerce premium italiani. Dalla strategia alla deliverability.",
+    "Trasformiamo la lista email del tuo e-commerce in un canale di revenue prevedibile. Strategia Klaviyo, automazioni e Shopify development per brand premium italiani.",
   keywords: [
     "email marketing",
     "Klaviyo",
@@ -30,7 +34,13 @@ export const metadata: Metadata = {
     "e-commerce",
     "marketing automation",
     "consulenza email",
+    "email marketing italia",
+    "klaviyo agenzia",
   ],
+  metadataBase: new URL("https://reachmedia.it"),
+  alternates: {
+    canonical: "https://reachmedia.it",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
@@ -39,11 +49,33 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   openGraph: {
-    title: "Reach Media | Email Marketing e Klaviyo per E-commerce Premium",
+    title: "Reach Media | Email Marketing che Genera Revenue",
     description:
-      "Sistemi Klaviyo e email marketing per e-commerce premium italiani.",
+      "Fai il quiz gratuito e scopri dove stai perdendo soldi con l'email marketing.",
     type: "website",
     locale: "it_IT",
+    url: "https://reachmedia.it",
+    siteName: "Reach Media",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Reach Media – Email Marketing che Genera Revenue",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Reach Media | Email Marketing che Genera Revenue",
+    description:
+      "Fai il quiz gratuito e scopri dove stai perdendo soldi con l'email marketing.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
   },
 };
 

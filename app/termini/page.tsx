@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import LegalLayout from "../components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Termini di Servizio | Reach Media",
+  title: "Termini di Servizio",
+  description: "Termini e condizioni di utilizzo del sito reachmedia.it e dei servizi offerti da Reach Media.",
+  alternates: {
+    canonical: "https://reachmedia.it/termini",
+  },
+  robots: { index: false, follow: false },
 };
 
 export default function Termini() {

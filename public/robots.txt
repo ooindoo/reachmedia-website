@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /privacy-policy
+Disallow: /cookie-policy
+Disallow: /termini
+
+Sitemap: https://reachmedia.it/sitemap.xml

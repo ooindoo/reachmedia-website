@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import LegalLayout from "../components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Reach Media",
+  title: "Privacy Policy",
+  description: "Informativa sulla privacy di Reach Media. Come raccogliamo e utilizziamo i tuoi dati personali nel rispetto del GDPR.",
+  alternates: {
+    canonical: "https://reachmedia.it/privacy-policy",
+  },
+  robots: { index: false, follow: false },
 };
 
 export default function PrivacyPolicy() {

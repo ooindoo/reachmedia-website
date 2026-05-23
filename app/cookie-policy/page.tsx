@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import LegalLayout from "../components/LegalLayout";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Reach Media",
+  title: "Cookie Policy",
+  description: "Cookie policy di Reach Media. Scopri quali cookie usiamo e come gestire le tue preferenze.",
+  alternates: {
+    canonical: "https://reachmedia.it/cookie-policy",
+  },
+  robots: { index: false, follow: false },
 };
 
 export default function CookiePolicy() {
