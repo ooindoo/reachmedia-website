@@ -27,7 +27,7 @@ export default function Footer() {
               href="/"
               className="font-display text-xl tracking-display text-primary block mb-4 hover:text-accent transition-colors"
             >
-              REACH MEDIA
+              REACHMEDIA.IT
             </Link>
             <p className="text-xs text-secondary leading-relaxed mb-4">
               Email marketing e Klaviyo per e-commerce premium italiani.

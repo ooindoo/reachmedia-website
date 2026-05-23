@@ -73,7 +73,7 @@ export default function Navbar() {
             href="/"
             className="font-display text-2xl md:text-3xl tracking-display text-primary hover:text-accent transition-colors duration-200"
           >
-            REACH MEDIA
+            REACHMEDIA.IT
           </Link>
 
           {/* Desktop */}
