@@ -95,6 +95,9 @@ export default function Quiz() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<{ name?: string; email?: string }>({});
+
+  const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   const total = scores.reduce((a, b) => a + b, 0);
   const result =
@@ -119,10 +122,25 @@ export default function Quiz() {
     setPhase("quiz");
     setName("");
     setEmail("");
+    setErrors({});
   };
 
   const handleForm = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validazione campi
+    const newErrors: { name?: string; email?: string } = {};
+    if (!name.trim()) newErrors.name = "Il nome è obbligatorio.";
+    if (!email.trim()) {
+      newErrors.email = "L'email è obbligatoria.";
+    } else if (!EMAIL_RE.test(email)) {
+      newErrors.email = "Inserisci un indirizzo email valido.";
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
     setLoading(true);
 
     const apiKey = process.env.NEXT_PUBLIC_KLAVIYO_API_KEY;
@@ -268,25 +286,25 @@ export default function Quiz() {
                   </label>
                   <input
                     type="text"
-                    required
                     value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: undefined })); }}
                     placeholder="Il tuo nome"
-                    className={INPUT}
+                    className={`${INPUT} ${errors.name ? "border-red-400 focus:border-red-400" : ""}`}
                   />
+                  {errors.name && <p className="text-xs text-red-400 mt-1.5">{errors.name}</p>}
                 </div>
                 <div>
                   <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                    Email aziendale
+                    Email
                   </label>
                   <input
                     type="email"
-                    required
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="tua@azienda.it"
-                    className={INPUT}
+                    onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: undefined })); }}
+                    placeholder="tua@email.it"
+                    className={`${INPUT} ${errors.email ? "border-red-400 focus:border-red-400" : ""}`}
                   />
+                  {errors.email && <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>}
                 </div>
                 <button
                   type="submit"

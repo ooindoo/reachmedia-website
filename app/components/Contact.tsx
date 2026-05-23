@@ -4,21 +4,48 @@ import { useState } from "react";
 import FadeIn from "./FadeIn";
 
 type Form = { name: string; email: string; message: string };
+type Errors = { name?: string; email?: string };
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const INPUT =
   "w-full bg-transparent border-b border-border text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
 
+const INPUT_ERR =
+  "w-full bg-transparent border-b border-red-400 text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-red-400 transition-colors duration-200";
+
 export default function Contact() {
   const [form, setForm] = useState<Form>({ name: "", email: "", message: "" });
+  const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
+  ) => {
+    const { name, value } = e.target;
+    setForm((p) => ({ ...p, [name]: value }));
+    if (errors[name as keyof Errors]) {
+      setErrors((p) => ({ ...p, [name]: undefined }));
+    }
+  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const newErrors: Errors = {};
+    if (!form.name.trim()) newErrors.name = "Il nome è obbligatorio.";
+    if (!form.email.trim()) {
+      newErrors.email = "L'email è obbligatoria.";
+    } else if (!EMAIL_RE.test(form.email)) {
+      newErrors.email = "Inserisci un indirizzo email valido.";
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+
     setLoading(true);
     await new Promise((r) => setTimeout(r, 700));
     setLoading(false);
@@ -79,12 +106,14 @@ export default function Contact() {
                     <input
                       type="text"
                       name="name"
-                      required
                       value={form.name}
                       onChange={onChange}
                       placeholder="Il tuo nome"
-                      className={INPUT}
+                      className={errors.name ? INPUT_ERR : INPUT}
                     />
+                    {errors.name && (
+                      <p className="text-xs text-red-400 mt-1.5">{errors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
@@ -93,12 +122,14 @@ export default function Contact() {
                     <input
                       type="email"
                       name="email"
-                      required
                       value={form.email}
                       onChange={onChange}
                       placeholder="tua@email.it"
-                      className={INPUT}
+                      className={errors.email ? INPUT_ERR : INPUT}
                     />
+                    {errors.email && (
+                      <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>
+                    )}
                   </div>
                   <div>
                     <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
