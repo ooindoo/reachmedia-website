@@ -4,7 +4,6 @@ import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
 import ChecklistPopup from "./components/ChecklistPopup";
 import MobileQuizBar from "./components/MobileQuizBar";
-import CustomCursor from "./components/CustomCursor";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,7 +59,6 @@ export default function RootLayout({
         <MobileQuizBar />
         <CookieBanner />
         <ChecklistPopup />
-        <CustomCursor />
       </body>
     </html>
   );

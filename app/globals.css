@@ -144,12 +144,6 @@ html.light .logo-img:hover {
   opacity: 1;
 }
 
-/* ── Custom cursor — desktop only ───────────────────────────────────────── */
-@media (min-width: 768px) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
-}
 
 /* Hero headline accent:
    - Dark mode: "NON SOLO" in giallo #E8FF47
