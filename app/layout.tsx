@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import CookieBanner from "./components/CookieBanner";
-import ChecklistPopup from "./components/ChecklistPopup";
-import MobileQuizBar from "./components/MobileQuizBar";
+import SiteUI from "./components/SiteUI";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -121,9 +119,7 @@ gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
           </>
         )}
         {children}
-        <MobileQuizBar />
-        <CookieBanner />
-        <ChecklistPopup />
+        <SiteUI />
       </body>
     </html>
   );

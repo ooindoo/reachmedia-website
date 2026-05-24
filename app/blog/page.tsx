@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FadeIn from "../components/FadeIn";
+import { client, postsQuery, formatSanityDate, sanityDateToISO, type SanityPost } from "../lib/sanity";
 import { POSTS, formatDate } from "../lib/posts";
 
 export const metadata: Metadata = {
@@ -21,6 +22,29 @@ export const metadata: Metadata = {
   },
 };
 
+// Normalised shape used for rendering — works with both Sanity and static data
+type DisplayPost = {
+  slug: string;
+  title: string;
+  category: string;
+  date: string;        // YYYY-MM-DD for sorting
+  dateLabel: string;   // localised Italian label for display
+  readTime: number;
+  excerpt: string;
+};
+
+function fromSanity(p: SanityPost): DisplayPost {
+  return {
+    slug: p.slug,
+    title: p.title,
+    category: p.category,
+    date: sanityDateToISO(p.publishedAt),
+    dateLabel: formatSanityDate(p.publishedAt),
+    readTime: p.readingTime,
+    excerpt: p.excerpt,
+  };
+}
+
 const blogSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
@@ -35,7 +59,31 @@ const blogSchema = {
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  // Fetch from Sanity; fall back to static data if empty or on error
+  const sanityPosts: SanityPost[] = await client.fetch(postsQuery).catch(() => []);
+
+  // Slugs already covered by Sanity
+  const sanitySlugs = new Set(sanityPosts.map((p) => p.slug));
+
+  // Static posts NOT yet in Sanity (so existing content never disappears)
+  const staticFallbacks = POSTS
+    .filter((p) => !sanitySlugs.has(p.slug))
+    .map((p): DisplayPost => ({
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      date: p.date,
+      dateLabel: formatDate(p.date),
+      readTime: p.readTime,
+      excerpt: p.excerpt,
+    }));
+
+  const allPosts: DisplayPost[] = [
+    ...sanityPosts.map(fromSanity),
+    ...staticFallbacks,
+  ].sort((a, b) => b.date.localeCompare(a.date));
+
   return (
     <>
       <script
@@ -65,7 +113,7 @@ export default function BlogPage() {
         {/* Articles grid */}
         <div className="container-site py-12 md:py-20">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {POSTS.map((post, i) => (
+            {allPosts.map((post, i) => (
               <FadeIn key={post.slug} delay={i * 80}>
                 <Link
                   href={`/blog/${post.slug}`}
@@ -78,7 +126,10 @@ export default function BlogPage() {
                   </div>
 
                   {/* Title */}
-                  <h2 className="font-display tracking-display text-primary leading-tight mb-4 group-hover:text-accent transition-colors duration-200" style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)" }}>
+                  <h2
+                    className="font-display tracking-display text-primary leading-tight mb-4 group-hover:text-accent transition-colors duration-200"
+                    style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)" }}
+                  >
                     {post.title.toUpperCase()}
                   </h2>
 
@@ -89,7 +140,7 @@ export default function BlogPage() {
 
                   {/* Footer: date + arrow */}
                   <div className="flex items-center justify-between mt-auto pt-6 border-t border-border">
-                    <span className="text-xs text-[#444]">{formatDate(post.date)}</span>
+                    <span className="text-xs text-[#444]">{post.dateLabel}</span>
                     <span className="text-secondary group-hover:text-primary transition-all duration-200 group-hover:translate-x-1 inline-block">
                       &rarr;
                     </span>
