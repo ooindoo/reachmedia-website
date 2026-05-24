@@ -196,3 +196,51 @@ html.light .hero-accent {
 html.light .bg-contact-section {
   background-color: #EEEBE6;
 }
+
+/* ── Contact form inputs ─────────────────────────────────────────────────── */
+/* font-size 16px prevents iOS Safari from zooming on focus                  */
+.contact-input {
+  display: block;
+  width: 100%;
+  background-color: #111111;
+  border: 1px solid #333333;
+  color: rgb(var(--color-primary));
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 16px;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.contact-input::placeholder {
+  color: #555555;
+}
+
+.contact-input:focus {
+  border-color: #E8FF47;
+}
+
+.contact-input--error {
+  border-color: rgb(248 113 113) !important;
+}
+
+textarea.contact-input {
+  resize: none;
+  min-height: 140px;
+}
+
+html.light .contact-input {
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+}
+
+html.light .contact-input::placeholder {
+  color: #AAAAAA;
+}
+
+html.light .contact-input:focus {
+  border-color: #0A0A0A;
+}

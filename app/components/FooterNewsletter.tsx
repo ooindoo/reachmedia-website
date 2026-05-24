@@ -67,7 +67,7 @@ export default function FooterNewsletter() {
                 />
                 <button
                   type="submit"
-                  className="sm:shrink-0 px-6 py-3 bg-[#E8FF47] text-[#0A0A0A] text-sm font-medium hover:opacity-90 transition-opacity"
+                  className="sm:shrink-0 px-6 py-3 bg-accent text-bg text-sm font-medium hover:opacity-90 transition-opacity"
                 >
                   Iscriviti
                 </button>

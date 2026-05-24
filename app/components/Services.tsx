@@ -35,7 +35,7 @@ export default function Services() {
           {SERVICES.map((s, i) => (
             <FadeIn key={s.index} delay={i * 80} className="h-full">
               <div className="relative flex flex-col h-full border border-border bg-surface p-8 md:p-10 group transition-colors duration-300">
-                <span className="absolute inset-y-0 left-0 w-0.5 bg-[#E8FF47] origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
+                <span className="absolute inset-y-0 left-0 w-0.5 bg-accent origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-300" />
                 <span
                   className="font-display tracking-display text-primary block mb-6"
                   style={{ fontSize: "clamp(2rem, 3vw, 3rem)" }}

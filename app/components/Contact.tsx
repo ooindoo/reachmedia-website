@@ -9,12 +9,6 @@ type Errors = { name?: string; email?: string; message?: string };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const FORMSPREE_URL = "https://formspree.io/f/xpqnldne";
 
-const INPUT =
-  "w-full bg-transparent border-b border-border text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
-
-const INPUT_ERR =
-  "w-full bg-transparent border-b border-red-400 text-primary text-sm py-3.5 placeholder-[#333] focus:outline-none focus:border-red-400 transition-colors duration-200";
-
 export default function Contact() {
   const [form, setForm] = useState<Form>({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
@@ -36,7 +30,6 @@ export default function Contact() {
     e.preventDefault();
     setServerError("");
 
-    // Validazione client-side
     const newErrors: Errors = {};
     if (!form.name.trim()) newErrors.name = "Il nome è obbligatorio.";
     if (!form.email.trim()) {
@@ -79,6 +72,33 @@ export default function Contact() {
       setLoading(false);
     }
   };
+
+  // Field wrapper: label + input + error
+  const Field = ({
+    id,
+    label,
+    error,
+    children,
+  }: {
+    id: string;
+    label: string;
+    error?: string;
+    children: React.ReactNode;
+  }) => (
+    <div>
+      <label
+        htmlFor={id}
+        className="block font-display tracking-[0.14em] mb-3"
+        style={{ fontSize: "11px", color: "#888888" }}
+      >
+        {label}
+      </label>
+      {children}
+      {error && (
+        <p className="text-xs text-red-400 mt-2">{error}</p>
+      )}
+    </div>
+  );
 
   return (
     <section id="contatti" className="bg-contact-section border-t border-border py-20">
@@ -124,58 +144,44 @@ export default function Contact() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="space-y-8" noValidate>
-                  <div>
-                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                      Nome
-                    </label>
+                <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
+                  <Field id="name" label="Nome" error={errors.name}>
                     <input
+                      id="name"
                       type="text"
                       name="name"
                       required
                       value={form.name}
                       onChange={onChange}
                       placeholder="Il tuo nome"
-                      className={errors.name ? INPUT_ERR : INPUT}
+                      className={`contact-input${errors.name ? " contact-input--error" : ""}`}
                     />
-                    {errors.name && (
-                      <p className="text-xs text-red-400 mt-1.5">{errors.name}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                      Email
-                    </label>
+                  </Field>
+
+                  <Field id="email" label="Email" error={errors.email}>
                     <input
+                      id="email"
                       type="email"
                       name="email"
                       required
                       value={form.email}
                       onChange={onChange}
                       placeholder="tua@email.it"
-                      className={errors.email ? INPUT_ERR : INPUT}
+                      className={`contact-input${errors.email ? " contact-input--error" : ""}`}
                     />
-                    {errors.email && (
-                      <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                      Messaggio
-                    </label>
+                  </Field>
+
+                  <Field id="message" label="Messaggio" error={errors.message}>
                     <textarea
+                      id="message"
                       name="message"
-                      rows={4}
                       required
                       value={form.message}
                       onChange={onChange}
                       placeholder="Descrivi la tua situazione attuale."
-                      className={`${errors.message ? INPUT_ERR : INPUT} resize-none`}
+                      className={`contact-input${errors.message ? " contact-input--error" : ""}`}
                     />
-                    {errors.message && (
-                      <p className="text-xs text-red-400 mt-1.5">{errors.message}</p>
-                    )}
-                  </div>
+                  </Field>
 
                   {serverError && (
                     <p className="text-xs text-red-400">{serverError}</p>
@@ -184,9 +190,9 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50 tracking-wide"
+                    className="w-full h-14 bg-accent text-bg font-display tracking-display text-xl hover:opacity-90 transition-opacity disabled:opacity-50 mt-1"
                   >
-                    {loading ? "Invio in corso..." : "Invia"}
+                    {loading ? "INVIO IN CORSO..." : "INVIA"}
                   </button>
                 </form>
               )}

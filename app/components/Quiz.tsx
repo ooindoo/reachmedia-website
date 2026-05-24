@@ -276,14 +276,14 @@ export default function Quiz() {
                       onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
                       className={`w-full text-left px-5 py-4 min-h-[52px] border transition-all duration-200 text-sm group ${
                         selectedIndex === i
-                          ? "border-[#E8FF47] bg-[#1A1A1A] text-primary"
+                          ? "border-accent bg-surface text-primary"
                           : "border-border hover:border-primary text-secondary hover:text-primary"
                       }`}
                     >
                       <span
                         className={`font-display tracking-display text-xs mr-3 transition-colors duration-200 ${
                           selectedIndex === i
-                            ? "text-[#E8FF47]"
+                            ? "text-accent"
                             : "text-[#444] group-hover:text-primary"
                         }`}
                       >
