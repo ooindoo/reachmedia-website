@@ -21,8 +21,8 @@ export default function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="container-site py-16 md:py-20">
-        {/* 4 columns */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+        {/* 3 columns */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-8 mb-12">
           {/* Col 1: Brand */}
           <div className="col-span-2 md:col-span-1">
             <Link
@@ -72,26 +72,6 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </div>
-
-          {/* Col 4: Contacts */}
-          <div>
-            <p className="text-[10px] text-secondary uppercase tracking-widest mb-5">
-              Contatti
-            </p>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="mailto:info@reachmedia.it"
-                  className="text-xs text-secondary hover:text-primary transition-colors"
-                >
-                  info@reachmedia.it
-                </a>
-              </li>
-              <li>
-                <p className="text-xs text-secondary">Treviso, Italia</p>
-              </li>
             </ul>
           </div>
         </div>

@@ -44,7 +44,7 @@ export default function ChecklistPopup() {
   if (!visible) return null;
 
   return (
-    <div className="popup-enter hidden md:block fixed bottom-5 right-5 z-40 bg-surface border border-border-mid shadow-[0_12px_64px_rgba(0,0,0,0.9)]" style={{ width: "280px" }}>
+    <div className="popup-enter hidden md:block fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-surface border border-border-mid shadow-[-8px_0_40px_rgba(0,0,0,0.5)]" style={{ width: "280px" }}>
       <div className="p-7 relative">
         <button
           onClick={close}

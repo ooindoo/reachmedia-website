@@ -63,11 +63,11 @@ export default function Contact() {
         const data = await res.json().catch(() => ({}));
         setServerError(
           data?.errors?.[0]?.message ??
-            "Errore nell'invio. Riprova o scrivi a info@reachmedia.it."
+            "Errore nell'invio. Riprova tra qualche minuto."
         );
       }
     } catch {
-      setServerError("Errore di rete. Riprova o scrivi a info@reachmedia.it.");
+      setServerError("Errore di rete. Riprova tra qualche minuto.");
     } finally {
       setLoading(false);
     }
@@ -101,101 +101,93 @@ export default function Contact() {
   );
 
   return (
-    <section id="contatti" className="bg-contact-section border-t border-border py-20">
+    <section id="contatti" className="border-t border-border py-12 md:py-32">
       <div className="container-site">
         <div className="grid md:grid-cols-12 gap-x-8 gap-y-12">
           {/* Left */}
           <FadeIn className="md:col-span-4">
             <h2
-              className="font-display tracking-display text-primary mb-6 leading-tight"
+              className="font-display tracking-display text-primary leading-tight"
               style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
             >
               PARLIAMO
             </h2>
-            <p className="text-secondary text-sm leading-relaxed mb-8">
+            <p className="text-secondary text-sm leading-relaxed mt-6">
               Vuoi capire se ha senso lavorare insieme? Scrivici.
             </p>
-            <div>
-              <p className="text-[10px] text-secondary uppercase tracking-widest mb-2">
-                Email
-              </p>
-              <a
-                href="mailto:info@reachmedia.it"
-                className="text-primary hover:text-secondary transition-colors text-sm"
-              >
-                info@reachmedia.it
-              </a>
-            </div>
           </FadeIn>
 
           {/* Form */}
           <div className="md:col-span-6 md:col-start-6">
             <FadeIn delay={120}>
-              {sent ? (
-                <div className="border-t-2 border-primary pt-8">
-                  <p
-                    className="font-display tracking-display text-accent mb-3"
-                    style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-                  >
-                    MESSAGGIO RICEVUTO.
-                  </p>
-                  <p className="text-secondary text-sm">
-                    Ti rispondo entro 24 ore.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
-                  <Field id="name" label="Nome" error={errors.name}>
-                    <input
-                      id="name"
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={onChange}
-                      placeholder="Il tuo nome"
-                      className={`contact-input${errors.name ? " contact-input--error" : ""}`}
-                    />
-                  </Field>
+              {/* Border wrapper that distinguishes the form from the section */}
+              <div className="border border-border p-7 md:p-10">
+                {sent ? (
+                  <div>
+                    <p
+                      className="font-display tracking-display text-accent mb-3"
+                      style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                    >
+                      MESSAGGIO RICEVUTO.
+                    </p>
+                    <p className="text-secondary text-sm">
+                      Ti rispondo entro 24 ore.
+                    </p>
+                  </div>
+                ) : (
+                  <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
+                    <Field id="name" label="Nome" error={errors.name}>
+                      <input
+                        id="name"
+                        type="text"
+                        name="name"
+                        required
+                        value={form.name}
+                        onChange={onChange}
+                        placeholder="Il tuo nome"
+                        className={`contact-input${errors.name ? " contact-input--error" : ""}`}
+                      />
+                    </Field>
 
-                  <Field id="email" label="Email" error={errors.email}>
-                    <input
-                      id="email"
-                      type="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={onChange}
-                      placeholder="tua@email.it"
-                      className={`contact-input${errors.email ? " contact-input--error" : ""}`}
-                    />
-                  </Field>
+                    <Field id="email" label="Email" error={errors.email}>
+                      <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        required
+                        value={form.email}
+                        onChange={onChange}
+                        placeholder="tua@email.it"
+                        className={`contact-input${errors.email ? " contact-input--error" : ""}`}
+                      />
+                    </Field>
 
-                  <Field id="message" label="Messaggio" error={errors.message}>
-                    <textarea
-                      id="message"
-                      name="message"
-                      required
-                      value={form.message}
-                      onChange={onChange}
-                      placeholder="Descrivi la tua situazione attuale."
-                      className={`contact-input${errors.message ? " contact-input--error" : ""}`}
-                    />
-                  </Field>
+                    <Field id="message" label="Messaggio" error={errors.message}>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        value={form.message}
+                        onChange={onChange}
+                        placeholder="Descrivi la tua situazione attuale."
+                        className={`contact-input${errors.message ? " contact-input--error" : ""}`}
+                      />
+                    </Field>
 
-                  {serverError && (
-                    <p className="text-xs text-red-400">{serverError}</p>
-                  )}
+                    {serverError && (
+                      <p className="text-xs text-red-400">{serverError}</p>
+                    )}
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full h-14 bg-accent text-bg font-display tracking-display text-xl hover:opacity-90 transition-opacity disabled:opacity-50 mt-1"
-                  >
-                    {loading ? "INVIO IN CORSO..." : "INVIA"}
-                  </button>
-                </form>
-              )}
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full h-14 bg-accent text-bg font-display tracking-display text-xl hover:opacity-90 transition-opacity disabled:opacity-50 mt-1"
+                    >
+                      {loading ? "INVIO IN CORSO..." : "INVIA"}
+                    </button>
+                  </form>
+                )}
+              </div>
             </FadeIn>
           </div>
         </div>
