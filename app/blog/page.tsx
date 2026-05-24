@@ -21,9 +21,27 @@ export const metadata: Metadata = {
   },
 };
 
+const blogSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Insights | Reach Media",
+  "url": "https://reachmedia.it/blog",
+  "description":
+    "Risorse pratiche sull'email marketing per e-commerce: guide a Klaviyo, benchmark di settore, flow automatici e strategie per brand italiani.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Reach Media",
+    "url": "https://reachmedia.it",
+  },
+};
+
 export default function BlogPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <Navbar />
       <main className="min-h-screen bg-bg">
         {/* Header */}

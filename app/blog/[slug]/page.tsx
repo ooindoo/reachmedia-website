@@ -69,8 +69,32 @@ export default async function ArticlePage({ params }: Props) {
   const Content = CONTENT_MAP[slug];
   if (!Content) notFound();
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "description": post.seo.description,
+    "datePublished": post.date,
+    "dateModified": post.date,
+    "url": `https://reachmedia.it/blog/${slug}`,
+    "author": {
+      "@type": "Person",
+      "name": "Ardit Ndoja",
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Reach Media",
+      "url": "https://reachmedia.it",
+    },
+    "image": "https://reachmedia.it/og-image.png",
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <Navbar />
       <main className="min-h-screen bg-bg">
         {/* Article header */}
