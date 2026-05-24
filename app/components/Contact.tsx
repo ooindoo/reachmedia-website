@@ -88,8 +88,8 @@ export default function Contact() {
     <div>
       <label
         htmlFor={id}
-        className="block font-display tracking-[0.14em] mb-3"
-        style={{ fontSize: "11px", color: "#888888" }}
+        className="block font-display tracking-[0.16em] text-secondary mb-2"
+        style={{ fontSize: "11px" }}
       >
         {label}
       </label>
@@ -120,8 +120,8 @@ export default function Contact() {
           {/* Form */}
           <div className="md:col-span-6 md:col-start-6">
             <FadeIn delay={120}>
-              {/* Border wrapper that distinguishes the form from the section */}
-              <div className="border border-border p-7 md:p-10">
+              {/* Accent bar — linea verticale gialla a sinistra */}
+              <div className="border-l-2 border-accent pl-8 md:pl-10">
                 {sent ? (
                   <div>
                     <p
@@ -166,6 +166,7 @@ export default function Contact() {
                       <textarea
                         id="message"
                         name="message"
+                        rows={4}
                         required
                         value={form.message}
                         onChange={onChange}

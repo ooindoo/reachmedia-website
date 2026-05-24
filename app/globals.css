@@ -189,6 +189,36 @@ html.light .hero-accent {
   animation: popupSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* ── Contact form ────────────────────────────────────────────────────────── */
+.contact-input {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgb(var(--color-border));
+  color: rgb(var(--color-primary));
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  padding: 0.75rem 0;
+  outline: none;
+  resize: none;
+  transition: border-color 0.2s ease;
+}
+
+.contact-input::placeholder {
+  color: rgb(var(--color-secondary));
+  opacity: 0.4;
+}
+
+.contact-input:focus {
+  border-bottom-color: rgb(var(--color-accent));
+}
+
+.contact-input--error {
+  border-bottom-color: #f87171;
+}
+
 /* ── Contact form inputs ─────────────────────────────────────────────────── */
 /* font-size 16px prevents iOS Safari from zooming on focus                  */
 .contact-input {
