@@ -120,75 +120,72 @@ export default function Contact() {
           {/* Form */}
           <div className="md:col-span-6 md:col-start-6">
             <FadeIn delay={120}>
-              {/* Accent bar — linea verticale gialla a sinistra */}
-              <div className="border-l-2 border-accent pl-8 md:pl-10">
-                {sent ? (
-                  <div>
-                    <p
-                      className="font-display tracking-display text-accent mb-3"
-                      style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-                    >
-                      MESSAGGIO RICEVUTO.
-                    </p>
-                    <p className="text-secondary text-sm">
-                      Ti rispondo entro 24 ore.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
-                    <Field id="name" label="Nome" error={errors.name}>
-                      <input
-                        id="name"
-                        type="text"
-                        name="name"
-                        required
-                        value={form.name}
-                        onChange={onChange}
-                        placeholder="Il tuo nome"
-                        className={`contact-input${errors.name ? " contact-input--error" : ""}`}
-                      />
-                    </Field>
+              {sent ? (
+                <div>
+                  <p
+                    className="font-display tracking-display text-accent mb-3"
+                    style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
+                  >
+                    MESSAGGIO RICEVUTO.
+                  </p>
+                  <p className="text-secondary text-sm">
+                    Ti rispondo entro 24 ore.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={onSubmit} className="flex flex-col gap-6" noValidate>
+                  <Field id="name" label="Nome" error={errors.name}>
+                    <input
+                      id="name"
+                      type="text"
+                      name="name"
+                      required
+                      value={form.name}
+                      onChange={onChange}
+                      placeholder="Il tuo nome"
+                      className={`contact-input${errors.name ? " contact-input--error" : ""}`}
+                    />
+                  </Field>
 
-                    <Field id="email" label="Email" error={errors.email}>
-                      <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        required
-                        value={form.email}
-                        onChange={onChange}
-                        placeholder="tua@email.it"
-                        className={`contact-input${errors.email ? " contact-input--error" : ""}`}
-                      />
-                    </Field>
+                  <Field id="email" label="Email" error={errors.email}>
+                    <input
+                      id="email"
+                      type="email"
+                      name="email"
+                      required
+                      value={form.email}
+                      onChange={onChange}
+                      placeholder="tua@email.it"
+                      className={`contact-input${errors.email ? " contact-input--error" : ""}`}
+                    />
+                  </Field>
 
-                    <Field id="message" label="Messaggio" error={errors.message}>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        required
-                        value={form.message}
-                        onChange={onChange}
-                        placeholder="Descrivi la tua situazione attuale."
-                        className={`contact-input${errors.message ? " contact-input--error" : ""}`}
-                      />
-                    </Field>
+                  <Field id="message" label="Messaggio" error={errors.message}>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      required
+                      value={form.message}
+                      onChange={onChange}
+                      placeholder="Descrivi la tua situazione attuale."
+                      className={`contact-input${errors.message ? " contact-input--error" : ""}`}
+                    />
+                  </Field>
 
-                    {serverError && (
-                      <p className="text-xs text-red-400">{serverError}</p>
-                    )}
+                  {serverError && (
+                    <p className="text-xs text-red-400">{serverError}</p>
+                  )}
 
-                    <button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full h-14 bg-accent text-bg font-display tracking-display text-xl hover:opacity-90 transition-opacity disabled:opacity-50 mt-1"
-                    >
-                      {loading ? "INVIO IN CORSO..." : "INVIA"}
-                    </button>
-                  </form>
-                )}
-              </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full h-14 bg-accent text-bg font-display tracking-display text-xl hover:opacity-90 transition-opacity disabled:opacity-50 mt-2"
+                  >
+                    {loading ? "INVIO IN CORSO..." : "INVIA"}
+                  </button>
+                </form>
+              )}
             </FadeIn>
           </div>
         </div>
