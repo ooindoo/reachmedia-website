@@ -99,6 +99,27 @@ export default function RootLayout({
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VhAfyx"
           strategy="afterInteractive"
         />
+        {/* Google Analytics 4 — loads only when NEXT_PUBLIC_GA_ID is set */}
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script
+              id="ga4-init"
+              strategy="afterInteractive"
+              dangerouslySetInnerHTML={{
+                __html: `
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+`,
+              }}
+            />
+          </>
+        )}
         {children}
         <MobileQuizBar />
         <CookieBanner />
