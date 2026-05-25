@@ -118,11 +118,15 @@ export default async function BlogPage() {
         <div className="container-site py-12 md:py-20">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {allPosts.map((post, i) => (
-              <FadeIn key={post.slug} delay={i * 80}>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group block bg-bg p-8 md:p-10 h-full hover:bg-surface transition-colors duration-200"
-                >
+              // Link is the direct grid child so bg-bg always covers the cell.
+              // FadeIn wraps only the inner content — the opacity-0 initial state
+              // never exposes the grid's bg-border (#222) behind the card.
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group block bg-bg p-8 md:p-10 hover:bg-surface transition-colors duration-200"
+              >
+                <FadeIn delay={i * 80}>
                   {/* Category + read time */}
                   <div className="flex items-center justify-between mb-6">
                     <span className="section-label">{post.category}</span>
@@ -143,14 +147,14 @@ export default async function BlogPage() {
                   </p>
 
                   {/* Footer: date + arrow */}
-                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-border">
+                  <div className="flex items-center justify-between pt-6 border-t border-border">
                     <span className="text-xs text-[#444]">{post.dateLabel}</span>
                     <span className="text-secondary group-hover:text-primary transition-all duration-200 group-hover:translate-x-1 inline-block">
                       &rarr;
                     </span>
                   </div>
-                </Link>
-              </FadeIn>
+                </FadeIn>
+              </Link>
             ))}
           </div>
         </div>
