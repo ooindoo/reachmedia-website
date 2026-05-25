@@ -119,12 +119,12 @@ export default async function BlogPage() {
 
         {/* Articles grid */}
         <div className="container-site py-12 md:py-20">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {allPosts.map((post, i) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group block bg-bg p-8 md:p-10 border-r border-b border-border hover:bg-surface transition-colors duration-200"
+                className="group block bg-bg p-8 md:p-10 hover:bg-surface transition-colors duration-200"
               >
                 <FadeIn delay={i * 80}>
                   {/* Category + read time */}
