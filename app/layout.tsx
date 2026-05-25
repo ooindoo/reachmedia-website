@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SiteUI from "./components/SiteUI";
 
@@ -120,6 +122,8 @@ gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
         )}
         {children}
         <SiteUI />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
