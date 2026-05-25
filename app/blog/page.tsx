@@ -156,6 +156,23 @@ export default async function BlogPage() {
                 </FadeIn>
               </Link>
             ))}
+            {/* Invisible bg-bg filler divs — prevent bg-border showing in empty trailing grid cells */}
+            {(() => {
+              const n = allPosts.length;
+              const lg = (3 - (n % 3)) % 3;
+              const md = (2 - (n % 2)) % 2;
+              return Array.from({ length: Math.max(lg, md) }).map((_, i) => {
+                const forLg = i < lg;
+                const forMd = i < md;
+                const cls =
+                  forLg && forMd
+                    ? "bg-bg hidden md:block"
+                    : forLg
+                    ? "bg-bg hidden lg:block"
+                    : "bg-bg hidden md:block lg:hidden";
+                return <div key={`filler-${i}`} className={cls} aria-hidden />;
+              });
+            })()}
           </div>
         </div>
       </main>
