@@ -20,8 +20,8 @@ export default function LegalLayout({ title, breadcrumbLabel, children }: Props)
         <div className="container-site pt-10 md:pt-14">
           <div className="max-w-3xl">
             <h1
-              className="font-display tracking-display text-primary mb-14 leading-tight"
-              style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
+              className="font-display tracking-display text-primary mb-12 leading-[0.92]"
+              style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
             >
               {title}
             </h1>
