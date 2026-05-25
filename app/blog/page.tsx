@@ -83,7 +83,10 @@ export default async function BlogPage() {
   const allPosts: DisplayPost[] = [
     ...sanityPosts.map(fromSanity),
     ...staticFallbacks,
-  ].sort((a, b) => b.date.localeCompare(a.date));
+  ]
+    // Drop incomplete Sanity drafts/test posts missing required fields
+    .filter((p) => p.slug && p.title && p.excerpt && p.category)
+    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <>
