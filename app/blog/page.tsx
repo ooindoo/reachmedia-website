@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FadeIn from "../components/FadeIn";
+import Breadcrumb from "../components/Breadcrumb";
 import { client, postsQuery, formatSanityDate, sanityDateToISO, type SanityPost } from "../lib/sanity";
 import { POSTS, formatDate } from "../lib/posts";
 
@@ -92,8 +93,11 @@ export default async function BlogPage() {
       />
       <Navbar />
       <main className="min-h-screen bg-bg">
+        <div className="pt-14 md:pt-16">
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
+        </div>
         {/* Header */}
-        <div className="border-b border-border pt-28 md:pt-36 pb-12 md:pb-20">
+        <div className="border-b border-border pt-10 md:pt-14 pb-12 md:pb-20">
           <div className="container-site">
             <FadeIn>
               <p className="section-label mb-4">Risorse</p>

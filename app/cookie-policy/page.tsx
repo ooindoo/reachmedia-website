@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function CookiePolicy() {
   return (
-    <LegalLayout title="COOKIE POLICY">
+    <LegalLayout title="COOKIE POLICY" breadcrumbLabel="Cookie Policy">
       <p>
         Questo sito usa cookie tecnici necessari al funzionamento e cookie
         analitici (se accettati) per migliorare il servizio.

@@ -1,27 +1,24 @@
-import Link from "next/link";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import Breadcrumb from "./Breadcrumb";
 import { ReactNode } from "react";
 
 type Props = {
   title: string;
+  breadcrumbLabel: string;
   children: ReactNode;
 };
 
-export default function LegalLayout({ title, children }: Props) {
+export default function LegalLayout({ title, breadcrumbLabel, children }: Props) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen pt-28 pb-24 bg-bg">
-        <div className="container-site">
+      <main className="min-h-screen pb-24 bg-bg">
+        <div className="pt-14 md:pt-16">
+          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]} />
+        </div>
+        <div className="container-site pt-10 md:pt-14">
           <div className="max-w-3xl">
-            <Link
-              href="/"
-              className="text-xs text-secondary hover:text-primary transition-colors tracking-widest uppercase inline-flex items-center gap-2 mb-10 block"
-            >
-              &larr; Home
-            </Link>
-
             <h1
               className="font-display tracking-display text-primary mb-14 leading-tight"
               style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}

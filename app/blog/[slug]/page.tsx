@@ -4,6 +4,7 @@ import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import Breadcrumb from "../../components/Breadcrumb";
 import {
   client,
   postBySlugQuery,
@@ -183,16 +184,18 @@ export default async function ArticlePage({ params }: Props) {
       />
       <Navbar />
       <main className="min-h-screen bg-bg">
+        <div className="pt-14 md:pt-16">
+          <Breadcrumb
+            items={[
+              { label: "Home", href: "/" },
+              { label: "Blog", href: "/blog" },
+              { label: title },
+            ]}
+          />
+        </div>
         {/* Article header */}
-        <div className="border-b border-border pt-28 md:pt-36 pb-12 md:pb-16">
+        <div className="border-b border-border pt-10 md:pt-14 pb-12 md:pb-16">
           <div className="container-site">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-xs text-secondary hover:text-primary transition-colors tracking-widest uppercase mb-10 block"
-            >
-              &larr; Insights
-            </Link>
-
             <div className="flex items-center gap-4 mb-6">
               <span className="section-label">{category}</span>
               <span className="text-[#444] text-xs">·</span>

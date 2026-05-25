@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <LegalLayout title="PRIVACY POLICY">
+    <LegalLayout title="PRIVACY POLICY" breadcrumbLabel="Privacy Policy">
       <h2>Titolare del trattamento</h2>
       <p>
         Ardit Ndoja, freelance operante con il nome commerciale{" "}
