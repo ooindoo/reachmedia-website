@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import StatsBar from "./components/StatsBar";
 import LogoBar from "./components/LogoBar";
+import Processo from "./components/Processo";
 import Quiz from "./components/Quiz";
 import Services from "./components/Services";
 import Results from "./components/Results";
@@ -48,6 +49,7 @@ export default function Home() {
         <Hero />
         <StatsBar />
         <LogoBar />
+        <Processo />
         <Quiz />
         <Services />
         <Results />

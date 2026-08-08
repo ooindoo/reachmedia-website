@@ -1,23 +1,29 @@
 import FadeIn from "./FadeIn";
 
-const CASES = [
-  {
-    stat: "€428k",
-    statLabel: "fatturato generato via email",
-    sector: "E-commerce moda premium, Italia",
-    body: "372 campagne inviate in 17 mesi, 984.038 destinatari raggiunti. Open rate medio del 58,7%. Fatturato generato tra campagne e automazioni: €428.558.",
-  },
+const FEATURED = {
+  stat: "€428k",
+  statLabel: "Revenue attribuita email",
+  metrics: [
+    { val: "58,7%", lab: "Open Rate" },
+    { val: "372", lab: "Campagne inviate" },
+    { val: "984k", lab: "Email inviate" },
+  ],
+  sector: "Fashion — E-commerce",
+  title: "DA 0 A €428K DI REVENUE EMAIL IN 14 MESI",
+  body: "Brand di abbigliamento premium che non aveva mai investito in email marketing. Abbiamo costruito l'intera infrastruttura da zero: lista, template, automazioni e calendario editoriale. In 14 mesi il canale email è diventato il secondo per revenue dopo il paid.",
+  tags: ["Klaviyo", "Shopify", "Email Strategy", "Automazioni"],
+};
+
+const MINIS = [
   {
     stat: "56,8%",
-    statLabel: "open rate medio",
-    sector: "Brand orologi di lusso, Italia",
-    body: "Partiti da zero, nessun email marketing precedente. Circa 60 campagne inviate, 431.914 destinatari raggiunti. Click rate medio del 9,8%. 98 ordini diretti tracciati da campagna.",
+    statLabel: "Open rate campagne",
+    sector: "Orologi di lusso — Settore lifestyle premium",
   },
   {
     stat: "28,4%",
-    statLabel: "open rate medio dopo recovery",
-    sector: "Piattaforma second-hand luxury",
-    body: "Recovery completo di un account con seri problemi di deliverability. 254 campagne inviate, 47.468 destinatari raggiunti. Open rate portato da un minimo del 25% a una media stabile del 28,4%.",
+    statLabel: "Revenue email su totale",
+    sector: "Second-hand luxury — Marketplace pre-loved",
   },
 ];
 
@@ -25,7 +31,8 @@ export default function Results() {
   return (
     <section id="risultati" className="border-t border-border py-12 md:py-32">
       <div className="container-site">
-        <FadeIn className="mb-10 md:mb-20">
+        <FadeIn className="mb-10 md:mb-16">
+          <p className="section-label mb-3">Case history</p>
           <h2
             className="font-display tracking-display text-primary"
             style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}
@@ -34,32 +41,82 @@ export default function Results() {
           </h2>
         </FadeIn>
 
-        <div className="divide-y divide-border">
-          {CASES.map((c, i) => (
-            <FadeIn key={i} delay={i * 100}>
-              <div className="grid md:grid-cols-12 gap-x-8 gap-y-5 py-10 md:py-14 group">
-                {/* Big stat */}
-                <div className="md:col-span-4">
-                  <p
-                    className="font-display leading-none tracking-display text-primary group-hover:text-accent transition-colors duration-300"
-                    style={{ fontSize: "clamp(3rem, 7vw, 6rem)" }}
-                  >
-                    {c.stat}
-                  </p>
-                  <p className="text-xs text-secondary mt-2 leading-snug">
-                    {c.statLabel}
-                  </p>
-                </div>
+        {/* Featured case */}
+        <FadeIn>
+          <div className="grid md:grid-cols-[5fr_7fr] gap-px bg-border mb-px">
+            {/* Stat side */}
+            <div className="bg-white/[0.025] p-8 md:p-10">
+              <p
+                className="font-display leading-none text-accent mb-2"
+                style={{ fontSize: "clamp(3.5rem, 7vw, 6rem)" }}
+              >
+                {FEATURED.stat}
+              </p>
+              <p className="text-[0.75rem] tracking-[0.1em] uppercase text-secondary mb-8">
+                {FEATURED.statLabel}
+              </p>
+              <div className="flex flex-col gap-5">
+                {FEATURED.metrics.map((m) => (
+                  <div key={m.lab}>
+                    <p
+                      className="font-display leading-none text-primary"
+                      style={{ fontSize: "clamp(1.5rem, 3vw, 1.75rem)" }}
+                    >
+                      {m.val}
+                    </p>
+                    <p className="text-[0.6875rem] tracking-[0.1em] uppercase text-secondary mt-1">
+                      {m.lab}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-                {/* Description */}
-                <div className="md:col-span-7 md:col-start-6 flex flex-col justify-center">
-                  <p className="text-[10px] text-secondary uppercase tracking-[0.14em] mb-3">
-                    {c.sector}
-                  </p>
-                  <p className="text-secondary text-[0.9375rem] leading-relaxed">
-                    {c.body}
-                  </p>
-                </div>
+            {/* Text side */}
+            <div className="bg-bg p-8 md:p-10 flex flex-col justify-between">
+              <div>
+                <p className="text-[0.6875rem] font-bold tracking-[0.14em] uppercase text-secondary border-b border-accent pb-1 inline-block mb-6">
+                  {FEATURED.sector}
+                </p>
+                <h3
+                  className="font-display tracking-display text-primary leading-tight mb-4"
+                  style={{ fontSize: "clamp(1.5rem, 2.5vw, 2rem)" }}
+                >
+                  {FEATURED.title}
+                </h3>
+                <p className="text-secondary text-sm leading-[1.75] mb-8">
+                  {FEATURED.body}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {FEATURED.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="text-[0.6875rem] tracking-[0.08em] uppercase border border-border text-secondary px-3 py-1"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Mini cases */}
+        <div className="grid md:grid-cols-2 gap-px bg-border">
+          {MINIS.map((c, i) => (
+            <FadeIn key={i} delay={i * 80}>
+              <div className="bg-bg p-8 md:p-10 group hover:bg-surface transition-colors duration-200">
+                <p
+                  className="font-display leading-none text-primary group-hover:text-accent transition-colors duration-300 mb-1"
+                  style={{ fontSize: "clamp(2.5rem, 5vw, 3rem)" }}
+                >
+                  {c.stat}
+                </p>
+                <p className="text-[0.6875rem] tracking-[0.1em] uppercase text-secondary mb-4">
+                  {c.statLabel}
+                </p>
+                <p className="text-xs text-secondary/60">{c.sector}</p>
               </div>
             </FadeIn>
           ))}

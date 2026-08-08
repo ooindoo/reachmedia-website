@@ -239,159 +239,182 @@ export default function Quiz() {
           </p>
         </FadeIn>
 
-        <div className="max-w-xl">
-          {/* QUIZ */}
-          {phase === "quiz" && (
-            <>
-              {/* Progress */}
-              <div className="mb-10">
-                <div className="flex justify-between text-xs text-secondary mb-2">
-                  <span>
-                    Domanda {step + 1} di {QUESTIONS.length}
-                  </span>
-                  <span>{Math.round((step / QUESTIONS.length) * 100)}%</span>
-                </div>
-                <div className="h-px bg-border-mid">
-                  <div
-                    className="h-px bg-primary transition-all duration-500"
-                    style={{
-                      width: `${(step / QUESTIONS.length) * 100}%`,
-                    }}
-                  />
-                </div>
-              </div>
-
-              {/* Question */}
-              <div key={step} className="quiz-enter">
-                <p className="text-base md:text-lg text-primary leading-relaxed mb-1">
-                  {QUESTIONS[step].q}
-                </p>
-                <p className="text-xs mb-8" style={{ color: "#666666" }}>
-                  Scegli una risposta
-                </p>
-                <div className="divide-y divide-border border border-border">
-                  {QUESTIONS[step].options.map((opt, i) => (
-                    <button
+        <div className="grid md:grid-cols-[7fr_5fr] gap-12 items-start">
+          {/* Left: quiz UI */}
+          <div>
+            {/* QUIZ */}
+            {phase === "quiz" && (
+              <>
+                {/* Segment progress bar */}
+                <div className="flex gap-[3px] mb-10">
+                  {QUESTIONS.map((_, i) => (
+                    <div
                       key={i}
-                      onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
-                      className={`w-full text-left px-5 py-4 min-h-[52px] transition-all duration-200 text-sm group ${
-                        selectedIndex === i
-                          ? "bg-surface text-primary shadow-[inset_2px_0_0_rgb(var(--color-accent))]"
-                          : "text-secondary hover:text-primary hover:bg-surface"
+                      className={`h-0.5 flex-1 transition-colors duration-300 ${
+                        i < step
+                          ? "bg-primary"
+                          : i === step
+                          ? "bg-accent"
+                          : "bg-border"
                       }`}
-                    >
-                      <span
-                        className={`font-display tracking-display text-xs mr-3 transition-colors duration-200 ${
-                          selectedIndex === i
-                            ? "text-accent"
-                            : "text-[#444] group-hover:text-primary"
-                        }`}
-                      >
-                        {String.fromCharCode(65 + i)}
-                      </span>
-                      {opt}
-                    </button>
+                    />
                   ))}
                 </div>
-              </div>
-            </>
-          )}
 
-          {/* FORM — shown before result */}
-          {phase === "form" && (
-            <div key="form" className="quiz-enter border border-border p-7 md:p-8">
-              <p className="text-[10px] text-secondary uppercase tracking-widest mb-2">
-                Quasi fatto
-              </p>
-              <p className="text-sm text-secondary mb-6 leading-relaxed">
-                Inserisci i tuoi dati per vedere il risultato personalizzato e scaricare la checklist.
-              </p>
-              <form onSubmit={handleForm} className="space-y-6" noValidate>
-                <div>
-                  <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                    Nome
-                  </label>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: undefined })); }}
-                    placeholder="Il tuo nome"
-                    className={`${INPUT} ${errors.name ? "border-red-400 focus:border-red-400" : ""}`}
-                  />
-                  {errors.name && <p className="text-xs text-red-400 mt-1.5">{errors.name}</p>}
+                {/* Question */}
+                <div key={step} className="quiz-enter">
+                  <p className="text-base md:text-lg text-primary leading-relaxed mb-1">
+                    {QUESTIONS[step].q}
+                  </p>
+                  <p className="text-xs mb-8" style={{ color: "#666666" }}>
+                    Scegli una risposta
+                  </p>
+                  <div className="divide-y divide-border border border-border">
+                    {QUESTIONS[step].options.map((opt, i) => (
+                      <button
+                        key={i}
+                        onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
+                        className={`w-full text-left px-5 py-4 min-h-[52px] transition-all duration-200 text-sm group ${
+                          selectedIndex === i
+                            ? "bg-surface text-primary shadow-[inset_2px_0_0_rgb(var(--color-accent))]"
+                            : "text-secondary hover:text-primary hover:bg-surface"
+                        }`}
+                      >
+                        <span
+                          className={`font-display tracking-display text-xs mr-3 transition-colors duration-200 ${
+                            selectedIndex === i
+                              ? "text-accent"
+                              : "text-[#444] group-hover:text-primary"
+                          }`}
+                        >
+                          {String.fromCharCode(65 + i)}
+                        </span>
+                        {opt}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: undefined })); }}
-                    placeholder="tua@email.it"
-                    className={`${INPUT} ${errors.email ? "border-red-400 focus:border-red-400" : ""}`}
-                  />
-                  {errors.email && <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>}
+              </>
+            )}
+
+            {/* FORM — shown before result */}
+            {phase === "form" && (
+              <div key="form" className="quiz-enter border border-border p-7 md:p-8">
+                <p className="text-[10px] text-secondary uppercase tracking-widest mb-2">
+                  Quasi fatto
+                </p>
+                <p className="text-sm text-secondary mb-6 leading-relaxed">
+                  Inserisci i tuoi dati per vedere il risultato personalizzato e scaricare la checklist.
+                </p>
+                <form onSubmit={handleForm} className="space-y-6" noValidate>
+                  <div>
+                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
+                      Nome
+                    </label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: undefined })); }}
+                      placeholder="Il tuo nome"
+                      className={`${INPUT} ${errors.name ? "border-red-400 focus:border-red-400" : ""}`}
+                    />
+                    {errors.name && <p className="text-xs text-red-400 mt-1.5">{errors.name}</p>}
+                  </div>
+                  <div>
+                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: undefined })); }}
+                      placeholder="tua@email.it"
+                      className={`${INPUT} ${errors.email ? "border-red-400 focus:border-red-400" : ""}`}
+                    />
+                    {errors.email && <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>}
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                  >
+                    {loading ? "Un attimo..." : "Mostra il mio risultato"}
+                  </button>
+                </form>
+              </div>
+            )}
+
+            {/* RESULT — shown after form */}
+            {phase === "result" && (
+              <div key="result" className="quiz-enter">
+                <div className="border-t border-primary pt-8 mb-8">
+                  <p className="section-label mb-4">Il tuo risultato</p>
+                  <h3
+                    className="font-display tracking-display text-primary leading-tight mb-6"
+                    style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}
+                  >
+                    {result.title}
+                  </h3>
+                  <p className="text-secondary text-sm leading-relaxed mb-8">
+                    {result.body}
+                  </p>
+
+                  <a
+                    href={result.cta.primary.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
+                  >
+                    {result.cta.primary.label}
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">
+                      &rarr;
+                    </span>
+                  </a>
+
+                  {result.cta.type === "low" && (
+                    <div className="mt-5">
+                      <a
+                        href={result.cta.secondary.href}
+                        className="text-sm text-secondary hover:text-primary underline underline-offset-4 transition-colors duration-200"
+                      >
+                        {result.cta.secondary.label}
+                      </a>
+                    </div>
+                  )}
                 </div>
                 <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+                  onClick={restart}
+                  className="text-xs text-[#444] hover:text-secondary transition-colors"
                 >
-                  {loading ? "Un attimo..." : "Mostra il mio risultato"}
+                  Rifai il quiz
                 </button>
-              </form>
-            </div>
-          )}
-
-          {/* RESULT — shown after form */}
-          {phase === "result" && (
-            <div key="result" className="quiz-enter">
-              <div className="border-t border-primary pt-8 mb-8">
-                <p className="section-label mb-4">Il tuo risultato</p>
-                <h3
-                  className="font-display tracking-display text-primary leading-tight mb-6"
-                  style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}
-                >
-                  {result.title}
-                </h3>
-                <p className="text-secondary text-sm leading-relaxed mb-8">
-                  {result.body}
-                </p>
-
-                {/* Primary CTA — PDF download */}
-                <a
-                  href={result.cta.primary.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
-                >
-                  {result.cta.primary.label}
-                  <span className="transition-transform duration-200 group-hover:translate-x-1">
-                    &rarr;
-                  </span>
-                </a>
-
-                {/* Secondary CTA — solo per risultato basso */}
-                {result.cta.type === "low" && (
-                  <div className="mt-5">
-                    <a
-                      href={result.cta.secondary.href}
-                      className="text-sm text-secondary hover:text-primary underline underline-offset-4 transition-colors duration-200"
-                    >
-                      {result.cta.secondary.label}
-                    </a>
-                  </div>
-                )}
               </div>
-              <button
-                onClick={restart}
-                className="text-xs text-[#444] hover:text-secondary transition-colors"
-              >
-                Rifai il quiz
-              </button>
+            )}
+          </div>
+
+          {/* Right: deliverables panel (sticky) */}
+          <div className="hidden md:block">
+            <div className="border border-border p-8 sticky top-36">
+              <p className="text-[0.6875rem] font-bold tracking-[0.14em] uppercase text-secondary mb-6">
+                Al completamento ricevi
+              </p>
+              {[
+                { num: "01", title: "Score personalizzato", desc: "Un punteggio da 0 a 100 sulla salute del tuo email marketing." },
+                { num: "02", title: "Gap analysis", desc: "Le 3 opportunità di revenue che stai lasciando sul tavolo." },
+                { num: "03", title: "Benchmark di settore", desc: "Confronto anonimizzato con brand simili al tuo." },
+              ].map((d) => (
+                <div key={d.num} className="flex items-start gap-4 mb-5 last:mb-0">
+                  <div className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-[0.625rem] font-bold text-secondary flex-shrink-0 mt-0.5">
+                    {d.num}
+                  </div>
+                  <div className="text-[0.8125rem] text-secondary leading-relaxed">
+                    <strong className="text-primary font-medium block mb-0.5">{d.title}</strong>
+                    {d.desc}
+                  </div>
+                </div>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       </div>
     </section>
