@@ -140,22 +140,23 @@ html.light {
   );
 }
 
-/* Logo images — dark mode: invert to white; light mode: grayscale */
+/* Logo images — grayscale monochrome, screen blend on dark bg */
 .logo-img {
-  filter: brightness(0) invert(1);
-  opacity: 0.25;
-  transition: opacity 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%) invert(1);
+  opacity: 0.22;
+  mix-blend-mode: screen;
+  transition: opacity 0.25s ease;
 }
 .logo-img:hover {
-  opacity: 1;
+  opacity: 0.55;
 }
 html.light .logo-img {
-  filter: grayscale(1);
-  opacity: 0.4;
+  filter: grayscale(100%);
+  opacity: 0.35;
+  mix-blend-mode: multiply;
 }
 html.light .logo-img:hover {
-  filter: none;
-  opacity: 1;
+  opacity: 0.65;
 }
 
 

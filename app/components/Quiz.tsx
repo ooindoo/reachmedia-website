@@ -269,15 +269,15 @@ export default function Quiz() {
                 <p className="text-xs mb-8" style={{ color: "#666666" }}>
                   Scegli una risposta
                 </p>
-                <div className="space-y-3">
+                <div className="divide-y divide-border border border-border">
                   {QUESTIONS[step].options.map((opt, i) => (
                     <button
                       key={i}
                       onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
-                      className={`w-full text-left px-5 py-4 min-h-[52px] border transition-all duration-200 text-sm group ${
+                      className={`w-full text-left px-5 py-4 min-h-[52px] transition-all duration-200 text-sm group ${
                         selectedIndex === i
-                          ? "border-accent bg-surface text-primary"
-                          : "border-border hover:border-primary text-secondary hover:text-primary"
+                          ? "bg-surface text-primary shadow-[inset_2px_0_0_rgb(var(--color-accent))]"
+                          : "text-secondary hover:text-primary hover:bg-surface"
                       }`}
                     >
                       <span
@@ -347,7 +347,7 @@ export default function Quiz() {
           {/* RESULT — shown after form */}
           {phase === "result" && (
             <div key="result" className="quiz-enter">
-              <div className="border-t-2 border-primary pt-8 mb-8">
+              <div className="border-t border-primary pt-8 mb-8">
                 <p className="section-label mb-4">Il tuo risultato</p>
                 <h3
                   className="font-display tracking-display text-primary leading-tight mb-6"
