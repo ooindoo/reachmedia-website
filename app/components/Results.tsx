@@ -2,22 +2,22 @@ import FadeIn from "./FadeIn";
 
 const CASES = [
   {
-    stat: "+340%",
-    statLabel: "revenue da email in 90 giorni",
-    sector: "Accessori moda premium, Italia",
-    body: "Lista da 8.000 contatti, apertura al 18%, nessun flow attivo. Revenue da email passata dal 4% al 19% del fatturato totale.",
+    stat: "€428k",
+    statLabel: "fatturato generato via email",
+    sector: "E-commerce moda premium, Italia",
+    body: "372 campagne inviate in 17 mesi, 984.038 destinatari raggiunti. Open rate medio del 58,7%. Fatturato generato tra campagne e automazioni: €428.558.",
   },
   {
-    stat: "+34%",
-    statLabel: "LTV medio clienti in 4 mesi",
-    sector: "Food gourmet, e-commerce B2C",
-    body: "Klaviyo installato ma usato solo per newsletter manuali. 6 flow attivati, lifetime value medio aumentato del 34%.",
+    stat: "56,8%",
+    statLabel: "open rate medio",
+    sector: "Brand orologi di lusso, Italia",
+    body: "Partiti da zero, nessun email marketing precedente. Circa 60 campagne inviate, 431.914 destinatari raggiunti. Click rate medio del 9,8%. 98 ordini diretti tracciati da campagna.",
   },
   {
-    stat: "38%",
-    statLabel: "open rate raggiunto in 60 giorni",
-    sector: "Brand lifestyle, espansione europea",
-    body: "Migrazione da Mailchimp a Klaviyo con 22.000 contatti. Zero perdita di deliverability, open rate passato dal 21% al 38%.",
+    stat: "28,4%",
+    statLabel: "open rate medio dopo recovery",
+    sector: "Piattaforma second-hand luxury",
+    body: "Recovery completo di un account con seri problemi di deliverability. 254 campagne inviate, 47.468 destinatari raggiunti. Open rate portato da un minimo del 25% a una media stabile del 28,4%.",
   },
 ];
 

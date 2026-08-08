@@ -2,10 +2,10 @@ import CountUp from "./CountUp";
 import FadeIn from "./FadeIn";
 
 const STATS = [
-  { value: 6, suffix: "+", label: "Anni di esperienza email marketing" },
-  { value: 40, suffix: "+", label: "Brand premium gestiti" },
-  { value: 34, suffix: "%", label: "Aumento medio LTV clienti" },
-  { value: 19, suffix: "%", label: "Fatturato da email sui clienti attivi" },
+  { value: 3, suffix: "+", label: "Anni di esperienza email marketing" },
+  { value: 15, suffix: "+", label: "Brand premium gestiti" },
+  { value: 686, suffix: "", label: "Campagne email inviate" },
+  { value: 58, suffix: "%", label: "Open rate medio" },
 ];
 
 export default function StatsBar() {
