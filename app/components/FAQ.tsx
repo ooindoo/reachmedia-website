@@ -58,7 +58,7 @@ export default function FAQ() {
                 >
                   <span
                     className={`text-sm md:text-base font-medium transition-colors duration-200 ${
-                      open === i ? "text-primary" : "text-secondary group-hover:text-primary"
+                      open === i ? "text-accent" : "text-primary group-hover:text-accent"
                     }`}
                   >
                     {item.q}
