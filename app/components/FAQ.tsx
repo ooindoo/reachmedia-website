@@ -47,10 +47,10 @@ export default function FAQ() {
           </h2>
         </FadeIn>
 
-        <div className="max-w-3xl">
+        <div className="max-w-3xl border-t border-b border-border divide-y divide-border">
           {FAQS.map((item, i) => (
             <FadeIn key={i} delay={i * 60}>
-              <div className={`border-t border-border last:border-b transition-colors duration-200 ${open === i ? "bg-surface/60" : "hover:bg-surface/40"}`}>
+              <div className={`transition-colors duration-200 ${open === i ? "bg-surface/60" : "hover:bg-surface/40"}`}>
                 <button
                   onClick={() => toggle(i)}
                   className="w-full flex items-start justify-between gap-6 py-6 text-left group"

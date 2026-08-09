@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-bg hero-grid overflow-hidden min-h-[100dvh] flex flex-col justify-end pb-14">
+    <section className="bg-bg hero-grid overflow-hidden min-h-[100dvh] flex flex-col justify-end pt-20 pb-14">
       <div className="container-site w-full">
         {/* Mobile: stacked. Desktop: split left/right anchored at bottom */}
         <div className="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">

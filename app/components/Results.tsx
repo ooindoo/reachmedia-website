@@ -41,9 +41,12 @@ export default function Results() {
           </h2>
         </FadeIn>
 
+        {/* All cases: featured + minis in one seamless grid container */}
+        <div className="bg-border flex flex-col gap-px">
+
         {/* Featured case */}
         <FadeIn>
-          <div className="grid md:grid-cols-[5fr_7fr] gap-px bg-border mb-px">
+          <div className="grid md:grid-cols-[5fr_7fr] gap-px bg-border">
             {/* Stat side */}
             <div className="bg-white/[0.025] p-8 md:p-10">
               <p
@@ -106,7 +109,7 @@ export default function Results() {
         <div className="grid md:grid-cols-2 gap-px bg-border">
           {MINIS.map((c, i) => (
             <FadeIn key={i} delay={i * 80}>
-              <div className="bg-bg p-8 md:p-10 group hover:bg-surface transition-colors duration-200">
+              <div className="bg-bg p-8 md:p-10 group hover:bg-surface transition-colors duration-200 h-full">
                 <p
                   className="font-display leading-none text-primary group-hover:text-accent transition-colors duration-300 mb-1"
                   style={{ fontSize: "clamp(2.5rem, 5vw, 3rem)" }}
@@ -121,6 +124,8 @@ export default function Results() {
             </FadeIn>
           ))}
         </div>
+
+        </div>{/* end seamless gap-px container */}
       </div>
     </section>
   );

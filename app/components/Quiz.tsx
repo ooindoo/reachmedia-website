@@ -239,7 +239,7 @@ export default function Quiz() {
           </p>
         </FadeIn>
 
-        <div className="grid md:grid-cols-[7fr_5fr] gap-12 items-start">
+        <div className="max-w-xl">
           {/* Left: quiz UI */}
           <div>
             {/* QUIZ */}
@@ -390,30 +390,6 @@ export default function Quiz() {
                 </button>
               </div>
             )}
-          </div>
-
-          {/* Right: deliverables panel (sticky) */}
-          <div className="hidden md:block">
-            <div className="border border-border p-8 sticky top-36">
-              <p className="text-[0.6875rem] font-bold tracking-[0.14em] uppercase text-secondary mb-6">
-                Al completamento ricevi
-              </p>
-              {[
-                { num: "01", title: "Score personalizzato", desc: "Un punteggio da 0 a 100 sulla salute del tuo email marketing." },
-                { num: "02", title: "Gap analysis", desc: "Le 3 opportunità di revenue che stai lasciando sul tavolo." },
-                { num: "03", title: "Benchmark di settore", desc: "Confronto anonimizzato con brand simili al tuo." },
-              ].map((d) => (
-                <div key={d.num} className="flex items-start gap-4 mb-5 last:mb-0">
-                  <div className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-[0.625rem] font-bold text-secondary flex-shrink-0 mt-0.5">
-                    {d.num}
-                  </div>
-                  <div className="text-[0.8125rem] text-secondary leading-relaxed">
-                    <strong className="text-primary font-medium block mb-0.5">{d.title}</strong>
-                    {d.desc}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>

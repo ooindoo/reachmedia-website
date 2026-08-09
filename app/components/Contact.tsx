@@ -9,6 +9,32 @@ type Errors = { name?: string; email?: string; message?: string };
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const FORMSPREE_URL = "https://formspree.io/f/xpqnldne";
 
+function Field({
+  id,
+  label,
+  error,
+  children,
+}: {
+  id: string;
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="block font-display tracking-[0.16em] text-secondary mb-2"
+        style={{ fontSize: "11px" }}
+      >
+        {label}
+      </label>
+      {children}
+      {error && <p className="text-xs text-red-400 mt-2">{error}</p>}
+    </div>
+  );
+}
+
 export default function Contact() {
   const [form, setForm] = useState<Form>({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<Errors>({});
@@ -72,33 +98,6 @@ export default function Contact() {
       setLoading(false);
     }
   };
-
-  // Field wrapper: label + input + error
-  const Field = ({
-    id,
-    label,
-    error,
-    children,
-  }: {
-    id: string;
-    label: string;
-    error?: string;
-    children: React.ReactNode;
-  }) => (
-    <div>
-      <label
-        htmlFor={id}
-        className="block font-display tracking-[0.16em] text-secondary mb-2"
-        style={{ fontSize: "11px" }}
-      >
-        {label}
-      </label>
-      {children}
-      {error && (
-        <p className="text-xs text-red-400 mt-2">{error}</p>
-      )}
-    </div>
-  );
 
   return (
     <section id="contatti" className="border-t border-border py-12 md:py-32">
