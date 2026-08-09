@@ -13,7 +13,7 @@ export default function Hero() {
           <div className="flex-shrink-0 md:w-[58%]">
             <h1
               className="font-display leading-[0.92] tracking-display text-primary"
-              style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
+              style={{ fontSize: "clamp(3.5rem, 7.5vw, 7.5rem)" }}
             >
               EMAIL
               <br />
