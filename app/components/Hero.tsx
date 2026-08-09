@@ -4,8 +4,9 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="bg-bg hero-grid overflow-hidden min-h-[100dvh] flex flex-col justify-end pt-20 pb-14">
-      <div className="container-site w-full">
+    <section className="bg-bg hero-grid min-h-[100dvh] flex flex-col">
+      <div className="flex-1 min-h-14 md:min-h-16" />
+      <div className="container-site w-full pb-14">
         {/* Mobile: stacked. Desktop: split left/right anchored at bottom */}
         <div className="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">
           {/* Left: headline */}
