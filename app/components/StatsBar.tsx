@@ -21,7 +21,7 @@ export default function StatsBar() {
           left/right margins outside container-site reveal the overlay color. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-white/[0.02] pointer-events-none transition-opacity duration-200"
+        className="absolute inset-0 bg-white/[0.06] pointer-events-none transition-opacity duration-200"
         style={{ opacity: hovered ? 1 : 0 }}
       />
 
@@ -30,7 +30,7 @@ export default function StatsBar() {
           {STATS.map((s, i) => (
             <FadeIn key={i} delay={i * 80}>
               <div
-                className={`relative bg-bg py-8 md:py-10 group overflow-hidden cursor-default hover:bg-white/[0.02] transition-colors duration-200 ${
+                className={`relative bg-bg py-8 md:py-10 group overflow-hidden cursor-default hover:bg-white/[0.06] transition-colors duration-200 ${
                   i === 0
                     ? "pl-0 pr-6 md:pr-10"          // first cell: no left pad → aligns with logo
                     : i === STATS.length - 1
