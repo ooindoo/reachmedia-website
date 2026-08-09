@@ -15,15 +15,28 @@ export default function StatsBar() {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <section
-      className={`border-t border-b border-border transition-colors duration-200${hovered ? " bg-white/[0.02]" : ""}`}
-    >
+    <section className="border-t border-b border-border relative">
+      {/* Full-width overlay: absolute, covers full section width (incl. page margins).
+          Cells have opaque bg-bg so they render above this layer; only the
+          left/right margins outside container-site reveal the overlay color. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-white/[0.02] pointer-events-none transition-opacity duration-200"
+        style={{ opacity: hovered ? 1 : 0 }}
+      />
+
       <div className="container-site">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
           {STATS.map((s, i) => (
             <FadeIn key={i} delay={i * 80}>
               <div
-                className="relative bg-bg px-6 md:px-10 py-8 md:py-10 group overflow-hidden cursor-default hover:bg-white/[0.02] transition-colors duration-200"
+                className={`relative bg-bg py-8 md:py-10 group overflow-hidden cursor-default hover:bg-white/[0.02] transition-colors duration-200 ${
+                  i === 0
+                    ? "pl-0 pr-6 md:pr-10"          // first cell: no left pad → aligns with logo
+                    : i === STATS.length - 1
+                    ? "pl-6 md:pl-10 pr-0"           // last cell: no right pad → symmetric
+                    : "px-6 md:px-10"
+                }`}
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
               >
