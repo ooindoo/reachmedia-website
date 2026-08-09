@@ -4,13 +4,13 @@ export default function EmailMarketingEcommerceFatturato() {
       <p>
         Ogni mese, migliaia di e-commerce italiani mandano email alla loro lista senza sapere se stanno
         ottenendo buoni risultati o pessimi. Non hanno un benchmark di riferimento, non misurano le
-        performance in modo sistematico e — la cosa più costosa — non sanno quanti soldi stanno
+        performance in modo sistematico e, la cosa più costosa, non sanno quanti soldi stanno
         lasciando sul tavolo. Questo articolo ti dà i numeri concreti per capire dove ti trovi.
       </p>
 
       <h2>Il benchmark del settore: cosa dicono i dati</h2>
       <p>
-        Nei mercati e-commerce maturi — Stati Uniti, UK, Germania — il dato consolidato è questo: un
+        Nei mercati e-commerce maturi (Stati Uniti, UK, Germania) il dato consolidato è questo: un
         programma email ben gestito contribuisce tra il <strong>20% e il 35% del fatturato totale</strong>
         {" "}dell&apos;e-commerce. Non è un numero gonfiato da qualche agenzia: è la media che emerge
         dall&apos;analisi di migliaia di account Klaviyo pubblicata annualmente dalla stessa piattaforma.
@@ -18,7 +18,7 @@ export default function EmailMarketingEcommerceFatturato() {
       <p>
         Nei mercati più maturi, alcuni brand di fascia premium arrivano al 40-45%. Non perché mandino
         più email degli altri, ma perché hanno costruito sistemi automatici che lavorano in background
-        — flow, segmentazioni, test — mentre le campagne broadcast si occupano del resto.
+        flow automatici, segmentazioni e test, mentre le campagne broadcast si occupano del resto.
       </p>
       <p>
         Il dato italiano è molto diverso. Per la maggior parte degli e-commerce italiani che incontriamo,
@@ -36,7 +36,7 @@ export default function EmailMarketingEcommerceFatturato() {
       <h3>Nessun sistema automatico attivo</h3>
       <p>
         Il gap più grande, e il più facile da colmare. La maggior parte degli e-commerce italiani
-        manda solo newsletter manuali — un invio ogni tanto, senza automazioni. I flow (welcome,
+        manda solo newsletter manuali, un invio ogni tanto, senza automazioni. I flow (welcome,
         carrello abbandonato, post-acquisto, winback) sono spesso assenti o incompleti. Questi flow
         sono responsabili di circa il 40-60% della revenue email nei brand strutturati, perché girano
         24 ore su 24 senza richiedere lavoro continuo.
@@ -107,7 +107,7 @@ export default function EmailMarketingEcommerceFatturato() {
       <h2>Dove iniziare</h2>
       <p>
         Se sei sotto il 10% di revenue da email, la priorità è una sola: attivare i flow automatici.
-        Welcome series, abandoned cart e post-purchase — questi tre da soli, ben configurati, spostano
+        Welcome series, abandoned cart e post-purchase: questi tre da soli, ben configurati, spostano
         l&apos;ago del 10-15 punti percentuali nel giro di 60-90 giorni.
       </p>
       <p>

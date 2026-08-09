@@ -13,8 +13,8 @@ export default function KlaviyoEcommerceItaliano() {
       <p>
         La differenza tra Klaviyo e un generico strumento di email marketing come Mailchimp o Brevo si
         vede nel momento in cui colleghi il tuo shop. Klaviyo non si limita a importare una lista di
-        contatti: sincronizza in tempo reale tutti gli eventi che accadono sul tuo sito — visualizzazioni
-        di prodotto, aggiunte al carrello, acquisti, resi — e li rende disponibili per trigger,
+        contatti: sincronizza in tempo reale tutti gli eventi che accadono sul tuo sito (visualizzazioni
+        di prodotto, aggiunte al carrello, acquisti, resi) e li rende disponibili per trigger,
         segmentazioni e personalizzazioni.
       </p>
       <p>
@@ -62,7 +62,7 @@ export default function KlaviyoEcommerceItaliano() {
       </p>
       <p>
         La prima email arriva entro un&apos;ora dall&apos;iscrizione e introduce il brand: chi sei, cosa fai,
-        perché sei diverso dalla concorrenza. Non mandare uno sconto subito — trainerai un pubblico
+        perché sei diverso dalla concorrenza. Non mandare uno sconto subito: trainerai un pubblico
         che si iscrive solo per il coupon. La seconda e terza email approfondiscono la proposta di
         valore e possono includere social proof (recensioni, numeri). Solo all&apos;ultima email, se non
         ha ancora acquistato, puoi offrire un incentivo.
@@ -71,14 +71,14 @@ export default function KlaviyoEcommerceItaliano() {
       <h3>2. Abandoned Cart</h3>
       <p>
         Statisticamente, il 70% dei carrelli viene abbandonato prima del checkout. L&apos;abandoned cart
-        flow ti permette di recuperarne una parte significativa — di solito tra il 10% e il 15% di chi
+        flow ti permette di recuperarne una parte significativa, di solito tra il 10% e il 15% di chi
         riceve la sequenza completa converte.
       </p>
       <p>
         Imposta 3 email: la prima a 1 ora dall&apos;abbandono (reminder semplice, nessuno sconto), la
         seconda a 24 ore (aggiungi social proof sul prodotto), la terza a 72 ore (se vuoi usare uno
         sconto, fallo qui). Usa i dynamic blocks di Klaviyo per mostrare automaticamente il prodotto
-        esatto che ha lasciato nel carrello — è questo il punto di forza rispetto a un&apos;email generica.
+        esatto che ha lasciato nel carrello. È questo il punto di forza rispetto a un&apos;email generica.
       </p>
 
       <h3>3. Post-Purchase Flow</h3>
@@ -122,8 +122,8 @@ export default function KlaviyoEcommerceItaliano() {
       </ul>
       <p>
         Quando mandi campagne broadcast, mandale principalmente ai segmenti engaged e active, non a
-        tutta la lista. Una lista da 10.000 persone di cui 3.000 engaged performerà meglio — in termini
-        di deliverability e conversioni — di una lista da 10.000 mandata tutta insieme con tassi di
+        tutta la lista. Una lista da 10.000 persone di cui 3.000 engaged performerà meglio, sia per
+        deliverability che per conversioni, di una lista da 10.000 mandata tutta insieme con tassi di
         apertura bassi.
       </p>
 
@@ -142,8 +142,8 @@ export default function KlaviyoEcommerceItaliano() {
       <h2>Il passo successivo</h2>
       <p>
         Questo è il setup minimo per partire. Con i 3 flow attivi e la segmentazione base, hai già
-        un sistema che lavora per te 24 ore su 24. Il livello successivo — segmentazione predittiva,
-        A/B testing sistematico, ottimizzazione della deliverability, campagne avanzate — richiede
+        un sistema che lavora per te 24 ore su 24. Il livello successivo (segmentazione predittiva,
+        A/B testing sistematico, ottimizzazione della deliverability, campagne avanzate) richiede
         dati storici e un approccio più strutturato.
       </p>
       <p>

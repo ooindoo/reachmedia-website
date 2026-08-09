@@ -56,7 +56,7 @@ export default function About() {
               </p>
               <p>
                 Il mio approccio combina strategia, automazione e design per creare esperienze
-                che riflettono il valore del tuo brand — senza dipendere dalla pubblicità a
+                che riflettono il valore del tuo brand, senza dipendere dalla pubblicità a
                 pagamento.
               </p>
               <p>

@@ -32,7 +32,7 @@ export default function Hero() {
           {/* Right: description + CTA */}
           <div className="flex-1 pb-2">
             <p className="text-[0.9375rem] text-secondary leading-[1.7] mb-8 max-w-[28rem]">
-              Progettiamo strategie email che trasformano ogni campagna in un motore di entrate. Niente metriche di vanità — solo risultati concreti per il tuo e-commerce.
+              Progettiamo strategie email che trasformano ogni campagna in un motore di entrate. Niente metriche di vanità. Solo risultati concreti per il tuo e-commerce.
             </p>
             <Link
               href="#quiz"

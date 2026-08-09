@@ -5,14 +5,14 @@ export default function FlowKlaviyoEcommerce() {
     <>
       <p>
         I flow Klaviyo sono il motivo per cui le agenzie email marketing parlano di "revenue passiva".
-        Non perché non richiedano lavoro — costruirli bene richiede strategia, copywriting e testing —
+        Non perché non richiedano lavoro (costruirli bene richiede strategia, copywriting e testing),
         ma perché una volta attivi, girano in autonomia. Ogni carrello abbandonato, ogni nuovo iscritto,
         ogni cliente silenzioso da sei mesi: tutti ricevono la comunicazione giusta al momento giusto,
         senza che tu debba fare nulla.
       </p>
       <p>
         Nei brand strutturati su Klaviyo, i flow contribuiscono tra il 40% e il 60% di tutta la revenue
-        email. Eppure la maggior parte degli e-commerce italiani ne ha al massimo uno attivo — spesso
+        email. Eppure la maggior parte degli e-commerce italiani ne ha al massimo uno attivo, spesso
         incompleto. Questa guida copre i cinque flow che dovresti avere operativi prima di pensare a
         qualsiasi altra ottimizzazione.
       </p>
@@ -20,7 +20,7 @@ export default function FlowKlaviyoEcommerce() {
       <h2>Flow 1: Welcome Series</h2>
       <p>
         Il flusso di benvenuto è il punto di ingresso nel tuo ecosistema email. Parte quando qualcuno
-        si iscrive alla lista senza aver ancora acquistato — e questo è il momento di massima
+        si iscrive alla lista senza aver ancora acquistato. Questo è il momento di massima
         attenzione: l&apos;utente è curioso, ha appena alzato la mano dicendo "sono interessato".
       </p>
       <p>
@@ -46,15 +46,15 @@ export default function FlowKlaviyoEcommerce() {
       <h2>Flow 2: Abandoned Cart</h2>
       <p>
         Circa il 70% dei carrelli viene abbandonato prima del checkout. L&apos;abandoned cart flow è il
-        tentativo di recuperare quella quota — e funziona. Un&apos;implementazione base (anche solo una
+        tentativo di recuperare quella quota, e funziona. Un&apos;implementazione base (anche solo una
         email) recupera mediamente tra il 5% e l&apos;8% dei carrelli abbandonati. Una sequenza completa
         arriva al 15-20%.
       </p>
       <p>
         In Klaviyo, il trigger è l&apos;<em>Started Checkout</em> event: si attiva quando un utente
         identificato aggiunge prodotti al carrello e lascia il sito senza completare l&apos;ordine.
-        La chiave è che Klaviyo mostra dinamicamente il prodotto esatto abbandonato — con immagine,
-        nome e prezzo — rendendo ogni email rilevante per quel cliente specifico.
+        La chiave è che Klaviyo mostra dinamicamente il prodotto esatto abbandonato, con immagine,
+        nome e prezzo, rendendo ogni email rilevante per quel cliente specifico.
       </p>
       <p>
         Struttura consigliata:
@@ -82,7 +82,7 @@ export default function FlowKlaviyoEcommerce() {
       </p>
       <p>
         Per il browse abandonment funziona bene una sequenza breve: 1-2 email, la prima a 4-6 ore
-        dalla visita (non subito — aspetta di essere sicuro che non abbia acquistato altrove), con
+        dalla visita (non subito: aspetta di essere sicuro che non abbia acquistato altrove), con
         il prodotto visualizzato e eventualmente prodotti correlati. Il tono deve essere leggero,
         non aggressivo: "Hai dato un&apos;occhiata a questo, forse ti è rimasto in mente."
       </p>
@@ -96,7 +96,7 @@ export default function FlowKlaviyoEcommerce() {
       <p>
         Il post-purchase ha due obiettivi: migliorare l&apos;esperienza post-vendita (riduci i resi,
         aumenta la soddisfazione, ottieni recensioni) e stimolare il secondo acquisto (il momento
-        più difficile nel ciclo di vita del cliente — una volta che acquista due volte, la probabilità
+        più difficile nel ciclo di vita del cliente: una volta che acquista due volte, la probabilità
         che diventi cliente abituale sale enormemente).
       </p>
       <p>
@@ -117,7 +117,7 @@ export default function FlowKlaviyoEcommerce() {
       <h2>Flow 5: Winback</h2>
       <p>
         Il winback si attiva sui clienti che hanno acquistato in passato e non tornano da un periodo
-        definito — di solito 90, 120 o 180 giorni, dipende dalla frequenza di acquisto media del
+        definito, di solito 90, 120 o 180 giorni in base alla frequenza di acquisto media del
         tuo settore. È il flow che recupera i clienti "dormienti" prima che diventino persi.
       </p>
       <p>
@@ -128,7 +128,7 @@ export default function FlowKlaviyoEcommerce() {
         Struttura consigliata:
       </p>
       <ul>
-        <li><strong>Email 1</strong>: "Ci sei mancato" — no sconto, solo reminder dei prodotti</li>
+        <li><strong>Email 1</strong>: "Ci sei mancato", senza sconto, solo reminder dei prodotti</li>
         <li><strong>Email 2 (7 giorni dopo)</strong>: novità del brand o bestseller recenti</li>
         <li><strong>Email 3 (14 giorni dopo)</strong>: incentivo finale per chi non ha risposto</li>
       </ul>
@@ -151,8 +151,8 @@ export default function FlowKlaviyoEcommerce() {
 
       <h2>Vuoi sapere quali flow ti mancano?</h2>
       <p>
-        I 5 flow descritti qui sopra sono il framework base. Esistono poi flow più avanzati —
-        segmentazione predittiva, loyalty program, international flows — che si costruiscono sopra
+        I 5 flow descritti qui sopra sono il framework base. Esistono poi flow più avanzati
+        (segmentazione predittiva, loyalty program, international flows) che si costruiscono sopra
         a questo fondamento. Se vuoi una checklist dettagliata di tutti i flow avanzati con le
         specifiche di configurazione, puoi scaricarla gratuitamente:{" "}
         <Link

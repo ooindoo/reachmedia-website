@@ -8,7 +8,7 @@ const FEATURED = {
     { val: "372", lab: "Campagne inviate" },
     { val: "984k", lab: "Email inviate" },
   ],
-  sector: "Fashion — E-commerce",
+  sector: "Fashion / E-commerce",
   title: "DA 0 A €428K DI REVENUE EMAIL IN 14 MESI",
   body: "Brand di abbigliamento premium che non aveva mai investito in email marketing. Abbiamo costruito l'intera infrastruttura da zero: lista, template, automazioni e calendario editoriale. In 14 mesi il canale email è diventato il secondo per revenue dopo il paid.",
   tags: ["Klaviyo", "Shopify", "Email Strategy", "Automazioni"],
@@ -18,12 +18,12 @@ const MINIS = [
   {
     stat: "56,8%",
     statLabel: "Open rate campagne",
-    sector: "Orologi di lusso — Settore lifestyle premium",
+    sector: "Orologi di lusso, settore lifestyle premium",
   },
   {
     stat: "28,4%",
     statLabel: "Revenue email su totale",
-    sector: "Second-hand luxury — Marketplace pre-loved",
+    sector: "Second-hand luxury, marketplace pre-loved",
   },
 ];
 
