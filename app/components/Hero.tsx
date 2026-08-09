@@ -5,15 +5,15 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="bg-bg hero-grid min-h-[100dvh] flex flex-col">
-      <div className="flex-1 min-h-14 md:min-h-16" />
-      <div className="container-site w-full pb-14">
+      <div className="flex-1 min-h-20 md:min-h-24" />
+      <div className="container-site w-full pb-16 md:pb-24">
         {/* Mobile: stacked. Desktop: split left/right anchored at bottom */}
         <div className="flex flex-col md:flex-row md:items-end gap-8 md:gap-16">
           {/* Left: headline */}
           <div className="flex-shrink-0 md:w-[58%]">
             <h1
               className="font-display leading-[0.92] tracking-display text-primary"
-              style={{ fontSize: "clamp(4.5rem, 9.5vw, 9rem)" }}
+              style={{ fontSize: "clamp(3rem, 5.5vw, 6rem)" }}
             >
               EMAIL
               <br />

@@ -46,7 +46,7 @@ export default function Results() {
 
         {/* Featured case */}
         <FadeIn>
-          <div className="grid md:grid-cols-[5fr_7fr] gap-px bg-border">
+          <div className="grid md:grid-cols-2 gap-px bg-border">
             {/* Stat side */}
             <div className="bg-white/[0.025] p-8 md:p-10">
               <p

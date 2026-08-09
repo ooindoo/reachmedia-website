@@ -53,7 +53,7 @@ export default function FAQ() {
               <div className={`transition-colors duration-200 ${open === i ? "bg-surface/60" : "hover:bg-surface/40"}`}>
                 <button
                   onClick={() => toggle(i)}
-                  className="w-full flex items-start justify-between gap-6 py-6 text-left group"
+                  className="w-full flex items-start justify-between gap-6 px-5 md:px-6 py-6 text-left group"
                   aria-expanded={open === i}
                 >
                   <span
@@ -80,7 +80,7 @@ export default function FAQ() {
                     open === i ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-sm text-secondary leading-relaxed pb-6 pr-8">
+                  <p className="text-sm text-secondary leading-relaxed px-5 md:px-6 pb-6 pr-14">
                     {item.a}
                   </p>
                 </div>
