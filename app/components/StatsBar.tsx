@@ -10,7 +10,7 @@ const STATS = [
 
 export default function StatsBar() {
   return (
-    <section className="border-t border-b border-border">
+    <section className="border-t border-border">
       <div className="container-site">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
           {STATS.map((s, i) => (
