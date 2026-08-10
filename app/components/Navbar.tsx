@@ -111,6 +111,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-14 md:h-16">
           <Link
             href="/"
+            onClick={(e) => {
+              if (isHome) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
             className={`font-display text-2xl md:text-3xl tracking-display transition-all duration-200 ${logoClass}`}
           >
             REACHMEDIA.IT
