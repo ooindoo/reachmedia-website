@@ -121,6 +121,20 @@ export default function Quiz() {
     }, 280);
   };
 
+  const goBack = () => {
+    const newScores = scores.slice(0, -1);
+    const newAnswers = answers.slice(0, -1);
+    setScores(newScores);
+    setAnswers(newAnswers);
+    setSelectedIndex(null);
+    if (phase === "form") {
+      setStep(QUESTIONS.length - 1);
+      setPhase("quiz");
+    } else {
+      setStep(step - 1);
+    }
+  };
+
   const restart = () => {
     setStep(0);
     setScores([]);
@@ -246,7 +260,7 @@ export default function Quiz() {
             {phase === "quiz" && (
               <>
                 {/* Segment progress bar */}
-                <div className="flex gap-[3px] mb-10">
+                <div className="flex gap-[3px] mb-4">
                   {QUESTIONS.map((_, i) => (
                     <div
                       key={i}
@@ -259,6 +273,19 @@ export default function Quiz() {
                       }`}
                     />
                   ))}
+                </div>
+                <div className="flex items-center justify-between mb-6">
+                  <span className="text-[10px] text-secondary uppercase tracking-widest">
+                    {step + 1} / {QUESTIONS.length}
+                  </span>
+                  {step > 0 && (
+                    <button
+                      onClick={goBack}
+                      className="text-xs text-[#444] hover:text-secondary transition-colors flex items-center gap-1"
+                    >
+                      ← Indietro
+                    </button>
+                  )}
                 </div>
 
                 {/* Question */}
@@ -339,6 +366,13 @@ export default function Quiz() {
                     className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
                   >
                     {loading ? "Un attimo..." : "Mostra il mio risultato"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={goBack}
+                    className="w-full text-center text-xs text-[#444] hover:text-secondary transition-colors pt-1"
+                  >
+                    ← Rivedi le risposte
                   </button>
                 </form>
               </div>
