@@ -122,44 +122,19 @@
   opacity: 0.3;
 }
 
-/* ── VARIANTE A — underline permanente + crescita da sinistra (attuale) ── */
+/* ── VARIANTE A — solo colore, nessuna underline (attuale) ── */
 
 .vA .link {
   --tap: 0.85rem;
   padding-block: var(--tap);
   margin-block: calc(var(--tap) * -1);
+  color: rgba(255, 212, 0, 0.55);
   transition: color 0.45s ease;
 }
 
-.vA .link::before,
-.vA .link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(var(--tap) - 0.35em);
-  height: 1px;
-  background: currentColor;
-}
-
-.vA .link::before {
-  opacity: 0.25;
-}
-
-.vA .link::after {
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.vA .link:hover::after,
-.vA .link:focus-visible::after {
-  transform: scaleX(1);
-}
-
-.vA:has(.link:hover) .link:not(:hover),
-.vA:has(.link:focus-visible) .link:not(:focus-visible) {
-  color: rgba(255, 212, 0, 0.3);
+.vA .link:hover,
+.vA .link:focus-visible {
+  color: #ffd400;
 }
 
 /* ── VARIANTE B — chip grigio che SCHIARISCE su hover ── */

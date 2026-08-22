@@ -64,66 +64,42 @@
 
 .link {
   /* Area di tap: il testo è alto ~17px, sotto la soglia touch di 44px.
-     Il padding la allarga, il margin negativo annulla l'effetto sul layout.
-     --tap va tenuto in sync con il `bottom` dell'underline qui sotto. */
+     Il padding la allarga, il margin negativo annulla l'effetto sul layout. */
   --tap: 0.85rem;
   padding-block: var(--tap);
   margin-block: calc(var(--tap) * -1);
 
   position: relative;
-  color: inherit;
   text-decoration: none;
+
+  /* A riposo i link stanno smorzati: la gerarchia col nome madre la fa
+     il colore, non la dimensione soltanto. 0.55 è il valore più basso
+     che regge ancora il 4.5:1 su nero (misurato 4.65:1). */
+  color: rgba(255, 212, 0, 0.55);
 
   /* Ingresso: salgono in sequenza (delay impostato inline per indice) */
   opacity: 0;
   transform: translateY(14px);
   animation: link-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 
-  /* Lo smorzamento passa da `color`, non da `opacity`: l'animazione
-     d'ingresso ha fill-mode forwards e l'opacity animata vincerebbe
-     sul cascade, rendendo la regola :has() sotto inefficace. */
+  /* Il passaggio va su `color` e non su `opacity`: l'animazione d'ingresso
+     ha fill-mode forwards e l'opacity animata vincerebbe sul cascade. */
   transition: color 0.45s ease;
 }
 
-/* Due underline sovrapposte:
-   ::before = linea di base, sempre visibile e smorzata. Serve l'affordance:
-              su touch l'hover non esiste mai, quindi senza di lei i link
-              sarebbero testo nudo, indistinguibile dal resto.
-   ::after  = linea piena che cresce da sinistra su hover/focus. */
-.link::before,
-.link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: calc(var(--tap) - 0.35em);
-  height: 1px;
-  background: currentColor;
-}
-
-.link::before {
-  opacity: 0.25;
-}
-
-.link::after {
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.link:hover::after,
-.link:focus-visible::after {
-  transform: scaleX(1);
-}
-
-/* Gli altri due si smorzano per mettere a fuoco quello puntato */
-.links:has(.link:hover) .link:not(:hover),
-.links:has(.link:focus-visible) .link:not(:focus-visible) {
-  color: rgba(255, 212, 0, 0.3);
-}
-
+/* L'hover è tutto qui: il link puntato sale a giallo pieno, gli altri due
+   restano dove sono. Nessuna underline, né a riposo né su hover. */
+.link:hover,
 .link:focus-visible {
-  outline: none;
+  color: #ffd400;
+}
+
+/* Senza underline il colore resterebbe l'unico indicatore di focus, e da
+   solo non basta per la navigazione da tastiera. L'outline compare solo
+   con :focus-visible, quindi col mouse non si vede mai. */
+.link:focus-visible {
+  outline: 1px solid #ffd400;
+  outline-offset: 0.3em;
 }
 
 .sep {
@@ -224,14 +200,5 @@
 
   .footer {
     opacity: 0.38;
-  }
-
-  .link::after {
-    transition: none;
-  }
-
-  /* Nessuna crescita: la linea di base resta l'unico indicatore, ferma. */
-  .link::before {
-    opacity: 0.25;
   }
 }

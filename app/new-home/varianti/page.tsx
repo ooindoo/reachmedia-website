@@ -13,8 +13,8 @@ const SECTIONS = [
 const VARIANTS = [
   {
     id: "vA",
-    tab: "A · Underline",
-    note: "Attuale. Underline sempre visibile al 25%, che cresce da sinistra a piena opacità su hover; gli altri due link si smorzano. Nessun riquadro, palette a due colori.",
+    tab: "A · Solo colore",
+    note: "Attuale. Nessuna underline. A riposo i tre link stanno a giallo 55%, su hover quello puntato sale a giallo pieno. Nessun riquadro, palette a due colori.",
   },
   {
     id: "vB",
