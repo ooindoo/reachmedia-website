@@ -85,7 +85,12 @@
   transition: color 0.45s ease;
 }
 
-/* Underline che cresce da sinistra */
+/* Due underline sovrapposte:
+   ::before = linea di base, sempre visibile e smorzata. Serve l'affordance:
+              su touch l'hover non esiste mai, quindi senza di lei i link
+              sarebbero testo nudo, indistinguibile dal resto.
+   ::after  = linea piena che cresce da sinistra su hover/focus. */
+.link::before,
 .link::after {
   content: "";
   position: absolute;
@@ -94,7 +99,13 @@
   bottom: calc(var(--tap) - 0.35em);
   height: 1px;
   background: currentColor;
+}
 
+.link::before {
+  opacity: 0.25;
+}
+
+.link::after {
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -217,5 +228,10 @@
 
   .link::after {
     transition: none;
+  }
+
+  /* Nessuna crescita: la linea di base resta l'unico indicatore, ferma. */
+  .link::before {
+    opacity: 0.25;
   }
 }
