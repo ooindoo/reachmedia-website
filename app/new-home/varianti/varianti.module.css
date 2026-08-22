@@ -1,0 +1,215 @@
+/* ── Pagina di confronto: tre trattamenti della riga di link ──────────────────
+   Scratch page, non fa parte del design finale. Stessa base di
+   new-home.module.css, con tre modificatori sui link (.vA / .vB / .vC).
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6vh 5vw;
+  background: #000000;
+  color: #ffd400;
+  text-align: center;
+}
+
+/* ── Barra di controllo (solo per il confronto) ── */
+
+.switcher {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  padding: 0.9rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 212, 0, 0.15);
+}
+
+.tab {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+
+  padding: 0.5rem 0.8rem;
+  border: 1px solid rgba(255, 212, 0, 0.3);
+  border-radius: 3px;
+  background: transparent;
+  color: rgba(255, 212, 0, 0.65);
+  cursor: pointer;
+
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.tab:hover {
+  color: #ffd400;
+  border-color: rgba(255, 212, 0, 0.6);
+}
+
+.tabActive {
+  background: #ffd400;
+  border-color: #ffd400;
+  color: #000000;
+}
+
+.note {
+  position: absolute;
+  bottom: clamp(3.5rem, 9vh, 5.5rem);
+  left: 0;
+  right: 0;
+
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.72rem;
+  line-height: 1.6;
+  color: rgba(255, 212, 0, 0.45);
+
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ── Nome madre (identico alla pagina reale) ── */
+
+.name {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(2.8rem, 16vw, 15rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.tld {
+  opacity: 0.45;
+}
+
+/* ── Riga link: base comune ── */
+
+.links {
+  margin-top: clamp(1.8rem, 4vh, 3.2rem);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(0.72rem, 1.5vw, 1.15rem);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.link {
+  position: relative;
+  color: #ffd400;
+  text-decoration: none;
+}
+
+.sep {
+  color: #ffd400;
+  opacity: 0.3;
+}
+
+/* ── VARIANTE A — underline permanente + crescita da sinistra (attuale) ── */
+
+.vA .link {
+  --tap: 0.85rem;
+  padding-block: var(--tap);
+  margin-block: calc(var(--tap) * -1);
+  transition: color 0.45s ease;
+}
+
+.vA .link::before,
+.vA .link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--tap) - 0.35em);
+  height: 1px;
+  background: currentColor;
+}
+
+.vA .link::before {
+  opacity: 0.25;
+}
+
+.vA .link::after {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vA .link:hover::after,
+.vA .link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+.vA:has(.link:hover) .link:not(:hover),
+.vA:has(.link:focus-visible) .link:not(:focus-visible) {
+  color: rgba(255, 212, 0, 0.3);
+}
+
+/* ── VARIANTE B — chip grigio che SCHIARISCE su hover ── */
+
+.vB .link {
+  padding: 0.85rem 1.1rem;
+  border-radius: 2px;
+  background: #141414;
+  transition: background-color 0.25s ease;
+}
+
+.vB .link:hover,
+.vB .link:focus-visible {
+  background: #2e2e2e;
+}
+
+/* ── VARIANTE C — chip grigio che si riempie di giallo su hover ── */
+
+.vC .link {
+  padding: 0.85rem 1.1rem;
+  border-radius: 2px;
+  background: #141414;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.vC .link:hover,
+.vC .link:focus-visible {
+  background: #ffd400;
+  color: #000000;
+}
+
+/* ── Footer ── */
+
+.footer {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vh, 2.75rem);
+  left: 0;
+  right: 0;
+
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(0.58rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.26em;
+  color: #ffd400;
+  opacity: 0.38;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link,
+  .link::after,
+  .tab {
+    transition: none !important;
+  }
+}
