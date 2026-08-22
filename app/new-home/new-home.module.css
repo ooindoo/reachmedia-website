@@ -1,0 +1,221 @@
+/* ── Portale madre Reach Media ────────────────────────────────────────────────
+   Stili scoped alla sola route /new-home. Non tocca globals.css.
+   Il wrapper è position:fixed inset:0 così copre il body anche quando
+   l'utente ha il tema light attivo (html.light cambia --color-bg in beige).
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.root {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6vh 5vw;
+  background: #000000;
+  color: #ffd400;
+  text-align: center;
+}
+
+/* ── Nome madre ── */
+
+.name {
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(2.8rem, 16vw, 15rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+
+  /* Ingresso: fade dal nero + blur che va a fuoco */
+  opacity: 0;
+  filter: blur(16px);
+  animation: name-in 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+/* Il respiro vive sullo span interno così non entra in conflitto con
+   l'animazione d'ingresso del genitore. Parte a ingresso concluso. */
+.nameInner {
+  display: inline-block;
+  animation: breathe 7s ease-in-out 1.8s infinite;
+}
+
+.tld {
+  opacity: 0.45;
+}
+
+/* ── Riga dei tre link ── */
+
+.links {
+  margin-top: clamp(1.8rem, 4vh, 3.2rem);
+
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(0.5rem, 1.2vw, 1rem);
+
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(0.72rem, 1.5vw, 1.15rem);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.link {
+  /* Area di tap: il testo è alto ~17px, sotto la soglia touch di 44px.
+     Il padding la allarga, il margin negativo annulla l'effetto sul layout.
+     --tap va tenuto in sync con il `bottom` dell'underline qui sotto. */
+  --tap: 0.85rem;
+  padding-block: var(--tap);
+  margin-block: calc(var(--tap) * -1);
+
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+
+  /* Ingresso: salgono in sequenza (delay impostato inline per indice) */
+  opacity: 0;
+  transform: translateY(14px);
+  animation: link-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  /* Lo smorzamento passa da `color`, non da `opacity`: l'animazione
+     d'ingresso ha fill-mode forwards e l'opacity animata vincerebbe
+     sul cascade, rendendo la regola :has() sotto inefficace. */
+  transition: color 0.45s ease;
+}
+
+/* Underline che cresce da sinistra */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--tap) - 0.35em);
+  height: 1px;
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Gli altri due si smorzano per mettere a fuoco quello puntato */
+.links:has(.link:hover) .link:not(:hover),
+.links:has(.link:focus-visible) .link:not(:focus-visible) {
+  color: rgba(255, 212, 0, 0.3);
+}
+
+.link:focus-visible {
+  outline: none;
+}
+
+.sep {
+  color: #ffd400;
+  opacity: 0;
+  animation: sep-in 0.8s ease 1.1s forwards;
+}
+
+/* ── Footer ── */
+
+.footer {
+  position: absolute;
+  bottom: clamp(1.5rem, 4vh, 2.75rem);
+  left: 0;
+  right: 0;
+
+  font-family: var(--font-bebas), Impact, sans-serif;
+  font-size: clamp(0.58rem, 0.85vw, 0.72rem);
+  letter-spacing: 0.26em;
+  opacity: 0;
+  color: #ffd400;
+
+  animation: footer-in 1s ease 1.7s forwards;
+}
+
+/* ── Keyframes ── */
+
+@keyframes name-in {
+  from {
+    opacity: 0;
+    filter: blur(16px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes link-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sep-in {
+  to {
+    opacity: 0.3;
+  }
+}
+
+@keyframes footer-in {
+  to {
+    opacity: 0.38;
+  }
+}
+
+/* Respiro lentissimo, quasi impercettibile */
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.84;
+  }
+}
+
+/* ── Accessibilità: nessuna animazione, tutto visibile e fermo ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .name,
+  .nameInner,
+  .link,
+  .sep,
+  .footer {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .name {
+    opacity: 1;
+    filter: none;
+  }
+
+  .link {
+    opacity: 1;
+    transform: none;
+  }
+
+  .sep {
+    opacity: 0.3;
+  }
+
+  .footer {
+    opacity: 0.38;
+  }
+
+  .link::after {
+    transition: none;
+  }
+}
