@@ -34,7 +34,7 @@ export default function Footer() {
             <p className="text-xs text-secondary leading-relaxed mb-4">
               Email marketing e Klaviyo per e-commerce premium italiani.
             </p>
-            <p className="text-xs text-[#444]">P.IVA IT12345670151</p>
+            <p className="text-xs text-[#444]">P.IVA IT05405030262</p>
           </div>
 
           {/* Col 2: Navigation */}

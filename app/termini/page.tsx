@@ -15,7 +15,7 @@ export default function Termini() {
     <LegalLayout title="TERMINI DI SERVIZIO" breadcrumbLabel="Termini di Servizio">
       <p>
         Il sito reachmedia.it è gestito da{" "}
-        <strong>Ardit Ndoja</strong>, freelance con P.IVA IT12345670151,
+        <strong>Ardit Ndoja</strong>, freelance con P.IVA IT05405030262,
         operante con il nome commerciale Reach Media.
       </p>
 

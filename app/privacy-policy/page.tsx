@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
         <br />
         Sede: Treviso (TV), Italia
         <br />
-        P.IVA: IT12345670151
+        P.IVA: IT05405030262
         <br />
         Email:{" "}
         <a href="mailto:info@reachmedia.it">info@reachmedia.it</a>
