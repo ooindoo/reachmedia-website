@@ -1,0 +1,135 @@
+// Shared copy for the redesign proposals. Mirrors the live home so the two
+// variants differ only in design, never in content.
+
+export const HERO = {
+  eyebrow: "Email marketing · Klaviyo · Shopify",
+  title: ["Email marketing", "che genera revenue."],
+  titleMuted: "Non solo aperture.",
+  body: "Progettiamo strategie email che trasformano ogni campagna in un motore di entrate. Niente metriche di vanità. Solo risultati concreti per il tuo e-commerce.",
+  cta: { label: "Fai il quiz gratuito", href: "/#quiz" },
+  note: "Risultati in 3 minuti. Nessuna registrazione richiesta.",
+};
+
+export const STATS = [
+  { label: "Esperienza", value: "3+", unit: "anni nel settore" },
+  { label: "Brand seguiti", value: "15+", unit: "clienti attivi" },
+  { label: "Campagne inviate", value: "686", unit: "campagne totali" },
+  { label: "Open rate medio", value: "58%", unit: "benchmark settore 21%" },
+];
+
+export const TOOLS = [
+  "Klaviyo", "Shopify", "Meta", "Google Ads", "Figma", "Notion", "Make",
+  "Zapier", "Vercel", "GitHub", "Google Analytics", "ChatGPT", "Claude",
+];
+
+export const STEPS = [
+  {
+    num: "01",
+    title: "Audit",
+    desc: "Analizziamo la tua lista email, le performance storiche e i flussi automatici esistenti. Identifichiamo le opportunità di revenue non sfruttate.",
+  },
+  {
+    num: "02",
+    title: "Strategia",
+    desc: "Definiamo il calendario editoriale, la segmentazione avanzata e i trigger di automazione. Ogni email ha un obiettivo di conversione preciso.",
+  },
+  {
+    num: "03",
+    title: "Esecuzione",
+    desc: "Produciamo, testiamo e ottimizziamo. Report bi-settimanali con dati reali, non metriche di vanità.",
+  },
+];
+
+export const SERVICES = [
+  {
+    index: "01",
+    kpi: "58,7% open rate medio",
+    title: "Email strategy",
+    body: "Pianificazione editoriale mensile, segmentazione avanzata e A/B testing sistematico. Ogni campagna ha un obiettivo di conversione misurabile.",
+  },
+  {
+    index: "02",
+    kpi: "15+ store ottimizzati",
+    title: "Automazioni",
+    body: "Flow di benvenuto, carrello abbandonato, win-back e post-acquisto. Automazioni che lavorano mentre dormi.",
+  },
+  {
+    index: "03",
+    kpi: "Report in 72h",
+    title: "Analytics & report",
+    body: "Dashboard personalizzata, report bi-settimanali con dati attributi e raccomandazioni azionabili. Zero metriche di vanità.",
+  },
+];
+
+export const FLOWS = [
+  { name: "Welcome series", share: 34 },
+  { name: "Carrello abbandonato", share: 27 },
+  { name: "Post-acquisto", share: 18 },
+  { name: "Win-back", share: 12 },
+  { name: "Browse abandonment", share: 9 },
+];
+
+export const FEATURED = {
+  stat: "€428k",
+  statLabel: "Revenue attribuita email",
+  metrics: [
+    { val: "58,7%", lab: "Open rate" },
+    { val: "372", lab: "Campagne inviate" },
+    { val: "984k", lab: "Email inviate" },
+  ],
+  sector: "Fashion / E-commerce",
+  title: "Da 0 a €428k di revenue email in 14 mesi",
+  body: "Brand di abbigliamento premium che non aveva mai investito in email marketing. Abbiamo costruito l'intera infrastruttura da zero: lista, template, automazioni e calendario editoriale. In 14 mesi il canale email è diventato il secondo per revenue dopo il paid.",
+  tags: ["Klaviyo", "Shopify", "Email strategy", "Automazioni"],
+  // Monthly email revenue (k€), month 1 → 14. Illustrative curve of the case.
+  series: [2, 4, 7, 11, 14, 19, 23, 27, 31, 36, 40, 46, 52, 58],
+};
+
+export const MINIS = [
+  { stat: "56,8%", statLabel: "Open rate campagne", sector: "Orologi di lusso, settore lifestyle premium" },
+  { stat: "28,4%", statLabel: "Revenue email su totale", sector: "Second-hand luxury, marketplace pre-loved" },
+];
+
+export const FAQS = [
+  {
+    q: "Quanto costa lavorare con Reach Media?",
+    a: "I progetti partono da una fase di audit e strategia. Il costo dipende dal perimetro di lavoro. Parliamo quando hai fatto il quiz e capisci dove sei.",
+  },
+  {
+    q: "In quanto tempo si vedono i risultati?",
+    a: "I primi dati arrivano entro 30 giorni. Risultati consolidati si vedono tra i 60 e i 90 giorni dall'attivazione dei flow principali.",
+  },
+  {
+    q: "Devo già avere Klaviyo attivo?",
+    a: "No. Lavoriamo sia con chi parte da zero che con chi ha già Klaviyo installato ma non lo usa davvero.",
+  },
+  {
+    q: "Lavorate solo con Shopify?",
+    a: "Shopify è la piattaforma su cui lavoriamo meglio, ma gestiamo anche progetti su WooCommerce e altre piattaforme per la parte email.",
+  },
+  {
+    q: "Quante ore al mese richiede la mia partecipazione?",
+    a: "Pochissime. Ti chiediamo un briefing iniziale e un allineamento mensile. Il resto lo gestiamo noi.",
+  },
+  {
+    q: "Come faccio a sapere se siete la scelta giusta per me?",
+    a: "Fai il quiz. In 2 minuti capisci dove sei e cosa ti manca. Se ha senso lavorare insieme, lo vedi dai risultati.",
+  },
+];
+
+export const NAV = [
+  { label: "Servizi", href: "#servizi" },
+  { label: "Risultati", href: "#risultati" },
+  { label: "Metodo", href: "#metodo" },
+  { label: "FAQ", href: "#faq" },
+];
+
+// Builds an SVG path for a sparkline/area chart from a numeric series.
+export function chartPath(series: number[], w: number, h: number, pad = 4) {
+  const max = Math.max(...series);
+  const step = (w - pad * 2) / (series.length - 1);
+  const pts = series.map((v, i) => [pad + i * step, h - pad - (v / max) * (h - pad * 2)]);
+  const line = pts.map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" ");
+  const area = `${line} L${pts[pts.length - 1][0].toFixed(1)} ${h} L${pts[0][0].toFixed(1)} ${h} Z`;
+  return { line, area, last: pts[pts.length - 1] };
+}
