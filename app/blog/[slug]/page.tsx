@@ -67,9 +67,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         type: "article",
         publishedTime: sanityPost.publishedAt,
         authors: ["Reach Media"],
-        images: [{ url: "/og-image.png", width: 1200, height: 630, alt: title }],
+        images: [{ url: "/og-image.png?v=2", width: 1200, height: 630, alt: title }],
       },
-      twitter: { card: "summary_large_image", title, description, images: ["/og-image.png"] },
+      twitter: { card: "summary_large_image", title, description, images: ["/og-image.png?v=2"] },
     };
   }
 
@@ -87,13 +87,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "article",
       publishedTime: staticPost.date,
       authors: ["Reach Media"],
-      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: staticPost.seo.ogTitle }],
+      images: [{ url: "/og-image.png?v=2", width: 1200, height: 630, alt: staticPost.seo.ogTitle }],
     },
     twitter: {
       card: "summary_large_image",
       title: staticPost.seo.ogTitle,
       description: staticPost.seo.ogDescription,
-      images: ["/og-image.png"],
+      images: ["/og-image.png?v=2"],
     },
   };
 }
@@ -173,7 +173,7 @@ export default async function ArticlePage({ params }: Props) {
     "url": `https://reachmedia.it/blog/${slug}`,
     "author": { "@type": "Person", "name": "Ardit Ndoja" },
     "publisher": { "@type": "Organization", "name": "Reach Media", "url": "https://reachmedia.it" },
-    "image": "https://reachmedia.it/og-image.png",
+    "image": "https://reachmedia.it/og-image.png?v=2",
   };
 
   return (

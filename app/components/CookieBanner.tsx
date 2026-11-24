@@ -10,12 +10,16 @@ export default function CookieBanner() {
     if (!localStorage.getItem("cookie-consent")) {
       setVisible(true);
     }
+    // "Preferenze cookie" in the footer reopens the banner
+    const reopen = () => setVisible(true);
+    window.addEventListener("rm_open_cookie_prefs", reopen);
+    return () => window.removeEventListener("rm_open_cookie_prefs", reopen);
   }, []);
 
   const choose = (value: "all" | "essential") => {
     localStorage.setItem("cookie-consent", value);
     setVisible(false);
-    // Lets the checklist popup start only once this banner is gone
+    // Starts/stops GA and lets the checklist popup start once this banner is gone
     window.dispatchEvent(new Event("rm_cookie_choice"));
   };
   const accept = () => choose("all");
@@ -45,7 +49,7 @@ export default function CookieBanner() {
           </p>
           <div className="flex items-center justify-end gap-2 mt-4">
             <button onClick={decline} className="btn btn-ghost h-10 px-4 text-sm rounded-[10px]">
-              Gestisci preferenze
+              Solo necessari
             </button>
             <button onClick={accept} className="btn btn-ink h-10 px-4 text-sm rounded-[10px]">
               Accetta tutti

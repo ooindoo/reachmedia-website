@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { subscribeToKlaviyo, KLAVIYO_LISTS } from "../lib/klaviyo";
 
 const QUESTIONS = [
   {
@@ -168,68 +169,23 @@ export default function Quiz() {
     setErrors({});
     setLoading(true);
 
-    // VhAfyx è la public company key — già visibile nel sorgente tramite klaviyo.js
-    const apiKey = process.env.NEXT_PUBLIC_KLAVIYO_API_KEY ?? "VhAfyx";
-    const listId = process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID ?? "YqRu4p";
+    // Proprietà custom del profilo con le risposte al quiz
+    const quizProperties: Record<string, string | number> = {};
+    QUESTIONS.forEach((q, i) => {
+      quizProperties[`quiz_q${i + 1}_domanda`] = q.q;
+      quizProperties[`quiz_q${i + 1}_risposta`] = answers[i] ?? "";
+    });
+    quizProperties["quiz_score"] = total;
+    quizProperties["quiz_result"] = result.title;
+    quizProperties["quiz_source"] = "Quiz Reach Media";
 
-    if (apiKey) {
-      // Costruisce le proprietà custom del profilo con le risposte al quiz
-      const quizProperties: Record<string, string | number> = {};
-      QUESTIONS.forEach((q, i) => {
-        quizProperties[`quiz_q${i + 1}_domanda`] = q.q;
-        quizProperties[`quiz_q${i + 1}_risposta`] = answers[i] ?? "";
-      });
-      quizProperties["quiz_score"] = total;
-      quizProperties["quiz_result"] = result.title;
-      quizProperties["quiz_source"] = "Quiz Reach Media";
-
-      const profileAttributes = {
-        email,
-        first_name: name,
-        properties: quizProperties,
-      };
-
-      const payload = {
-        data: {
-          type: "subscription",
-          attributes: {
-            custom_source: "Quiz Reach Media",
-            profile: {
-              data: {
-                type: "profile",
-                attributes: profileAttributes,
-              },
-            },
-          },
-          ...(listId && {
-            relationships: {
-              list: {
-                data: {
-                  type: "list",
-                  id: listId,
-                },
-              },
-            },
-          }),
-        },
-      };
-
-      try {
-        await fetch(
-          `https://a.klaviyo.com/client/subscriptions/?company_id=${apiKey}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              revision: "2024-02-15",
-            },
-            body: JSON.stringify(payload),
-          }
-        );
-      } catch (err) {
-        console.error("Klaviyo subscription error:", err);
-      }
-    }
+    await subscribeToKlaviyo({
+      email,
+      firstName: name,
+      source: "Quiz Reach Media",
+      listId: KLAVIYO_LISTS.quiz,
+      properties: quizProperties,
+    });
 
     setLoading(false);
     localStorage.setItem("rm_quiz_completed", "1");

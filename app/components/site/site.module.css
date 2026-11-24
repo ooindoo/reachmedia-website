@@ -160,9 +160,10 @@
   color: #7d828a;
 }
 .footerList { display: grid; gap: 10px; font-size: 0.875rem; }
-.footerList a, .footerBottom a { color: #c9ccd1; transition: color 150ms ease; }
+.footerList a, .footerBottom a, .footerLinkButton { color: #c9ccd1; transition: color 150ms ease; }
+.footerLinkButton { font-size: inherit; text-align: left; }
 @media (hover: hover) and (pointer: fine) {
-  .footerList a:hover, .footerBottom a:hover { color: #fff; }
+  .footerList a:hover, .footerBottom a:hover, .footerLinkButton:hover { color: #fff; }
 }
 
 .newsletterCopy { font-size: 0.875rem; color: #a3a7ae; max-width: 26rem; }

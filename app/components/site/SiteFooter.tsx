@@ -2,6 +2,7 @@ import Link from "next/link";
 import s from "./site.module.css";
 import FooterNewsletter from "./FooterNewsletter";
 import { NAV_LINKS } from "./nav";
+import CookiePrefsButton from "./CookiePrefsButton";
 
 const LEGAL_LINKS = [
   { href: "/privacy-policy", label: "Privacy Policy" },
@@ -53,6 +54,7 @@ export default function SiteFooter({ showCta = true }: { showCta?: boolean }) {
               {LEGAL_LINKS.map((l) => (
                 <li key={l.href}><Link href={l.href}>{l.label}</Link></li>
               ))}
+              <li><CookiePrefsButton className={s.footerLinkButton} /></li>
             </ul>
           </div>
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import s from "./site.module.css";
+import { subscribeToKlaviyo, KLAVIYO_LISTS } from "../../lib/klaviyo";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -9,8 +10,9 @@ export default function FooterNewsletter() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
       setError("Inserisci la tua email.");
@@ -21,18 +23,15 @@ export default function FooterNewsletter() {
       return;
     }
     setError("");
-    try {
-      const existing: string[] = JSON.parse(
-        localStorage.getItem("rm_newsletter_emails") ?? "[]"
-      );
-      if (!existing.includes(email)) {
-        existing.push(email);
-        localStorage.setItem("rm_newsletter_emails", JSON.stringify(existing));
-      }
-    } catch {
-      // localStorage not available — proceed anyway
-    }
-    setDone(true);
+    setLoading(true);
+    const ok = await subscribeToKlaviyo({
+      email,
+      source: "Newsletter footer Reach Media",
+      listId: KLAVIYO_LISTS.newsletter,
+    });
+    setLoading(false);
+    if (ok) setDone(true);
+    else setError("Iscrizione non riuscita. Riprova tra qualche minuto.");
   };
 
   return (
@@ -58,7 +57,9 @@ export default function FooterNewsletter() {
             aria-invalid={!!error}
             className={s.newsletterInput}
           />
-          <button type="submit" className="btn btn-accent">Iscriviti</button>
+          <button type="submit" disabled={loading} className="btn btn-accent">
+            {loading ? "Un attimo..." : "Iscriviti"}
+          </button>
         </form>
       )}
       {error && <p className={s.newsletterError} role="alert">{error}</p>}

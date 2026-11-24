@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SiteUI from "./components/SiteUI";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
     siteName: "Reach Media",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png?v=2",
         width: 1200,
         height: 630,
         alt: "Reach Media – Email Marketing che Genera Revenue",
@@ -69,7 +70,7 @@ export const metadata: Metadata = {
     title: "Reach Media | Email Marketing che Genera Revenue",
     description:
       "Fai il quiz gratuito e scopri dove stai perdendo soldi con l'email marketing.",
-    images: ["/og-image.png"],
+    images: ["/og-image.png?v=2"],
   },
   robots: {
     index: true,
@@ -90,27 +91,8 @@ export default function RootLayout({
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VhAfyx"
           strategy="afterInteractive"
         />
-        {/* Google Analytics 4 — loads only when NEXT_PUBLIC_GA_ID is set */}
-        {process.env.NEXT_PUBLIC_GA_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script
-              id="ga4-init"
-              strategy="afterInteractive"
-              dangerouslySetInnerHTML={{
-                __html: `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
-`,
-              }}
-            />
-          </>
-        )}
+        {/* Google Analytics 4 — only with analytics consent (see CookieBanner) */}
+        <GoogleAnalytics />
         {children}
         <SiteUI />
         <Analytics />

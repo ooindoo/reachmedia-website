@@ -35,8 +35,8 @@ export default function CookiePolicy() {
       <h2>Come gestire i cookie</h2>
       <p>
         Puoi modificare le preferenze in qualsiasi momento cliccando su
-        &ldquo;Gestisci preferenze&rdquo; nel banner cookie o nelle impostazioni
-        del browser.
+        &ldquo;Preferenze cookie&rdquo; in fondo a ogni pagina, oppure dalle
+        impostazioni del browser.
       </p>
     </LegalLayout>
   );
