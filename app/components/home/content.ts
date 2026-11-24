@@ -102,8 +102,8 @@ export const FEATURED = {
 export const MINIS = [
   // Squale: 110 campaigns, Apr 2025 → Nov 2026, unique clicks / delivered
   { stat: "9,2%", statLabel: "Click rate campagne", sector: "Orologeria svizzera premium · 110 campagne" },
-  // Cappelletto: €423k of €519k email-attributed revenue came from flows
-  { stat: "82%", statLabel: "Revenue email da automazioni", sector: "Moda multibrand premium · welcome, checkout, carrello" },
+  // Seventy: €19.9k of €64.8k online revenue attributed to email, 1–24 Nov 2026
+  { stat: "31%", statLabel: "Fatturato online da email, primo mese", sector: "Brand di moda · da Mailchimp a Klaviyo" },
 ];
 
 export const FAQS = [
