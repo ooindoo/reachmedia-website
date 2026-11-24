@@ -240,7 +240,7 @@ export default function Quiz() {
   return (
     <section id="quiz" className="container-site pt-28">
       <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
-        <header className="lg:sticky lg:top-28">
+        <header>
           <p className="section-label mb-3">Quiz gratuito</p>
           <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.08] tracking-[-0.04em] font-semibold text-balance max-w-[22ch]">
             Quanto sta rendendo il tuo email marketing?
