@@ -12,15 +12,14 @@ export default function CookieBanner() {
     }
   }, []);
 
-  const accept = () => {
-    localStorage.setItem("cookie-consent", "all");
+  const choose = (value: "all" | "essential") => {
+    localStorage.setItem("cookie-consent", value);
     setVisible(false);
+    // Lets the checklist popup start only once this banner is gone
+    window.dispatchEvent(new Event("rm_cookie_choice"));
   };
-
-  const decline = () => {
-    localStorage.setItem("cookie-consent", "essential");
-    setVisible(false);
-  };
+  const accept = () => choose("all");
+  const decline = () => choose("essential");
 
   if (!visible) return null;
 

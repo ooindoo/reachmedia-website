@@ -8,13 +8,13 @@ export default function ChecklistPopup() {
   useEffect(() => {
     if (sessionStorage.getItem("popup-shown")) return;
 
+    let timer: ReturnType<typeof setTimeout> | undefined;
+
     const show = () => {
       if (sessionStorage.getItem("popup-shown")) return;
       sessionStorage.setItem("popup-shown", "1");
       setVisible(true);
     };
-
-    const timer = setTimeout(show, 8000);
 
     const handleScroll = () => {
       const scrolled = window.scrollY;
@@ -26,10 +26,20 @@ export default function ChecklistPopup() {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Same triggers as before (8s or 40% scroll), but counted from the
+    // cookie choice: the two cards never share the screen.
+    const arm = () => {
+      timer = setTimeout(show, 8000);
+      window.addEventListener("scroll", handleScroll, { passive: true });
+    };
+
+    if (localStorage.getItem("cookie-consent")) arm();
+    else window.addEventListener("rm_cookie_choice", arm, { once: true });
+
     return () => {
       clearTimeout(timer);
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("rm_cookie_choice", arm);
     };
   }, []);
 
