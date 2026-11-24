@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: "Reach Media",
     images: [
       {
-        url: "/og-image.png?v=2",
+        url: "/og-image.png?v=3",
         width: 1200,
         height: 630,
         alt: "Reach Media – Email Marketing che Genera Revenue",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     title: "Reach Media | Email Marketing che Genera Revenue",
     description:
       "Fai il quiz gratuito di 2 minuti e scopri dove stai perdendo soldi con l'email marketing. Strategia Klaviyo e automazioni per e-commerce premium italiani.",
-    images: ["/og-image.png?v=2"],
+    images: ["/og-image.png?v=3"],
   },
   robots: {
     index: true,

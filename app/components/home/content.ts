@@ -82,19 +82,20 @@ export const FLOW = [
 ];
 
 export const FEATURED = {
-  stat: "€428k",
-  statLabel: "Revenue attribuita email",
+  stat: "€519k",
+  statLabel: "Revenue attribuita email · 20 mesi",
   metrics: [
-    { val: "58,7%", lab: "Open rate" },
-    { val: "372", lab: "Campagne inviate" },
-    { val: "984k", lab: "Email inviate" },
+    { val: "22,4%", lab: "Del fatturato online" },
+    { val: "424", lab: "Campagne inviate" },
+    { val: "1,18M", lab: "Email inviate" },
   ],
-  sector: "Fashion / E-commerce",
-  title: "Da 0 a €428k di revenue email in 14 mesi",
-  body: "Brand di abbigliamento premium che non aveva mai investito in email marketing. Abbiamo costruito l'intera infrastruttura da zero: lista, template, automazioni e calendario editoriale. In 14 mesi il canale email è diventato il secondo per revenue dopo il paid.",
-  tags: ["Klaviyo", "Shopify", "Email strategy", "Automazioni"],
-  // Monthly email revenue (k€), month 1 → 14. Illustrative curve of the case.
-  series: [2, 4, 7, 11, 14, 19, 23, 27, 31, 36, 40, 46, 52, 58],
+  sector: "Moda / Multibrand premium",
+  title: "Da newsletter occasionali a €519k di revenue email",
+  body: "Negozio multibrand di moda premium. Prima l'email era qualche newsletter sporadica inviata da Shopify, senza strategia né automazioni. Abbiamo portato tutto su Klaviyo: lista, segmentazione, template, flow e calendario editoriale. Oggi l'email genera in media il 22% del fatturato online, e l'81% di quella revenue arriva dalle automazioni.",
+  tags: ["Klaviyo", "Shopify", "Flow", "Segmentazione"],
+  // Cumulative email-attributed revenue (k€) per month, Mar 2025 → Nov 2026.
+  // Source: Klaviyo, Placed Order attributed to email (flows + campaigns).
+  series: [13.5, 37.7, 60.1, 85.5, 107.0, 123.8, 154.3, 189.5, 216.3, 242.2, 273.7, 296.9, 323.6, 351.5, 377.7, 394.1, 422.5, 441.1, 466.6, 496.0, 518.7],
 };
 
 export const MINIS = [
