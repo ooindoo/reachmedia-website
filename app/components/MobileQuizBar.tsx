@@ -44,10 +44,10 @@ export default function MobileQuizBar() {
   return (
     <a
       href={quizDone ? "/#contatti" : "/#quiz"}
-      aria-label={quizDone ? "Vai alla sezione contatti" : "Vai al quiz"}
-      className="md:hidden fixed bottom-0 inset-x-0 z-50 h-14 flex items-center justify-center bg-[#E8FF47] text-[#0A0A0A] font-display tracking-display text-xl"
+      className="btn btn-accent md:hidden fixed inset-x-3 z-40 h-[52px] shadow-[var(--shadow-lift)] border border-primary/10"
+      style={{ bottom: "calc(12px + env(safe-area-inset-bottom))" }}
     >
-      {quizDone ? "PARLIAMO" : "FAI IL QUIZ"}
+      {quizDone ? "Parliamo" : "Fai il quiz gratuito"} <span className="arrow" aria-hidden="true">→</span>
     </a>
   );
 }

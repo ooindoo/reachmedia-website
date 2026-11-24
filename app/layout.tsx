@@ -1,21 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Bebas_Neue } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SiteUI from "./components/SiteUI";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   display: "swap",
 });
 
-const bebas = Bebas_Neue({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-bebas",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -79,22 +78,14 @@ export const metadata: Metadata = {
   },
 };
 
-// Inline script — runs synchronously before first paint to prevent FOUC.
-// Reads localStorage and adds `light` class to <html> if needed.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light');}catch(e){}})();`;
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    // suppressHydrationWarning: the inline script may add `light` class before
-    // React hydrates, causing a mismatch between server and client HTML.
-    <html lang="it" className={`${inter.variable} ${bebas.variable}`} suppressHydrationWarning>
+    <html lang="it" className={`${geist.variable} ${geistMono.variable}`}>
       <body className="font-sans">
-        {/* Theme init — must be first child to run before any paint */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <Script
           src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VhAfyx"
           strategy="afterInteractive"

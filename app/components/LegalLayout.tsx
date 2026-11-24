@@ -1,5 +1,5 @@
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import SiteHeader from "./site/SiteHeader";
+import SiteFooter from "./site/SiteFooter";
 import Breadcrumb from "./Breadcrumb";
 import { ReactNode } from "react";
 
@@ -12,27 +12,19 @@ type Props = {
 export default function LegalLayout({ title, breadcrumbLabel, children }: Props) {
   return (
     <>
-      <Navbar />
-      <main className="min-h-screen pb-24 bg-bg">
-        <div className="pt-14 md:pt-16">
-          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]} />
-        </div>
-        <div className="container-site pt-10 md:pt-14">
-          <div className="max-w-3xl">
-            <h1
-              className="font-display tracking-display text-primary mb-12 leading-[0.92]"
-              style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
-            >
-              {title}
-            </h1>
-
-            <div className="space-y-10 text-secondary text-sm leading-relaxed [&_h2]:font-sans [&_h2]:text-xs [&_h2]:text-primary [&_h2]:uppercase [&_h2]:tracking-widest [&_h2]:mt-10 [&_h2]:mb-3 [&_strong]:text-primary [&_a]:underline [&_a]:hover:text-primary [&_a]:transition-colors">
-              {children}
-            </div>
+      <SiteHeader />
+      <main className="min-h-screen">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]} />
+        <div className="container-site pt-8">
+          <h1 className="text-[clamp(2.4rem,5vw,4rem)] leading-[1.04] tracking-[-0.045em] font-semibold mb-10 text-balance">
+            {title}
+          </h1>
+          <div className="tile max-w-3xl p-6 md:p-10 text-secondary text-[0.9375rem] leading-relaxed space-y-4 [&_h2]:text-primary [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:tracking-[-0.02em] [&_h2]:pt-6 [&_h2:first-child]:pt-0 [&_strong]:text-primary [&_strong]:font-semibold [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-border-mid hover:[&_a]:decoration-primary [&_ul]:space-y-2 [&_li]:pl-4 [&_li]:relative [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[0.7em] [&_li]:before:w-1.5 [&_li]:before:h-1.5 [&_li]:before:rounded-[2px] [&_li]:before:bg-accent [&_li]:before:outline [&_li]:before:outline-1 [&_li]:before:outline-primary/20">
+            {children}
           </div>
         </div>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

@@ -44,35 +44,32 @@ export default function ChecklistPopup() {
   if (!visible) return null;
 
   return (
-    <div className="popup-enter hidden md:block fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-surface border border-border-mid shadow-[-8px_0_40px_rgba(0,0,0,0.5)]" style={{ width: "280px" }}>
-      <div className="p-7 relative">
-        <button
-          onClick={close}
-          className="absolute top-4 right-4 text-[#444] hover:text-secondary transition-colors text-xs w-6 h-6 flex items-center justify-center"
-          aria-label="Chiudi"
-        >
-          &#x2715;
-        </button>
+    <div
+      className="popup-enter tile hidden md:block fixed right-6 bottom-6 z-40 w-[300px] p-6 shadow-[var(--shadow-lift)]"
+      role="dialog"
+      aria-label="Checklist audit email"
+      style={{ transformOrigin: "bottom right" }}
+    >
+      <button
+        onClick={close}
+        className="absolute top-3 right-3 w-8 h-8 grid place-items-center rounded-lg text-secondary hover:text-primary hover:bg-bg transition-colors"
+        aria-label="Chiudi"
+      >
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true">
+          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      </button>
 
-        <p className="text-[10px] text-secondary uppercase tracking-widest mb-4">
-          Gratis per te
-        </p>
-
-        <p className="text-base text-primary font-medium mb-3 leading-snug pr-6">
-          La checklist audit email in 10 punti.
-        </p>
-
-        <p className="text-sm text-secondary mb-6 leading-relaxed">
-          Scopri esattamente dove stai perdendo revenue ogni mese. Fai il quiz e ricevi la tua analisi personalizzata.
-        </p>
-
-        <button
-          onClick={scrollToQuiz}
-          className="w-full py-4 bg-primary text-bg text-sm font-semibold hover:opacity-90 transition-opacity"
-        >
-          Fai il quiz gratis &rarr;
-        </button>
-      </div>
+      <p className="section-label mb-3">Gratis per te</p>
+      <p className="text-base font-semibold tracking-[-0.02em] mb-2 leading-snug pr-6">
+        La checklist audit email in 10 punti.
+      </p>
+      <p className="text-sm text-secondary mb-5 leading-relaxed">
+        Scopri dove stai perdendo revenue ogni mese. Fai il quiz e ricevi la tua analisi personalizzata.
+      </p>
+      <button onClick={scrollToQuiz} className="btn btn-ink w-full">
+        Fai il quiz gratis <span className="arrow" aria-hidden="true">→</span>
+      </button>
     </div>
   );
 }

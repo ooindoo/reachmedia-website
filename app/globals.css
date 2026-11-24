@@ -2,235 +2,154 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Color tokens ── */
+/* ── Design tokens ──────────────────────────────────────────────────────────
+   One light theme. Ink, grays and lime #E8FF47 — lime is a highlighter and a
+   button fill, never a text color on the light ground (it fails contrast). */
 :root {
-  /* Dark mode — default */
-  --color-bg: 10 10 10;           /* #0A0A0A */
-  --color-surface: 17 17 17;      /* #111111 */
-  --color-surface-2: 17 17 17;    /* #111111 */
-  --color-primary: 240 240 240;   /* #F0F0F0 */
-  --color-secondary: 102 102 102; /* #666666 */
-  --color-border: 34 34 34;       /* #222222 */
-  --color-border-mid: 34 34 34;   /* #222222 */
-  --color-accent: 232 255 71;     /* #E8FF47 — usato SOLO in 3 posti */
-  --color-accent-hover: 212 235 58; /* #D4EB3A */
-  --grid-dot: rgba(255, 255, 255, 0.04);
-}
+  /* Raw values (CSS modules) */
+  --bg: #f3f4ef;
+  --tile: #ffffff;
+  --ink: #0b0c0e;
+  --ink-2: #1a1c20;
+  --muted: #5d6168;
+  --dim: #8b9097;
+  --line: rgb(11 12 14 / 0.08);
+  --line-strong: rgb(11 12 14 / 0.14);
+  --accent: #e8ff47;
+  --accent-hover: #f1ff8a;
+  --danger: #c2410c;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --shadow: 0 1px 2px rgb(11 12 14 / 0.04), 0 8px 24px -12px rgb(11 12 14 / 0.12);
+  --shadow-lift: 0 1px 2px rgb(11 12 14 / 0.05), 0 16px 32px -16px rgb(11 12 14 / 0.2);
 
-html.light {
-  /* Light mode — niente giallo, accento nero */
-  --color-bg: 245 243 239;        /* #F5F3EF */
-  --color-surface: 235 233 229;   /* slightly darker */
-  --color-surface-2: 225 223 219;
-  --color-primary: 10 10 10;      /* #0A0A0A */
-  --color-secondary: 85 85 85;    /* #555555 */
-  --color-border: 221 221 221;    /* #DDDDDD */
-  --color-border-mid: 204 204 204;
-  --color-accent: 10 10 10;       /* #0A0A0A — niente giallo in light */
-  --color-accent-hover: 30 30 30;
-  --grid-dot: rgba(0, 0, 0, 0.04);
+  /* RGB triplets (Tailwind colors with alpha) */
+  --color-bg: 243 244 239;
+  --color-surface: 255 255 255;
+  --color-surface-2: 235 236 231;
+  --color-primary: 11 12 14;
+  --color-secondary: 93 97 104;
+  --color-dim: 139 144 151;
+  --color-border: 222 223 218;
+  --color-border-mid: 205 206 201;
+  --color-accent: 232 255 71;
+  --color-accent-hover: 241 255 138;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Sticky glass header: keep anchored sections clear of it */
+    scroll-padding-top: 88px;
   }
 
   body {
     @apply bg-bg text-primary antialiased;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    line-height: 1.6;
+    /* Same dotted grid as the home ground, on every page */
+    background-image: radial-gradient(rgb(11 12 14 / 0.07) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: -12px -12px;
   }
 
   ::selection {
     background-color: rgb(var(--color-accent));
-    color: rgb(var(--color-bg));
+    color: rgb(var(--color-primary));
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
 }
 
 @layer components {
   .container-site {
-    @apply max-w-7xl mx-auto px-6 md:px-12 lg:px-16;
+    @apply max-w-[1200px] mx-auto px-6;
   }
 
+  /* Mono kicker with a lime square, as on the home */
   .section-label {
-    @apply text-xs font-sans font-medium tracking-[0.16em] uppercase text-secondary inline-flex items-center gap-3;
+    @apply inline-flex items-center gap-2 font-mono text-[0.8125rem] text-secondary;
   }
-  .section-label::after {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 2rem;
-    background: rgb(var(--color-border));
+  .section-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: var(--accent);
+    outline: 1px solid rgb(11 12 14 / 0.15);
     flex-shrink: 0;
   }
+
+  /* Buttons — 12px radius, press feedback (scale) */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 h-12 px-[22px] rounded-xl text-[0.9375rem] font-semibold whitespace-nowrap;
+    letter-spacing: -0.01em;
+    transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease, opacity 150ms ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn:disabled { opacity: 0.5; pointer-events: none; }
+  .btn-ink { background: var(--ink); color: #fff; }
+  .btn-accent { background: var(--accent); color: var(--ink); }
+  .btn-ghost { border: 1px solid var(--line-strong); color: var(--ink); background: rgb(255 255 255 / 0.6); }
+  .btn .arrow { transition: transform 200ms var(--ease-out); }
+  @media (hover: hover) and (pointer: fine) {
+    .btn-ink:hover { background: var(--ink-2); }
+    .btn-accent:hover { background: var(--accent-hover); }
+    .btn-ghost:hover { background: #fff; }
+    .btn:hover .arrow { transform: translateX(3px); }
+  }
+
+  /* White card on the dotted ground */
+  .tile {
+    @apply rounded-[18px] bg-surface;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+
+  /* Form fields */
+  .field {
+    @apply block w-full rounded-xl bg-surface text-primary;
+    border: 1px solid var(--line-strong);
+    padding: 0.75rem 0.875rem;
+    font-size: 16px; /* prevents iOS Safari zoom on focus */
+    line-height: 1.5;
+    outline: none;
+    resize: none;
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+  .field::placeholder { color: var(--dim); }
+  .field:focus { border-color: var(--ink); box-shadow: 0 0 0 3px rgb(232 255 71 / 0.55); }
+  .field-error { border-color: var(--danger); }
+  textarea.field { min-height: 140px; }
+  .field-label { @apply block text-sm font-medium text-primary mb-2; }
 }
 
 @layer utilities {
-  .fade-up {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .fade-up.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .hero-grid {
-    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
+  .text-balance { text-wrap: balance; }
+  .tabular { font-variant-numeric: tabular-nums; }
 }
 
-/* ── Nav link underline animation ───────────────────────────────────────── */
-.nav-underline {
-  position: relative;
-}
-.nav-underline::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  height: 1px;
-  width: 0;
-  background-color: currentColor;
-  transition: width 0.25s ease;
-}
-.nav-underline:hover::after {
-  width: 100%;
-}
-
-/* ── Marquee / logo bar ─────────────────────────────────────────────────── */
-@-webkit-keyframes marquee {
-  0%   { -webkit-transform: translateX(0);    transform: translateX(0); }
-  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
-}
-@keyframes marquee {
-  0%   { -webkit-transform: translateX(0);    transform: translateX(0); }
-  100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
-}
-.marquee-track {
-  -webkit-animation: marquee 40s linear infinite;
-          animation: marquee 40s linear infinite;
-  will-change: transform;
-  /* Force GPU compositing on iOS Safari */
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-  width: max-content;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    -webkit-animation: none;
-            animation: none;
-  }
-}
-
-/* Edge fade mask — translateZ(0) prevents mask from blocking GPU layer on iOS */
-.logo-fade-mask {
-  overflow: hidden;
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 8%,
-    black 92%,
-    transparent 100%
-  );
-}
-
-/* Logo images — grayscale monochrome, screen blend on dark bg */
-.logo-img {
-  filter: grayscale(100%) invert(1);
-  opacity: 0.22;
-  mix-blend-mode: screen;
-  transition: opacity 0.25s ease;
-}
-.logo-img:hover {
-  opacity: 0.55;
-}
-html.light .logo-img {
-  filter: grayscale(100%);
-  opacity: 0.35;
-  mix-blend-mode: multiply;
-}
-html.light .logo-img:hover {
-  opacity: 0.65;
-}
-
-
-/* Hero headline accent:
-   - Dark mode: "NON SOLO" in giallo #E8FF47
-   - Light mode: stesso colore del resto (niente giallo) */
-.hero-accent {
-  color: #e8ff47;
-}
-
-html.light .hero-accent {
-  color: rgb(var(--color-primary));
-}
-
-
+/* Step change inside the quiz: short, from the direction of travel */
 @keyframes quizSlide {
-  from { opacity: 0; transform: translateX(24px); }
+  from { opacity: 0; transform: translateX(16px); }
   to   { opacity: 1; transform: translateX(0); }
 }
-
 .quiz-enter {
-  animation: quizSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: quizSlide 240ms var(--ease-out) both;
 }
 
 @keyframes popupSlide {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
 }
-
 .popup-enter {
-  animation: popupSlide 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: popupSlide 260ms var(--ease-out) both;
 }
 
-/* ── Contact form inputs — underline style ───────────────────────────────── */
-/* font-size 16px prevents iOS Safari from zooming on focus                  */
-.contact-input {
-  display: block;
-  width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgb(var(--color-border));
-  color: rgb(var(--color-primary));
-  font-family: var(--font-inter), system-ui, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  padding: 0.75rem 0;
-  outline: none;
-  resize: none;
-  -webkit-appearance: none;
-  appearance: none;
-  transition: border-color 0.2s ease;
-}
-
-.contact-input::placeholder {
-  color: rgb(var(--color-secondary));
-  opacity: 0.4;
-}
-
-.contact-input:focus {
-  border-bottom-color: rgb(var(--color-accent));
-}
-
-.contact-input--error {
-  border-bottom-color: #f87171 !important;
-}
-
-textarea.contact-input {
-  min-height: 140px;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .quiz-enter, .popup-enter { animation: fadeOnly 200ms ease both; }
+  @keyframes fadeOnly { from { opacity: 0; } }
 }

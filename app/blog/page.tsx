@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import FadeIn from "../components/FadeIn";
+import SiteHeader from "../components/site/SiteHeader";
+import SiteFooter from "../components/site/SiteFooter";
 import Breadcrumb from "../components/Breadcrumb";
 import { client, postsQuery, formatSanityDate, sanityDateToISO, type SanityPost } from "../lib/sanity";
 import { POSTS, formatDate } from "../lib/posts";
@@ -94,89 +93,55 @@ export default async function BlogPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
-      <Navbar />
-      <main className="min-h-screen bg-bg">
-        <div className="pt-14 md:pt-16">
-          <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
-        </div>
-        {/* Header */}
-        <div className="border-b border-border pt-10 md:pt-14 pb-12 md:pb-20">
-          <div className="container-site">
-            <FadeIn>
-              <p className="section-label mb-4">Risorse</p>
-              <h1
-                className="font-display tracking-display text-primary leading-tight mb-4"
-                style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
-              >
-                INSIGHTS
-              </h1>
-              <p className="text-secondary text-sm md:text-base max-w-lg leading-relaxed">
-                Risorse pratiche per chi vuole fare email marketing serio.
-              </p>
-            </FadeIn>
-          </div>
-        </div>
+      <SiteHeader />
+      <main className="min-h-screen">
+        <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
 
-        {/* Articles grid */}
-        <div className="container-site py-12 md:py-20">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {allPosts.map((post, i) => (
+        <header className="container-site pt-8 pb-12">
+          <p className="section-label mb-3">Risorse</p>
+          <h1 className="text-[clamp(2.4rem,5vw,4rem)] leading-[1.04] tracking-[-0.045em] font-semibold">
+            Insights
+          </h1>
+          <p className="mt-4 text-secondary text-[1.0625rem] max-w-lg leading-relaxed">
+            Risorse pratiche per chi vuole fare email marketing serio.
+          </p>
+        </header>
+
+        <div className="container-site">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+            {allPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group block bg-bg p-8 md:p-10 hover:bg-surface transition-colors duration-200"
+                className="group tile flex flex-col p-6 md:p-7 transition-[transform,box-shadow] duration-200 [transition-timing-function:var(--ease-out)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)] active:scale-[0.99]"
               >
-                <FadeIn delay={i * 80}>
-                  {/* Category + read time */}
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="section-label">{post.category}</span>
-                    <span className="text-xs text-[#444]">{post.readTime} min</span>
-                  </div>
+                <div className="flex items-center justify-between mb-8">
+                  <span className="inline-block px-2.5 py-0.5 rounded-full bg-accent font-mono text-[0.6875rem] text-primary">
+                    {post.category}
+                  </span>
+                  <span className="font-mono text-xs text-dim">{post.readTime} min</span>
+                </div>
 
-                  {/* Title */}
-                  <h2
-                    className="font-display tracking-display text-primary leading-tight mb-4 group-hover:text-accent transition-colors duration-200"
-                    style={{ fontSize: "clamp(1.25rem, 2vw, 1.6rem)" }}
-                  >
-                    {post.title.toUpperCase()}
-                  </h2>
+                <h2 className="text-xl font-semibold tracking-[-0.025em] leading-snug mb-3 text-balance">
+                  {post.title}
+                </h2>
 
-                  {/* Excerpt */}
-                  <p className="text-secondary text-sm leading-relaxed mb-8">
-                    {post.excerpt}
-                  </p>
+                <p className="text-secondary text-[0.9375rem] leading-relaxed mb-8">
+                  {post.excerpt}
+                </p>
 
-                  {/* Footer: date + arrow */}
-                  <div className="flex items-center justify-between pt-6 border-t border-border">
-                    <span className="text-xs text-[#444]">{post.dateLabel}</span>
-                    <span className="text-secondary group-hover:text-primary transition-all duration-200 group-hover:translate-x-1 inline-block">
-                      &rarr;
-                    </span>
-                  </div>
-                </FadeIn>
+                <div className="mt-auto flex items-center justify-between pt-5 border-t border-border">
+                  <span className="font-mono text-xs text-dim">{post.dateLabel}</span>
+                  <span className="text-secondary group-hover:text-primary transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">
+                    →
+                  </span>
+                </div>
               </Link>
             ))}
-            {/* Invisible bg-bg filler divs — prevent bg-border showing in empty trailing grid cells */}
-            {(() => {
-              const n = allPosts.length;
-              const lg = (3 - (n % 3)) % 3;
-              const md = (2 - (n % 2)) % 2;
-              return Array.from({ length: Math.max(lg, md) }).map((_, i) => {
-                const forLg = i < lg;
-                const forMd = i < md;
-                const cls =
-                  forLg && forMd
-                    ? "bg-bg hidden md:block"
-                    : forLg
-                    ? "bg-bg hidden lg:block"
-                    : "bg-bg hidden md:block lg:hidden";
-                return <div key={`filler-${i}`} className={cls} aria-hidden />;
-              });
-            })()}
           </div>
         </div>
       </main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

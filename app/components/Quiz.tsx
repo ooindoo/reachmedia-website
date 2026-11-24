@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import FadeIn from "./FadeIn";
 
 const QUESTIONS = [
   {
@@ -55,7 +54,10 @@ const RESULTS = [
   {
     min: 0,
     max: 5,
+    // `title` is sent to Klaviyo as quiz_result — keep it unchanged so
+    // existing segments/flows keep matching. `label` is what we display.
     title: "IL TUO EMAIL MARKETING NON ESISTE ANCORA.",
+    label: "Il tuo email marketing non esiste ancora.",
     body: "Hai un potenziale significativo non sfruttato. Con un e-commerce attivo, un sistema email ben costruito genera mediamente tra il 15% e il 30% del fatturato totale. Parti dalla guida gratuita per capire da dove iniziare.",
     cta: {
       type: "low" as const,
@@ -67,6 +69,7 @@ const RESULTS = [
     min: 6,
     max: 10,
     title: "STAI LASCIANDO SOLDI SUL TAVOLO OGNI MESE.",
+    label: "Stai lasciando soldi sul tavolo ogni mese.",
     body: "Hai le basi ma i gap sono significativi. Flow incompleti, segmentazione assente o campagne non ottimizzate si traducono in revenue persa ogni settimana. La checklist ti mostra esattamente dove intervenire.",
     cta: {
       type: "mid" as const,
@@ -77,6 +80,7 @@ const RESULTS = [
     min: 11,
     max: 15,
     title: "STAI LAVORANDO BENE. MA C'È ANCORA MARGINE.",
+    label: "Stai lavorando bene. Ma c'è ancora margine.",
     body: "Il tuo email marketing è già un canale attivo. Le ottimizzazioni avanzate (segmentazione predittiva, test sistematici, espansione internazionale) sono il prossimo livello. Scarica i flow avanzati per identificare i gap residui.",
     cta: {
       type: "high" as const,
@@ -233,198 +237,172 @@ export default function Quiz() {
     setPhase("result");
   };
 
-  const INPUT =
-    "w-full bg-transparent border-b border-border text-primary text-sm py-3 placeholder-[#333] focus:outline-none focus:border-primary transition-colors duration-200";
-
   return (
-    <section id="quiz" className="border-t border-border py-12 md:py-32">
-      <div className="container-site">
-        <FadeIn className="mb-8 md:mb-14">
-          <h2
-            className="font-display tracking-display text-primary leading-tight"
-            style={{ fontSize: "clamp(2rem, 5vw, 4.5rem)" }}
-          >
-            QUANTO STA RENDENDO
-            <br />
-            IL TUO EMAIL MARKETING?
+    <section id="quiz" className="container-site pt-28">
+      <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
+        <header className="lg:sticky lg:top-28">
+          <p className="section-label mb-3">Quiz gratuito</p>
+          <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.08] tracking-[-0.04em] font-semibold text-balance max-w-[22ch]">
+            Quanto sta rendendo il tuo email marketing?
           </h2>
-          <p className="text-secondary mt-4 text-sm">
-            5 domande. Risultato personalizzato in meno di 2 minuti.
+          <p className="mt-4 text-secondary text-[0.9375rem] leading-relaxed max-w-md">
+            5 domande. Risultato personalizzato in meno di 2 minuti, con la risorsa giusta per il tuo livello.
           </p>
-        </FadeIn>
+        </header>
 
-        <div className="max-w-xl">
-          {/* Left: quiz UI */}
-          <div>
-            {/* QUIZ */}
-            {phase === "quiz" && (
-              <>
-                {/* Segment progress bar */}
-                <div className="flex gap-[3px] mb-4">
-                  {QUESTIONS.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-0.5 flex-1 transition-colors duration-300 ${
-                        i < step
-                          ? "bg-primary"
-                          : i === step
-                          ? "bg-accent"
-                          : "bg-border"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center justify-between mb-6">
-                  <span className="text-[10px] text-secondary uppercase tracking-widest">
-                    {step + 1} / {QUESTIONS.length}
-                  </span>
-                  {step > 0 && (
+        <div className="tile p-6 md:p-8">
+          {/* QUIZ */}
+          {phase === "quiz" && (
+            <>
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-xs text-dim tabular">
+                  Domanda {step + 1} / {QUESTIONS.length}
+                </span>
+                {step > 0 && (
+                  <button
+                    onClick={goBack}
+                    className="text-sm text-secondary hover:text-primary transition-colors"
+                  >
+                    ← Indietro
+                  </button>
+                )}
+              </div>
+              {/* Segment progress bar */}
+              <div className="flex gap-1 mb-8" aria-hidden="true">
+                {QUESTIONS.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+                      i < step ? "bg-primary" : i === step ? "bg-accent outline outline-1 outline-primary/20" : "bg-surface-2"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Question */}
+              <div key={step} className="quiz-enter">
+                <p className="text-lg md:text-xl font-semibold tracking-[-0.02em] leading-snug mb-6">
+                  {QUESTIONS[step].q}
+                </p>
+                <div className="grid gap-2" role="group" aria-label={QUESTIONS[step].q}>
+                  {QUESTIONS[step].options.map((opt, i) => (
                     <button
-                      onClick={goBack}
-                      className="text-xs text-[#444] hover:text-secondary transition-colors flex items-center gap-1"
+                      key={i}
+                      onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
+                      aria-pressed={selectedIndex === i}
+                      className={`w-full flex items-center gap-3 text-left px-4 py-3.5 min-h-[52px] rounded-xl border text-[0.9375rem] transition-[background-color,border-color,transform] duration-150 active:scale-[0.99] ${
+                        selectedIndex === i
+                          ? "bg-accent border-primary/30 text-primary"
+                          : "bg-surface border-border text-primary hover:border-border-mid hover:bg-bg"
+                      }`}
                     >
-                      ← Indietro
-                    </button>
-                  )}
-                </div>
-
-                {/* Question */}
-                <div key={step} className="quiz-enter">
-                  <p className="text-base md:text-lg text-primary leading-relaxed mb-1">
-                    {QUESTIONS[step].q}
-                  </p>
-                  <p className="text-xs mb-8" style={{ color: "#666666" }}>
-                    Scegli una risposta
-                  </p>
-                  <div className="divide-y divide-border border border-border">
-                    {QUESTIONS[step].options.map((opt, i) => (
-                      <button
-                        key={i}
-                        onClick={() => pick(QUESTIONS[step].scores[i], opt, i)}
-                        className={`w-full text-left px-5 py-4 min-h-[52px] transition-all duration-200 text-sm group ${
-                          selectedIndex === i
-                            ? "bg-surface text-primary shadow-[inset_2px_0_0_rgb(var(--color-accent))]"
-                            : "text-secondary hover:text-primary hover:bg-surface"
+                      <span
+                        className={`grid place-items-center w-7 h-7 rounded-lg font-mono text-xs flex-shrink-0 ${
+                          selectedIndex === i ? "bg-primary text-accent" : "bg-surface-2 text-secondary"
                         }`}
                       >
-                        <span
-                          className={`font-display tracking-display text-xs mr-3 transition-colors duration-200 ${
-                            selectedIndex === i
-                              ? "text-accent"
-                              : "text-[#444] group-hover:text-primary"
-                          }`}
-                        >
-                          {String.fromCharCode(65 + i)}
-                        </span>
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                      {opt}
+                    </button>
+                  ))}
                 </div>
-              </>
-            )}
-
-            {/* FORM — shown before result */}
-            {phase === "form" && (
-              <div key="form" className="quiz-enter border border-border p-7 md:p-8">
-                <p className="text-[10px] text-secondary uppercase tracking-widest mb-2">
-                  Quasi fatto
-                </p>
-                <p className="text-sm text-secondary mb-6 leading-relaxed">
-                  Inserisci i tuoi dati per vedere il risultato personalizzato e scaricare la checklist.
-                </p>
-                <form onSubmit={handleForm} className="space-y-6" noValidate>
-                  <div>
-                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                      Nome
-                    </label>
-                    <input
-                      type="text"
-                      value={name}
-                      onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: undefined })); }}
-                      placeholder="Il tuo nome"
-                      className={`${INPUT} ${errors.name ? "border-red-400 focus:border-red-400" : ""}`}
-                    />
-                    {errors.name && <p className="text-xs text-red-400 mt-1.5">{errors.name}</p>}
-                  </div>
-                  <div>
-                    <label className="block text-[10px] text-secondary uppercase tracking-widest mb-3">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: undefined })); }}
-                      placeholder="tua@email.it"
-                      className={`${INPUT} ${errors.email ? "border-red-400 focus:border-red-400" : ""}`}
-                    />
-                    {errors.email && <p className="text-xs text-red-400 mt-1.5">{errors.email}</p>}
-                  </div>
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
-                  >
-                    {loading ? "Un attimo..." : "Mostra il mio risultato"}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={goBack}
-                    className="w-full text-center text-xs text-[#444] hover:text-secondary transition-colors pt-1"
-                  >
-                    ← Rivedi le risposte
-                  </button>
-                </form>
               </div>
-            )}
+            </>
+          )}
 
-            {/* RESULT — shown after form */}
-            {phase === "result" && (
-              <div key="result" className="quiz-enter">
-                <div className="border-t border-primary pt-8 mb-8">
-                  <p className="section-label mb-4">Il tuo risultato</p>
-                  <h3
-                    className="font-display tracking-display text-primary leading-tight mb-6"
-                    style={{ fontSize: "clamp(1.6rem, 3.5vw, 3rem)" }}
-                  >
-                    {result.title}
-                  </h3>
-                  <p className="text-secondary text-sm leading-relaxed mb-8">
-                    {result.body}
-                  </p>
-
-                  <a
-                    href={result.cta.primary.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
-                  >
-                    {result.cta.primary.label}
-                    <span className="transition-transform duration-200 group-hover:translate-x-1">
-                      &rarr;
-                    </span>
-                  </a>
-
-                  {result.cta.type === "low" && (
-                    <div className="mt-5">
-                      <a
-                        href={result.cta.secondary.href}
-                        className="text-sm text-secondary hover:text-primary underline underline-offset-4 transition-colors duration-200"
-                      >
-                        {result.cta.secondary.label}
-                      </a>
-                    </div>
-                  )}
+          {/* FORM — shown before result */}
+          {phase === "form" && (
+            <div key="form" className="quiz-enter">
+              <p className="font-mono text-xs text-dim mb-2">Quasi fatto</p>
+              <p className="text-lg font-semibold tracking-[-0.02em] mb-2">Dove ti mandiamo il risultato?</p>
+              <p className="text-sm text-secondary mb-6 leading-relaxed">
+                Inserisci i tuoi dati per vedere il risultato personalizzato e scaricare la risorsa.
+              </p>
+              <form onSubmit={handleForm} className="space-y-5" noValidate>
+                <div>
+                  <label htmlFor="quiz-name" className="field-label">Nome</label>
+                  <input
+                    id="quiz-name"
+                    type="text"
+                    autoComplete="given-name"
+                    value={name}
+                    onChange={(e) => { setName(e.target.value); if (errors.name) setErrors(p => ({ ...p, name: undefined })); }}
+                    placeholder="Il tuo nome"
+                    aria-invalid={!!errors.name}
+                    className={`field ${errors.name ? "field-error" : ""}`}
+                  />
+                  {errors.name && <p className="text-sm text-[color:var(--danger)] mt-1.5">{errors.name}</p>}
                 </div>
+                <div>
+                  <label htmlFor="quiz-email" className="field-label">Email</label>
+                  <input
+                    id="quiz-email"
+                    type="email"
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => { setEmail(e.target.value); if (errors.email) setErrors(p => ({ ...p, email: undefined })); }}
+                    placeholder="tua@email.it"
+                    aria-invalid={!!errors.email}
+                    className={`field ${errors.email ? "field-error" : ""}`}
+                  />
+                  {errors.email && <p className="text-sm text-[color:var(--danger)] mt-1.5">{errors.email}</p>}
+                </div>
+                <button type="submit" disabled={loading} className="btn btn-ink w-full">
+                  {loading ? "Un attimo..." : <>Mostra il mio risultato <span className="arrow" aria-hidden="true">→</span></>}
+                </button>
+                <button
+                  type="button"
+                  onClick={goBack}
+                  className="w-full text-center text-sm text-secondary hover:text-primary transition-colors"
+                >
+                  ← Rivedi le risposte
+                </button>
+              </form>
+            </div>
+          )}
+
+          {/* RESULT — shown after form */}
+          {phase === "result" && (
+            <div key="result" className="quiz-enter" aria-live="polite">
+              <p className="section-label mb-4">Il tuo risultato</p>
+              <h3 className="text-[clamp(1.5rem,3vw,2.1rem)] font-semibold tracking-[-0.035em] leading-[1.15] mb-4 text-balance">
+                {result.label}
+              </h3>
+              <p className="text-secondary text-[0.9375rem] leading-relaxed mb-8">
+                {result.body}
+              </p>
+
+              <a
+                href={result.cta.primary.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ink"
+              >
+                {result.cta.primary.label} <span className="arrow" aria-hidden="true">→</span>
+              </a>
+
+              {result.cta.type === "low" && (
+                <div className="mt-5">
+                  <a
+                    href={result.cta.secondary.href}
+                    className="text-sm text-secondary hover:text-primary underline underline-offset-4 transition-colors"
+                  >
+                    {result.cta.secondary.label}
+                  </a>
+                </div>
+              )}
+
+              <div className="mt-8 pt-6 border-t border-border">
                 <button
                   onClick={restart}
-                  className="text-xs text-[#444] hover:text-secondary transition-colors"
+                  className="text-sm text-secondary hover:text-primary transition-colors"
                 >
                   Rifai il quiz
                 </button>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

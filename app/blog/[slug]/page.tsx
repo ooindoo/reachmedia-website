@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import Navbar from "../../components/Navbar";
-import Footer from "../../components/Footer";
+import SiteHeader from "../../components/site/SiteHeader";
+import SiteFooter from "../../components/site/SiteFooter";
 import Breadcrumb from "../../components/Breadcrumb";
 import {
   client,
@@ -124,13 +124,13 @@ const portableTextComponents: PortableTextComponents = {
 
 // ── Shared article prose wrapper ──────────────────────────────────────────────
 const PROSE_CLASSES = [
-  "[&_p]:text-secondary [&_p]:text-[0.9375rem] [&_p]:leading-[1.8] [&_p]:mb-6",
-  "[&_h2]:font-sans [&_h2]:text-xs [&_h2]:text-primary [&_h2]:uppercase [&_h2]:tracking-widest [&_h2]:mt-14 [&_h2]:mb-4 [&_h2]:border-b [&_h2]:border-border [&_h2]:pb-3",
-  "[&_h3]:font-sans [&_h3]:text-sm [&_h3]:text-primary [&_h3]:font-medium [&_h3]:mt-8 [&_h3]:mb-3",
-  "[&_strong]:text-primary [&_strong]:font-medium",
+  "[&_p]:text-secondary [&_p]:text-[1.0625rem] [&_p]:leading-[1.75] [&_p]:mb-6",
+  "[&_h2]:text-primary [&_h2]:text-[1.6rem] [&_h2]:font-semibold [&_h2]:tracking-[-0.035em] [&_h2]:leading-tight [&_h2]:mt-14 [&_h2]:mb-4",
+  "[&_h3]:text-primary [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:tracking-[-0.02em] [&_h3]:mt-10 [&_h3]:mb-3",
+  "[&_strong]:text-primary [&_strong]:font-semibold",
   "[&_em]:not-italic [&_em]:font-medium [&_em]:text-primary",
-  "[&_a]:text-secondary [&_a]:underline [&_a]:underline-offset-4 [&_a]:hover:text-primary [&_a]:transition-colors",
-  "[&_ul]:my-6 [&_ul]:space-y-3 [&_li]:text-secondary [&_li]:text-[0.9375rem] [&_li]:leading-relaxed [&_li]:pl-4 [&_li]:relative [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[0.6em] [&_li]:before:w-1.5 [&_li]:before:h-px [&_li]:before:bg-border-mid",
+  "[&_a]:text-primary [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-border-mid hover:[&_a]:decoration-primary [&_a]:transition-colors",
+  "[&_ul]:my-6 [&_ul]:space-y-3 [&_li]:text-secondary [&_li]:text-[1.0625rem] [&_li]:leading-relaxed [&_li]:pl-5 [&_li]:relative [&_li]:before:absolute [&_li]:before:left-0 [&_li]:before:top-[0.65em] [&_li]:before:w-1.5 [&_li]:before:h-1.5 [&_li]:before:rounded-[2px] [&_li]:before:bg-accent [&_li]:before:outline [&_li]:before:outline-1 [&_li]:before:outline-primary/20",
 ].join(" ");
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -182,40 +182,34 @@ export default async function ArticlePage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
-      <Navbar />
-      <main className="min-h-screen bg-bg">
-        <div className="pt-14 md:pt-16">
-          <Breadcrumb
-            items={[
-              { label: "Home", href: "/" },
-              { label: "Blog", href: "/blog" },
-              { label: title },
-            ]}
-          />
-        </div>
-        {/* Article header */}
-        <div className="border-b border-border pt-10 md:pt-14 pb-12 md:pb-16">
-          <div className="container-site">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="section-label">{category}</span>
-              <span className="text-[#444] text-xs">·</span>
-              <span className="text-xs text-[#444]">{dateLabel}</span>
-              <span className="text-[#444] text-xs">·</span>
-              <span className="text-xs text-[#444]">{readTime} min di lettura</span>
-            </div>
+      <SiteHeader />
+      <main className="min-h-screen">
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: title },
+          ]}
+        />
 
-            <h1
-              className="font-display tracking-display text-primary leading-tight max-w-3xl"
-              style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
-            >
-              {title.toUpperCase()}
+        {/* Article header */}
+        <header className="container-site pt-8 pb-10">
+          <div className="max-w-[760px]">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-6 font-mono text-xs text-dim">
+              <span className="px-2.5 py-0.5 rounded-full bg-accent text-primary text-[0.6875rem]">{category}</span>
+              <span>{dateLabel}</span>
+              <span aria-hidden="true">·</span>
+              <span>{readTime} min di lettura</span>
+            </div>
+            <h1 className="text-[clamp(2.1rem,4.6vw,3.4rem)] leading-[1.06] tracking-[-0.045em] font-semibold text-balance">
+              {title}
             </h1>
           </div>
-        </div>
+        </header>
 
         {/* Article body */}
-        <div className="container-site py-12 md:py-20">
-          <div className="max-w-[680px]">
+        <div className="container-site">
+          <article className="tile max-w-[760px] px-6 py-8 md:px-12 md:py-12">
             <div className={PROSE_CLASSES}>
               {isSanity && sanityPost!.body ? (
                 <PortableText
@@ -229,28 +223,24 @@ export default async function ArticlePage({ params }: Props) {
                 <p>{sanityPost!.excerpt}</p>
               )}
             </div>
+          </article>
 
-            {/* CTA */}
-            <div className="mt-16 pt-10 border-t border-border">
-              <p className="section-label mb-4">Vuoi sapere dove ti trovi?</p>
-              <p className="text-secondary text-sm leading-relaxed mb-6 max-w-md">
-                Scopri come sei messo con il tuo email marketing. 5 domande, risultato
-                personalizzato in meno di 2 minuti.
-              </p>
-              <Link
-                href="/#quiz"
-                className="inline-flex items-center gap-3 px-7 py-4 bg-primary text-bg text-sm font-medium hover:opacity-90 transition-opacity duration-200 group"
-              >
-                Scopri come sei messo con il tuo email marketing
-                <span className="transition-transform duration-200 group-hover:translate-x-1">
-                  &rarr;
-                </span>
-              </Link>
-            </div>
-          </div>
+          {/* CTA */}
+          <aside className="max-w-[760px] mt-3 rounded-[18px] bg-primary text-[#f2f3ef] p-6 md:p-10">
+            <p className="font-mono text-xs text-[#7d828a] mb-3">Vuoi sapere dove ti trovi?</p>
+            <p className="text-2xl font-semibold tracking-[-0.03em] leading-tight mb-3 text-balance">
+              Scopri come sei messo con il tuo email marketing.
+            </p>
+            <p className="text-[#a3a7ae] text-[0.9375rem] leading-relaxed mb-6 max-w-md">
+              5 domande, risultato personalizzato in meno di 2 minuti.
+            </p>
+            <Link href="/#quiz" className="btn btn-accent">
+              Fai il quiz gratuito <span className="arrow" aria-hidden="true">→</span>
+            </Link>
+          </aside>
         </div>
       </main>
-      <Footer />
+      <SiteFooter showCta={false} />
     </>
   );
 }

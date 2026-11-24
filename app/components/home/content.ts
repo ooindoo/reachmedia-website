@@ -1,12 +1,11 @@
-// Shared copy for the redesign proposals. Mirrors the live home so the two
-// variants differ only in design, never in content.
+// Copy and data for the home page.
 
 export const HERO = {
   eyebrow: "Email marketing · Klaviyo · Shopify",
   title: ["Email marketing", "che genera revenue."],
   titleMuted: "Non solo aperture.",
   body: "Progettiamo strategie email che trasformano ogni campagna in un motore di entrate. Niente metriche di vanità. Solo risultati concreti per il tuo e-commerce.",
-  cta: { label: "Fai il quiz gratuito", href: "/#quiz" },
+  cta: { label: "Fai il quiz gratuito", href: "#quiz" },
   note: "Risultati in 3 minuti. Nessuna registrazione richiesta.",
 };
 
@@ -15,11 +14,6 @@ export const STATS = [
   { label: "Brand seguiti", value: "15+", unit: "clienti attivi" },
   { label: "Campagne inviate", value: "686", unit: "campagne totali" },
   { label: "Open rate medio", value: "58%", unit: "benchmark settore 21%" },
-];
-
-export const TOOLS = [
-  "Klaviyo", "Shopify", "Meta", "Google Ads", "Figma", "Notion", "Make",
-  "Zapier", "Vercel", "GitHub", "Google Analytics", "ChatGPT", "Claude",
 ];
 
 // Same logo set as the live site's LogoBar.
@@ -79,12 +73,12 @@ export const SERVICES = [
   },
 ];
 
-export const FLOWS = [
-  { name: "Welcome series", share: 34 },
-  { name: "Carrello abbandonato", share: 27 },
-  { name: "Post-acquisto", share: 18 },
-  { name: "Win-back", share: 12 },
-  { name: "Browse abandonment", share: 9 },
+// The abandoned-cart automation drawn in the hero, as Klaviyo shows it.
+export const FLOW = [
+  { kind: "Trigger", title: "Prodotto aggiunto al carrello", meta: "Shopify · evento live" },
+  { kind: "Attesa", title: "4 ore", meta: "se non ha completato l'ordine" },
+  { kind: "Email", title: "Hai dimenticato qualcosa?", meta: "template + oggetto in A/B test" },
+  { kind: "Filtro", title: "Ha completato l'ordine?", meta: "sì → esce dal flow · no → email 2" },
 ];
 
 export const FEATURED = {
@@ -133,13 +127,6 @@ export const FAQS = [
     q: "Come faccio a sapere se siete la scelta giusta per me?",
     a: "Fai il quiz. In 2 minuti capisci dove sei e cosa ti manca. Se ha senso lavorare insieme, lo vedi dai risultati.",
   },
-];
-
-export const NAV = [
-  { label: "Servizi", href: "#servizi" },
-  { label: "Risultati", href: "#risultati" },
-  { label: "Metodo", href: "#metodo" },
-  { label: "FAQ", href: "#faq" },
 ];
 
 // Builds an SVG path for a sparkline/area chart from a numeric series.

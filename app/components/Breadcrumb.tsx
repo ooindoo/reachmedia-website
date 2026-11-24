@@ -10,9 +10,8 @@ type Props = {
 };
 
 /**
- * Breadcrumb bar — renders a visual nav + JSON-LD BreadcrumbList schema.
- * Place this as the first child inside <main>, wrapped in a
- * `pt-14 md:pt-16` div to clear the fixed navbar.
+ * Breadcrumb trail — renders a visual nav + JSON-LD BreadcrumbList schema.
+ * Place it at the top of the page content, under the sticky header.
  */
 export default function Breadcrumb({ items }: Props) {
   const schema = {
@@ -34,36 +33,26 @@ export default function Breadcrumb({ items }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
       />
-      <nav aria-label="Breadcrumb" className="border-b border-border">
-        <div className="container-site py-3">
-          <ol className="flex items-center gap-2 flex-wrap">
-            {items.map((item, i) => (
-              <li key={i} className="flex items-center gap-2">
-                {i > 0 && (
-                  <span className="text-xs select-none" style={{ color: "#555555" }}>
-                    /
-                  </span>
-                )}
-                {item.href ? (
-                  <Link
-                    href={item.href}
-                    className="text-xs text-secondary hover:text-primary transition-colors duration-150"
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <span
-                    className="text-xs"
-                    style={{ color: "#666666" }}
-                    aria-current="page"
-                  >
-                    {item.label}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ol>
-        </div>
+      <nav aria-label="Breadcrumb" className="container-site pt-10">
+        <ol className="flex items-center gap-2 flex-wrap font-mono text-xs">
+          {items.map((item, i) => (
+            <li key={i} className="flex items-center gap-2 min-w-0">
+              {i > 0 && <span className="text-dim select-none" aria-hidden="true">/</span>}
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className="text-secondary hover:text-primary transition-colors duration-150"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span className="text-dim truncate max-w-[60vw]" aria-current="page">
+                  {item.label}
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
       </nav>
     </>
   );

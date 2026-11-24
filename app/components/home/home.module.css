@@ -1,112 +1,10 @@
-/* Redesign B — "Light Lab"
-   Same palette (ink #0A0A0A, grays, lime #E8FF47) inverted onto a light
-   ground. Lime becomes a highlighter; dark is reserved for the case study
-   and footer so they read as the heaviest surfaces. */
-
-.page {
-  --bg: #f3f4ef;
-  --tile: #ffffff;
-  --ink: #0b0c0e;
-  --ink-2: #1a1c20;
-  --muted: #5d6168;
-  --dim: #8b9097;
-  --line: rgb(11 12 14 / 0.08);
-  --line-strong: rgb(11 12 14 / 0.14);
-  --accent: #e8ff47;
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --shadow: 0 1px 2px rgb(11 12 14 / 0.04), 0 8px 24px -12px rgb(11 12 14 / 0.12);
-
-  min-height: 100dvh;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--font-geist), system-ui, sans-serif;
-  line-height: 1.6;
-  overflow-x: clip;
-  background-image: radial-gradient(rgb(11 12 14 / 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-position: -12px -12px;
-}
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+/* Home page sections. Tokens, buttons and header/footer live in
+   globals.css and components/site. */
 
 .mono {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 0.75rem;
   color: var(--dim);
-}
-
-/* ── Nav — floating glass bar, aligned to the content column ── */
-.navWrap {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  padding: 12px 24px 0;
-}
-.nav {
-  /* Same width as .container's content box (1200 − 2 × 24px) */
-  max-width: 1152px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 7px 7px 7px 20px;
-  /* Concentric with the CTA inside: 10px radius + 7px padding */
-  border-radius: 17px;
-  /* Apple-style material (their nav is ~0.8 alpha, blur 20, saturate 180%),
-     kept a touch lighter so the content underneath reads through. */
-  background: rgb(250 250 248 / 0.72);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgb(255 255 255 / 0.75);
-  box-shadow:
-    0 0 0 1px rgb(11 12 14 / 0.07),
-    inset 0 1px 0 rgb(255 255 255 / 0.9),
-    inset 0 -1px 0 rgb(11 12 14 / 0.04),
-    0 12px 32px -14px rgb(11 12 14 / 0.28),
-    0 2px 6px -2px rgb(11 12 14 / 0.08);
-}
-.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: -0.02em; }
-.logoDot {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  background: var(--accent);
-  outline: 1px solid rgb(11 12 14 / 0.25);
-}
-.logoTld { color: var(--dim); }
-.navLinks { display: flex; gap: 4px; margin-left: auto; font-size: 0.875rem; }
-.navLinks a { display: block; padding: 6px 12px; border-radius: 8px; color: var(--muted); transition: color 150ms ease, background-color 150ms ease; }
-@media (hover: hover) and (pointer: fine) {
-  .navLinks a:hover { color: var(--ink); background: rgb(11 12 14 / 0.05); }
-}
-@media (max-width: 760px) {
-  .navLinks { display: none; }
-  .nav { justify-content: space-between; }
-}
-
-/* ── Buttons ─────────────────────────────────────────── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  height: 48px;
-  padding: 0 22px;
-  border-radius: 12px;
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease;
-}
-.btn:active { transform: scale(0.97); }
-.btnSm { height: 38px; padding: 0 16px; font-size: 0.875rem; border-radius: 10px; }
-.btnInk { background: var(--ink); color: #fff; }
-.btnAccent { background: var(--accent); color: var(--ink); }
-.arrow { transition: transform 200ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) {
-  .btnInk:hover { background: var(--ink-2); }
-  .btnInk:hover .arrow, .btnAccent:hover .arrow { transform: translateX(3px); }
-  .btnAccent:hover { background: #f1ff8a; }
 }
 
 /* ── Hero ────────────────────────────────────────────── */
@@ -230,16 +128,6 @@
 /* ── Sections ────────────────────────────────────────── */
 .section { padding-top: 112px; }
 .sectionHead { margin-bottom: 40px; }
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.8125rem;
-  color: var(--muted);
-  margin-bottom: 12px;
-}
-.kicker::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--accent); outline: 1px solid rgb(11 12 14 / 0.15); }
 .h2 {
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.08;
@@ -426,33 +314,6 @@
 }
 .faqItem[open] .chev { transform: translateY(2px) rotate(-135deg); }
 
-/* Footer */
-.footer { margin-top: 128px; padding: 72px 0 32px; background: var(--ink); color: #f2f3ef; }
-.ctaRow { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; }
-.ctaTitle {
-  font-size: clamp(2rem, 4.6vw, 3.6rem);
-  line-height: 1.05;
-  letter-spacing: -0.045em;
-  font-weight: 600;
-  max-width: 18ch;
-}
-.markDark {
-  background: none;
-  color: var(--accent);
-}
-.footerBottom {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 72px;
-  padding-top: 24px;
-  border-top: 1px solid rgb(255 255 255 / 0.1);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.75rem;
-  color: #7d828a;
-}
-
 /* ── Motion ──────────────────────────────────────────── */
 .enter {
   opacity: 0;
@@ -478,6 +339,5 @@
   .marqueeTrack img[aria-hidden="true"] { display: none; }
 }
 @media (prefers-reduced-transparency: reduce) {
-  .nav { background: var(--tile); backdrop-filter: none; -webkit-backdrop-filter: none; }
   .canvas { background: var(--tile); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }

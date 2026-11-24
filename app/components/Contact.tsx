@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import FadeIn from "./FadeIn";
 
 type Form = { name: string; email: string; message: string };
 type Errors = { name?: string; email?: string; message?: string };
@@ -22,15 +21,11 @@ function Field({
 }) {
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="block font-display tracking-[0.16em] text-secondary mb-2"
-        style={{ fontSize: "11px" }}
-      >
+      <label htmlFor={id} className="field-label">
         {label}
       </label>
       {children}
-      {error && <p className="text-xs text-red-400 mt-2">{error}</p>}
+      {error && <p id={`${id}-error`} className="text-sm text-[color:var(--danger)] mt-1.5">{error}</p>}
     </div>
   );
 }
@@ -99,94 +94,92 @@ export default function Contact() {
     }
   };
 
+  const fieldClass = (key: keyof Errors) => `field ${errors[key] ? "field-error" : ""}`;
+
   return (
-    <section id="contatti" className="border-t border-border py-12 md:py-32">
-      <div className="container-site">
-        <div className="grid md:grid-cols-12 gap-x-8 gap-y-12">
-          {/* Left */}
-          <FadeIn className="md:col-span-4">
-            <h2
-              className="font-display tracking-display text-primary leading-tight"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
-            >
-              PARLIAMO
-            </h2>
-            <p className="text-secondary text-sm leading-relaxed mt-6">
-              Vuoi capire se ha senso lavorare insieme? Scrivici.
-            </p>
-          </FadeIn>
+    <section id="contatti" className="container-site pt-28">
+      <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
+        <header>
+          <p className="section-label mb-3">Contatti</p>
+          <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.08] tracking-[-0.04em] font-semibold text-balance">
+            Parliamo.
+          </h2>
+          <p className="mt-4 text-secondary text-[0.9375rem] leading-relaxed max-w-md">
+            Vuoi capire se ha senso lavorare insieme? Scrivici. Ti rispondo entro 24 ore.
+          </p>
+          <a
+            href="mailto:info@reachmedia.it"
+            className="inline-flex mt-6 font-mono text-sm text-primary underline underline-offset-4 decoration-border-mid hover:decoration-primary transition-colors"
+          >
+            info@reachmedia.it
+          </a>
+        </header>
 
-          {/* Form */}
-          <div className="md:col-span-6 md:col-start-6">
-            <FadeIn delay={120}>
-              {sent ? (
-                <div>
-                  <p
-                    className="font-display tracking-display text-accent mb-3"
-                    style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}
-                  >
-                    MESSAGGIO RICEVUTO.
-                  </p>
-                  <p className="text-secondary text-sm">
-                    Ti rispondo entro 24 ore.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={onSubmit} className="flex flex-col gap-6" noValidate>
-                  <Field id="name" label="Nome" error={errors.name}>
-                    <input
-                      id="name"
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={onChange}
-                      placeholder="Il tuo nome"
-                      className={`contact-input${errors.name ? " contact-input--error" : ""}`}
-                    />
-                  </Field>
+        <div className="tile p-6 md:p-8">
+          {sent ? (
+            <div className="quiz-enter" role="status">
+              <span className="inline-block w-2.5 h-2.5 rounded-[3px] bg-accent outline outline-1 outline-primary/20 mb-4" />
+              <p className="text-2xl font-semibold tracking-[-0.03em] mb-2">Messaggio ricevuto.</p>
+              <p className="text-secondary text-[0.9375rem]">Ti rispondo entro 24 ore.</p>
+            </div>
+          ) : (
+            <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>
+              <Field id="name" label="Nome" error={errors.name}>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  autoComplete="name"
+                  required
+                  value={form.name}
+                  onChange={onChange}
+                  placeholder="Il tuo nome"
+                  aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                  className={fieldClass("name")}
+                />
+              </Field>
 
-                  <Field id="email" label="Email" error={errors.email}>
-                    <input
-                      id="email"
-                      type="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={onChange}
-                      placeholder="tua@email.it"
-                      className={`contact-input${errors.email ? " contact-input--error" : ""}`}
-                    />
-                  </Field>
+              <Field id="email" label="Email" error={errors.email}>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  autoComplete="email"
+                  required
+                  value={form.email}
+                  onChange={onChange}
+                  placeholder="tua@email.it"
+                  aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                  className={fieldClass("email")}
+                />
+              </Field>
 
-                  <Field id="message" label="Messaggio" error={errors.message}>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={4}
-                      required
-                      value={form.message}
-                      onChange={onChange}
-                      placeholder="Descrivi la tua situazione attuale."
-                      className={`contact-input${errors.message ? " contact-input--error" : ""}`}
-                    />
-                  </Field>
+              <Field id="message" label="Messaggio" error={errors.message}>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={4}
+                  required
+                  value={form.message}
+                  onChange={onChange}
+                  placeholder="Descrivi la tua situazione attuale."
+                  aria-invalid={!!errors.message}
+                  aria-describedby={errors.message ? "message-error" : undefined}
+                  className={fieldClass("message")}
+                />
+              </Field>
 
-                  {serverError && (
-                    <p className="text-xs text-red-400">{serverError}</p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full h-14 bg-accent text-bg font-display tracking-display text-xl hover:opacity-90 transition-opacity disabled:opacity-50 mt-2"
-                  >
-                    {loading ? "INVIO IN CORSO..." : "INVIA"}
-                  </button>
-                </form>
+              {serverError && (
+                <p className="text-sm text-[color:var(--danger)]" role="alert">{serverError}</p>
               )}
-            </FadeIn>
-          </div>
+
+              <button type="submit" disabled={loading} className="btn btn-ink w-full mt-1">
+                {loading ? "Invio in corso..." : <>Invia messaggio <span className="arrow" aria-hidden="true">→</span></>}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Termini() {
   return (
-    <LegalLayout title="TERMINI DI SERVIZIO" breadcrumbLabel="Termini di Servizio">
+    <LegalLayout title="Termini di Servizio" breadcrumbLabel="Termini di Servizio">
       <p>
         Il sito reachmedia.it è gestito da{" "}
         <strong>Ardit Ndoja</strong>, freelance con P.IVA IT05405030262,
