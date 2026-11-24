@@ -1,7 +1,7 @@
 import Link from "next/link";
 import s from "./b.module.css";
 import {
-  HERO, STATS, TOOLS, STEPS, SERVICES, FEATURED, MINIS, FAQS, NAV, chartPath,
+  HERO, STATS, LOGOS, STEPS, SERVICES, FEATURED, MINIS, FAQS, NAV, chartPath,
 } from "../content";
 
 export const metadata = { title: "Redesign B · Light Lab" };
@@ -34,10 +34,12 @@ function Chart() {
 export default function RedesignB() {
   return (
     <div className={s.page}>
+      {/* Header — floating glass pill (from A), on the light ground */}
       <header className={s.navWrap}>
-        <nav className={`${s.container} ${s.nav}`}>
+        <nav className={s.nav}>
           <Link href="/redesign/b" className={s.logo}>
-            <span className={s.logoMark}>R</span>reachmedia
+            <span className={s.logoDot} />
+            <span>reachmedia<span className={s.logoTld}>.it</span></span>
           </Link>
           <ul className={s.navLinks}>
             {NAV.map((n) => <li key={n.href}><a href={n.href}>{n.label}</a></li>)}
@@ -112,12 +114,26 @@ export default function RedesignB() {
         </div>
       </section>
 
-      {/* Tools */}
-      <section className={`${s.container} ${s.toolsRow}`} aria-label="Strumenti che usiamo">
-        <p className={s.kicker}>Stack</p>
-        <ul className={s.tools}>
-          {TOOLS.map((t) => <li key={t}>{t}</li>)}
-        </ul>
+      {/* Tools — the original logos from the live site */}
+      <section className={s.toolsRow} aria-label="Strumenti che usiamo">
+        <p className={`${s.container} ${s.kicker}`}>Strumenti che usiamo</p>
+        <div className={s.marquee}>
+          <div className={s.marqueeTrack}>
+            {[...LOGOS, ...LOGOS].map((l, i) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={i}
+                src={l.url}
+                alt={i < LOGOS.length ? l.name : ""}
+                aria-hidden={i >= LOGOS.length}
+                title={l.name}
+                width={32}
+                height={32}
+                className={s.toolLogo}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* Results — a dark island on a light page */}

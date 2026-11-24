@@ -35,31 +35,38 @@
   color: var(--dim);
 }
 
-/* ── Nav ─────────────────────────────────────────────── */
+/* ── Nav — floating glass pill ───────────────────────── */
 .navWrap {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgb(243 244 239 / 0.72);
+  padding: 12px 16px 0;
+}
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 7px 7px 7px 20px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.7);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 0 #fff inset, 0 10px 30px -16px rgb(11 12 14 / 0.25);
 }
-.nav { display: flex; align-items: center; gap: 24px; height: 64px; }
-.logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.02em; }
-.logoMark {
-  display: grid;
-  place-items: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 7px;
-  background: var(--ink);
-  color: var(--accent);
-  font-size: 0.8125rem;
-  font-weight: 700;
+.logo { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; letter-spacing: -0.02em; }
+.logoDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--accent);
+  outline: 1px solid rgb(11 12 14 / 0.25);
 }
+.logoTld { color: var(--dim); }
 .navLinks { display: flex; gap: 4px; margin-left: auto; font-size: 0.875rem; }
-.navLinks a { display: block; padding: 6px 12px; border-radius: 8px; color: var(--muted); transition: color 150ms ease, background-color 150ms ease; }
+.navLinks a { display: block; padding: 6px 12px; border-radius: 999px; color: var(--muted); transition: color 150ms ease, background-color 150ms ease; }
 @media (hover: hover) and (pointer: fine) {
   .navLinks a:hover { color: var(--ink); background: rgb(11 12 14 / 0.05); }
 }
@@ -83,7 +90,7 @@
   transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease;
 }
 .btn:active { transform: scale(0.97); }
-.btnSm { height: 38px; padding: 0 14px; font-size: 0.875rem; border-radius: 10px; }
+.btnSm { height: 38px; padding: 0 16px; font-size: 0.875rem; border-radius: 999px; }
 .btnInk { background: var(--ink); color: #fff; }
 .btnAccent { background: var(--accent); color: var(--ink); }
 .arrow { transition: transform 200ms var(--ease-out); }
@@ -277,17 +284,34 @@
   color: var(--ink);
 }
 
-/* Tools */
-.toolsRow { padding-top: 56px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 16px 32px; }
-.toolsRow .kicker { margin-bottom: 0; }
-.tools { display: flex; flex-wrap: wrap; gap: 8px; }
-.tools li {
-  padding: 6px 12px;
-  border: 1px solid var(--line-strong);
-  border-radius: 8px;
-  background: rgb(255 255 255 / 0.6);
-  font-size: 0.8125rem;
-  color: var(--muted);
+/* Tools — original logos, monochrome so they sit in the palette */
+.toolsRow { padding-top: 88px; }
+.marquee {
+  margin-top: 24px;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  width: max-content;
+  padding: 8px 0;
+  animation: marquee 50s linear infinite;
+}
+@keyframes marquee { to { transform: translateX(calc(-50% - 28px)); } }
+.toolLogo {
+  height: 30px;
+  width: auto;
+  flex-shrink: 0;
+  filter: grayscale(100%);
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  transition: opacity 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .toolLogo:hover { opacity: 0.8; }
 }
 
 /* Dark case study */
@@ -395,6 +419,7 @@
 /* Footer */
 .footer { margin-top: 128px; padding: 72px 0 32px; background: var(--ink); color: #f2f3ef; }
 .ctaRow { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; }
+  .marqueeTrack img[aria-hidden="true"] { display: none; }
 .ctaTitle {
   font-size: clamp(2rem, 4.6vw, 3.6rem);
   line-height: 1.05;
@@ -440,8 +465,9 @@
 @media (prefers-reduced-motion: reduce) {
   .enter, .reveal, .flowNode { animation: none; opacity: 1; transform: none; }
   .flow::before { animation: none; }
+  .marqueeTrack { animation: none; flex-wrap: wrap; width: auto; justify-content: center; gap: 32px; }
 }
 @media (prefers-reduced-transparency: reduce) {
-  .navWrap { background: var(--bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav { background: var(--tile); backdrop-filter: none; -webkit-backdrop-filter: none; }
   .canvas { background: var(--tile); backdrop-filter: none; -webkit-backdrop-filter: none; }
 }

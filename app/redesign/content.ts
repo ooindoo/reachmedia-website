@@ -22,6 +22,24 @@ export const TOOLS = [
   "Zapier", "Vercel", "GitHub", "Google Analytics", "ChatGPT", "Claude",
 ];
 
+// Same logo set as the live site's LogoBar.
+export const LOGOS = [
+  { name: "Klaviyo", url: "/logos/klaviyo.svg" },
+  { name: "Shopify", url: "https://cdn.simpleicons.org/shopify" },
+  { name: "Meta", url: "https://cdn.simpleicons.org/meta" },
+  { name: "Google Ads", url: "https://cdn.simpleicons.org/googleads" },
+  { name: "Figma", url: "https://cdn.simpleicons.org/figma" },
+  { name: "Notion", url: "https://cdn.simpleicons.org/notion" },
+  { name: "Make", url: "https://cdn.simpleicons.org/make" },
+  { name: "Zapier", url: "https://cdn.simpleicons.org/zapier" },
+  { name: "Vercel", url: "https://cdn.simpleicons.org/vercel" },
+  { name: "GitHub", url: "https://cdn.simpleicons.org/github" },
+  { name: "Google Analytics", url: "https://cdn.simpleicons.org/googleanalytics" },
+  { name: "ChatGPT", url: "/logos/openai.svg" },
+  { name: "Claude", url: "/logos/anthropic.svg" },
+  { name: "Google AI Studio", url: "/logos/google-ai-studio.svg" },
+];
+
 export const STEPS = [
   {
     num: "01",
