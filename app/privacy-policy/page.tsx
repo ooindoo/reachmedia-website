@@ -28,9 +28,12 @@ export default function PrivacyPolicy() {
 
       <h2>Dati raccolti</h2>
       <p>
-        Tramite il form di contatto e il form di download raccogliamo: nome,
-        indirizzo email. I dati sono usati esclusivamente per rispondere alle
-        richieste e per inviare la risorsa richiesta.
+        Tramite il form di contatto, la valutazione e i form di download
+        raccogliamo: nome, indirizzo email e, se lo indichi, il sito del tuo
+        e-commerce. I dati sono usati per rispondere alle richieste e per
+        inviare la risorsa richiesta. Ricevi la newsletter solo se lo scegli
+        esplicitamente, e puoi disiscriverti in qualsiasi momento dal link
+        presente in ogni email.
       </p>
 
       <h2>Base giuridica</h2>
@@ -48,8 +51,9 @@ export default function PrivacyPolicy() {
       <p>
         I dati possono essere condivisi con <strong>Klaviyo Inc.</strong>{" "}
         (piattaforma email marketing, server USA, con garanzie adeguate tramite
-        Standard Contractual Clauses) e <strong>Vercel Inc.</strong> (hosting,
-        server USA, stesse garanzie).
+        Standard Contractual Clauses), <strong>Formspree</strong> (invio dei
+        messaggi del form di contatto, server USA, stesse garanzie) e{" "}
+        <strong>Vercel Inc.</strong> (hosting, server USA, stesse garanzie).
       </p>
 
       <h2>Diritti dell&apos;utente</h2>

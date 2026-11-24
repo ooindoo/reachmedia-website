@@ -248,7 +248,7 @@ export default function Home() {
               </header>
               <div className={s.faq}>
                 {FAQS.map((f) => (
-                  <details key={f.q} className={s.faqItem}>
+                  <details key={f.q} name="faq" className={s.faqItem}>
                     <summary>{f.q}<span className={s.chev} aria-hidden="true" /></summary>
                     <p>{f.a}</p>
                   </details>

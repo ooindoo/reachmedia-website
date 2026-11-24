@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
-import { client, postsQuery, sanityDateToISO, type SanityPost } from "./lib/sanity";
+import { sanityFetch, postsQuery, sanityDateToISO, type SanityPost } from "./lib/sanity";
 import { POSTS } from "./lib/posts";
 
 const BASE_URL = "https://reachmedia.it";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Fetch Sanity posts; fall back to [] on error
-  const sanityPosts: SanityPost[] = await client.fetch(postsQuery).catch(() => []);
+  const sanityPosts: SanityPost[] = await sanityFetch<SanityPost[]>(postsQuery).catch(() => []);
 
   // Slugs already in Sanity
   const sanitySlugs = new Set(sanityPosts.map((p) => p.slug));

@@ -15,6 +15,15 @@ export const client = createClient({
   stega: false,
 });
 
+/**
+ * Sanity reads for pages. Cached by Next.js but revalidated every 5 minutes,
+ * so edits made in the Studio show up on the site without a redeploy.
+ * (Without this, the first response — even an empty one — was cached forever.)
+ */
+export function sanityFetch<T>(query: string, params: Record<string, unknown> = {}): Promise<T> {
+  return client.fetch<T>(query, params, { next: { revalidate: 300, tags: ["sanity"] } });
+}
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 export type SanityPost = {
@@ -41,6 +50,7 @@ export type SanityBlock = {
 /** All published posts, sorted by date desc — used for /blog listing */
 export const postsQuery = groq`
   *[_type == "post"] | order(publishedAt desc) {
+    _id,
     title,
     "slug": slug.current,
     publishedAt,
@@ -53,6 +63,7 @@ export const postsQuery = groq`
 /** Single post by slug — used for /blog/[slug] */
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug][0] {
+    _id,
     title,
     "slug": slug.current,
     publishedAt,
@@ -67,7 +78,7 @@ export const postBySlugQuery = groq`
 
 /** Only slugs — used in generateStaticParams */
 export const postSlugsQuery = groq`
-  *[_type == "post"] { "slug": slug.current }
+  *[_type == "post"] { _id, "slug": slug.current }
 `;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────

@@ -73,3 +73,59 @@ export async function subscribeToKlaviyo({
     return false;
   }
 }
+
+type ResourceDownload = {
+  email: string;
+  firstName: string;
+  website?: string;
+  resource: string;
+  source: string;
+};
+
+/**
+ * Records a resource download in Klaviyo (creates/updates the profile and
+ * logs a "Downloaded Resource" event). This does NOT subscribe the profile
+ * to marketing — use subscribeToKlaviyo only with explicit consent.
+ */
+export async function trackResourceDownload({
+  email,
+  firstName,
+  website,
+  resource,
+  source,
+}: ResourceDownload): Promise<boolean> {
+  const payload = {
+    data: {
+      type: "event",
+      attributes: {
+        properties: { resource, source },
+        metric: { data: { type: "metric", attributes: { name: "Downloaded Resource" } } },
+        profile: {
+          data: {
+            type: "profile",
+            attributes: {
+              email,
+              first_name: firstName,
+              ...(website && { properties: { website } }),
+            },
+          },
+        },
+      },
+    },
+  };
+
+  try {
+    const res = await fetch(
+      `https://a.klaviyo.com/client/events/?company_id=${COMPANY_ID}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json", revision: "2024-02-15" },
+        body: JSON.stringify(payload),
+      }
+    );
+    return res.ok;
+  } catch (err) {
+    console.error("Klaviyo event error:", err);
+    return false;
+  }
+}

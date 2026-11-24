@@ -5,8 +5,10 @@ import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import SiteHeader from "../../components/site/SiteHeader";
 import SiteFooter from "../../components/site/SiteFooter";
 import Breadcrumb from "../../components/Breadcrumb";
+import ResourceUpgrade from "../../components/ResourceUpgrade";
+import { resourceFor } from "../../lib/resources";
 import {
-  client,
+  sanityFetch,
   postBySlugQuery,
   postSlugsQuery,
   formatSanityDate,
@@ -33,7 +35,7 @@ type Props = { params: Promise<{ slug: string }> };
 export async function generateStaticParams() {
   const staticParams = POSTS.map((p) => ({ slug: p.slug }));
   try {
-    const sanityPosts: { slug: string }[] = await client.fetch(postSlugsQuery);
+    const sanityPosts: { slug: string }[] = await sanityFetch<{ slug: string }[]>(postSlugsQuery);
     const sanitySlugs = new Set(staticParams.map((p) => p.slug));
     const extra = sanityPosts
       .filter((p) => !sanitySlugs.has(p.slug))
@@ -49,8 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
   // Try Sanity first
-  const sanityPost: SanityPost | null = await client
-    .fetch(postBySlugQuery, { slug })
+  const sanityPost: SanityPost | null = await sanityFetch<SanityPost | null>(postBySlugQuery, { slug })
     .catch(() => null);
 
   if (sanityPost) {
@@ -138,8 +139,7 @@ export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
 
   // Try Sanity first
-  const sanityPost: SanityPost | null = await client
-    .fetch(postBySlugQuery, { slug })
+  const sanityPost: SanityPost | null = await sanityFetch<SanityPost | null>(postBySlugQuery, { slug })
     .catch(() => null);
 
   // Determine data source
@@ -160,6 +160,17 @@ export default async function ArticlePage({ params }: Props) {
   const dateISO = isSanity
     ? sanityDateToISO(sanityPost!.publishedAt)
     : staticPost!.date;
+
+  // Free resource goes mid-article: before the section heading closest to
+  // the middle of the body (never before the first section).
+  const resource = resourceFor(slug);
+  const body = (isSanity && sanityPost!.body ? sanityPost!.body : []) as SanityBlock[];
+  const h2s = body.reduce<number[]>((acc, blk, i) => ((blk as { style?: string }).style === "h2" ? [...acc, i] : acc), []);
+  const mid = body.length / 2;
+  const splitAt =
+    h2s.slice(1).sort((x, y) => Math.abs(x - mid) - Math.abs(y - mid))[0] ?? Math.ceil(mid);
+  const bodyBefore = body.slice(0, splitAt);
+  const bodyAfter = body.slice(splitAt);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -207,22 +218,41 @@ export default async function ArticlePage({ params }: Props) {
           </div>
         </header>
 
-        {/* Article body */}
+        {/* Article body — split around the free resource, so the article
+            stays complete and the offer sits where interest is highest. */}
         <div className="container-site">
-          <article className="tile max-w-[760px] px-6 py-8 md:px-12 md:py-12">
-            <div className={PROSE_CLASSES}>
-              {isSanity && sanityPost!.body ? (
-                <PortableText
-                  value={sanityPost!.body as SanityBlock[]}
-                  components={portableTextComponents}
-                />
-              ) : StaticContent ? (
-                <StaticContent />
-              ) : (
-                /* Sanity post without body — show excerpt as fallback */
-                <p>{sanityPost!.excerpt}</p>
-              )}
-            </div>
+          <article className="max-w-[760px]">
+            {isSanity && sanityPost!.body ? (
+              <>
+                <div className="tile px-6 py-8 md:px-12 md:py-12">
+                  <div className={PROSE_CLASSES}>
+                    <PortableText value={bodyBefore} components={portableTextComponents} />
+                  </div>
+                </div>
+                <ResourceUpgrade resource={resource} slug={slug} />
+                {bodyAfter.length > 0 && (
+                  <div className="tile px-6 py-8 md:px-12 md:py-12">
+                    <div className={PROSE_CLASSES}>
+                      <PortableText value={bodyAfter} components={portableTextComponents} />
+                    </div>
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                <div className="tile px-6 py-8 md:px-12 md:py-12">
+                  <div className={PROSE_CLASSES}>
+                    {StaticContent ? (
+                      <StaticContent />
+                    ) : (
+                      /* Sanity post without body — show excerpt as fallback */
+                      <p>{sanityPost!.excerpt}</p>
+                    )}
+                  </div>
+                </div>
+                <ResourceUpgrade resource={resource} slug={slug} />
+              </>
+            )}
           </article>
 
           {/* CTA */}
@@ -232,7 +262,7 @@ export default async function ArticlePage({ params }: Props) {
               Scopri come sei messo con il tuo email marketing.
             </p>
             <p className="text-[#a3a7ae] text-[0.9375rem] leading-relaxed mb-6 max-w-md">
-              5 domande, risultato personalizzato in meno di 2 minuti.
+              Cinque domande, tre minuti. Risultato personalizzato, nessuna registrazione.
             </p>
             <Link href="/#quiz" className="btn btn-accent">
               Valuta il tuo email marketing <span className="arrow" aria-hidden="true">→</span>

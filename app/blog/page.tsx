@@ -3,7 +3,7 @@ import Link from "next/link";
 import SiteHeader from "../components/site/SiteHeader";
 import SiteFooter from "../components/site/SiteFooter";
 import Breadcrumb from "../components/Breadcrumb";
-import { client, postsQuery, formatSanityDate, sanityDateToISO, type SanityPost } from "../lib/sanity";
+import { sanityFetch, postsQuery, formatSanityDate, sanityDateToISO, type SanityPost } from "../lib/sanity";
 import { POSTS, formatDate } from "../lib/posts";
 
 export const metadata: Metadata = {
@@ -61,7 +61,7 @@ const blogSchema = {
 
 export default async function BlogPage() {
   // Fetch from Sanity; fall back to static data if empty or on error
-  const sanityPosts: SanityPost[] = await client.fetch(postsQuery).catch(() => []);
+  const sanityPosts: SanityPost[] = await sanityFetch<SanityPost[]>(postsQuery).catch(() => []);
 
   // Slugs already covered by Sanity
   const sanitySlugs = new Set(sanityPosts.map((p) => p.slug));
