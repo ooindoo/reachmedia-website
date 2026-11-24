@@ -14,8 +14,8 @@ export default function CookiePolicy() {
   return (
     <LegalLayout title="Cookie Policy" breadcrumbLabel="Cookie Policy">
       <p>
-        Questo sito usa cookie tecnici necessari al funzionamento e cookie
-        analitici (se accettati) per migliorare il servizio.
+        Questo sito usa cookie tecnici necessari al funzionamento e, solo se
+        accettati, cookie analitici e di marketing.
       </p>
 
       <h2>Cookie tecnici (sempre attivi)</h2>
@@ -26,11 +26,22 @@ export default function CookiePolicy() {
 
       <h2>Cookie analitici (solo se accettati)</h2>
       <ul className="list-none space-y-2 mt-3">
+        <li>Google Analytics: statistiche anonime di navigazione</li>
+      </ul>
+
+      <h2>Cookie di marketing (solo se accettati)</h2>
+      <ul className="list-none space-y-2 mt-3">
         <li>
-          Google Analytics / Vercel Analytics: statistiche anonime di
-          navigazione
+          Klaviyo: riconosce chi è già iscritto alle nostre email per
+          personalizzare le comunicazioni in base alle pagine visitate
         </li>
       </ul>
+
+      <h2>Statistiche senza cookie</h2>
+      <p>
+        Vercel Analytics raccoglie statistiche aggregate e anonime sulle
+        visite senza usare cookie e senza identificare chi naviga.
+      </p>
 
       <h2>Come gestire i cookie</h2>
       <p>

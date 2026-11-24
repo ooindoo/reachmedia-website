@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SiteUI from "./components/SiteUI";
-import GoogleAnalytics from "./components/GoogleAnalytics";
+import ConsentScripts from "./components/ConsentScripts";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -90,12 +89,8 @@ export default function RootLayout({
   return (
     <html lang="it" className={`${geist.variable} ${geistMono.variable}`}>
       <body className="font-sans">
-        <Script
-          src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=VhAfyx"
-          strategy="afterInteractive"
-        />
-        {/* Google Analytics 4 — only with analytics consent (see CookieBanner) */}
-        <GoogleAnalytics />
+        {/* GA4 + Klaviyo onsite — only with consent (see CookieBanner) */}
+        <ConsentScripts />
         {children}
         <SiteUI />
         <Analytics />

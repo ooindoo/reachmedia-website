@@ -38,8 +38,8 @@ export default function CookieBanner() {
           aria-label="Consenso cookie"
         >
           <p className="text-sm text-secondary leading-relaxed">
-            Usiamo cookie tecnici e, con il tuo consenso, cookie analitici per
-            migliorare il sito.{" "}
+            Usiamo cookie tecnici e, con il tuo consenso, cookie analitici e di
+            marketing.{" "}
             <Link
               href="/cookie-policy"
               className="text-primary underline underline-offset-4 decoration-border-mid hover:decoration-primary transition-colors"
