@@ -11,7 +11,7 @@ export const HERO = {
 
 export const STATS = [
   { label: "Esperienza", value: "3+", unit: "anni nel settore" },
-  { label: "Brand seguiti", value: "7", unit: "e-commerce premium" },
+  { label: "Brand seguiti", value: "8", unit: "e-commerce premium" },
   { label: "Campagne inviate", value: "1.000+", unit: "dal 2024" },
   { label: "Quota email sul fatturato", value: "22%", unit: "case moda multibrand" },
 ];

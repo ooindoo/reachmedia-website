@@ -37,6 +37,8 @@ export const metadata: Metadata = {
     "email marketing italia",
     "klaviyo agenzia",
   ],
+  authors: [{ name: "Ardit Ndoja", url: "https://reachmedia.it" }],
+  creator: "Ardit Ndoja",
   metadataBase: new URL("https://reachmedia.it"),
   alternates: {
     canonical: "https://reachmedia.it",
