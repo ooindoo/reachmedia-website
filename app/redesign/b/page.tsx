@@ -115,11 +115,13 @@ export default function RedesignB() {
       </section>
 
       {/* Tools — the original logos from the live site */}
-      <section className={s.toolsRow} aria-label="Strumenti che usiamo">
-        <p className={`${s.container} ${s.kicker}`}>Strumenti che usiamo</p>
+      <section className={`${s.container} ${s.toolsRow}`} aria-label="Strumenti che usiamo">
+        <p className={s.kicker}>Strumenti che usiamo</p>
         <div className={s.marquee}>
+          {/* Four identical sets so the strip never runs out on wide screens;
+              the track shifts by exactly one set (-25%) and loops seamlessly. */}
           <div className={s.marqueeTrack}>
-            {[...LOGOS, ...LOGOS].map((l, i) => (
+            {[...LOGOS, ...LOGOS, ...LOGOS, ...LOGOS].map((l, i) => (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 key={i}
