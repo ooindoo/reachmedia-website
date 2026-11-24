@@ -26,7 +26,7 @@ export default function SiteHeader() {
 
   return (
     <header className={s.navWrap}>
-      <nav className={`${s.nav} ${open ? s.navOpen : ""}`} aria-label="Principale">
+      <nav className={`glass ${s.nav} ${open ? s.navOpen : ""}`} aria-label="Principale">
         <div className={s.navBar}>
           <Link
             href="/"

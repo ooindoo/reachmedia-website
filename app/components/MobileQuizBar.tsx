@@ -42,12 +42,21 @@ export default function MobileQuizBar() {
   if (!visible) return null;
 
   return (
-    <a
-      href={quizDone ? "/#contatti" : "/#quiz"}
-      className="btn btn-accent md:hidden fixed inset-x-3 z-40 h-[52px] shadow-[var(--shadow-lift)] border border-primary/10"
+    <div
+      className="float-layer md:hidden z-40"
       style={{ bottom: "calc(12px + env(safe-area-inset-bottom))" }}
     >
-      {quizDone ? "Parliamo" : "Fai il quiz gratuito"} <span className="arrow" aria-hidden="true">→</span>
-    </a>
+      <div className="container-site">
+        {/* Same glass + concentric radius as the header: 10px button + 7px padding */}
+        <div className="glass rounded-[17px] p-[7px]">
+          <a
+            href={quizDone ? "/#contatti" : "/#quiz"}
+            className="btn btn-accent w-full h-11 rounded-[10px]"
+          >
+            {quizDone ? "Parliamo" : "Fai il quiz gratuito"} <span className="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
