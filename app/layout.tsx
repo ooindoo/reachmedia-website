@@ -47,6 +47,7 @@ export const metadata: Metadata = {
       { url: "/favicon.svg", type: "image/svg+xml" },
     ],
     shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Reach Media | Email Marketing che Genera Revenue",
