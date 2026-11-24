@@ -13,7 +13,7 @@ export default function LegalLayout({ title, breadcrumbLabel, children }: Props)
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen">
+      <main>
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: breadcrumbLabel }]} />
         <div className="container-site pt-8">
           <h1 className="text-[clamp(2.4rem,5vw,4rem)] leading-[1.04] tracking-[-0.045em] font-semibold mb-10 text-balance">

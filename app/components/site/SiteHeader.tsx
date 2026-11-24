@@ -84,6 +84,15 @@ export default function SiteHeader() {
                 </li>
               ))}
             </ul>
+            {/* Phones: the CTA lives here and in the bottom bar, not in the header */}
+            <Link
+              href="/#quiz"
+              tabIndex={open ? 0 : -1}
+              onClick={() => setOpen(false)}
+              className={`btn btn-ink w-full ${s.panelCta}`}
+            >
+              Valutazione gratuita <span className="arrow" aria-hidden="true">→</span>
+            </Link>
           </div>
         </div>
       </nav>

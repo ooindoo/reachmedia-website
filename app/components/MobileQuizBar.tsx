@@ -7,34 +7,31 @@ export default function MobileQuizBar() {
   const [quizDone, setQuizDone] = useState(false);
 
   useEffect(() => {
-    const done = localStorage.getItem("rm_quiz_completed") === "1";
-    setQuizDone(done);
+    setQuizDone(localStorage.getItem("rm_quiz_completed") === "1");
 
-    if (done) {
-      setVisible(true);
-      return;
-    }
+    // Hidden while a section with its own call to action is on screen
+    // (the quiz, the contact form, the footer CTA): never two lime buttons.
+    const targets = [
+      document.getElementById("quiz"),
+      document.getElementById("contatti"),
+      document.querySelector("footer"),
+    ].filter((el): el is HTMLElement => !!el);
 
-    const quiz = document.getElementById("quiz");
-    if (!quiz) {
-      // Not on home page — show bar linking to /#quiz
-      setVisible(true);
-      return;
-    }
-
+    const inView = new Set<Element>();
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? inView.add(e.target) : inView.delete(e.target)));
+        setVisible(inView.size === 0);
+      },
       { threshold: 0.1 }
     );
-    observer.observe(quiz);
+    targets.forEach((el) => observer.observe(el));
+    if (targets.length === 0) setVisible(true);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    const handleQuizDone = () => {
-      setQuizDone(true);
-      setVisible(true);
-    };
+    const handleQuizDone = () => setQuizDone(true);
     window.addEventListener("rm_quiz_done", handleQuizDone);
     return () => window.removeEventListener("rm_quiz_done", handleQuizDone);
   }, []);

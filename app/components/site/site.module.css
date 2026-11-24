@@ -101,29 +101,32 @@
 @media (min-width: 861px) {
   .panel { display: none; }
 }
-@media (max-width: 380px) {
-  .navCta.navCta { padding: 0 12px; }
+.panelCta.panelCta { display: none; }
+/* Phones: the bottom glass bar already carries the CTA, so the header stays
+   just logo + menu; the CTA moves inside the menu panel. */
+@media (max-width: 767px) {
+  .navCta.navCta { display: none; }
+  .burger { margin-left: auto; }
+  .navBar { padding: 7px 7px 7px 16px; }
+  .panelCta.panelCta { display: flex; margin: 8px 0 6px; height: 44px; border-radius: 10px; }
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
 .footer {
-  margin-top: 128px;
-  padding: 72px 0 32px;
+  margin-top: clamp(40px, 6vw, 72px);
+  padding: clamp(56px, 8vw, 72px) 0 32px;
   background: var(--ink);
   color: #f2f3ef;
 }
-@media (max-width: 767px) {
-  /* Clear the fixed mobile quiz bar */
-  .footer { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
-}
+
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
-  padding-bottom: 64px;
-  margin-bottom: 56px;
+  padding-bottom: clamp(40px, 6vw, 64px);
+  margin-bottom: clamp(40px, 6vw, 56px);
   border-bottom: 1px solid rgb(255 255 255 / 0.1);
 }
 .ctaTitle {
@@ -184,7 +187,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 56px;
+  margin-top: clamp(40px, 6vw, 56px);
   padding-top: 24px;
   border-top: 1px solid rgb(255 255 255 / 0.1);
   font-family: var(--font-geist-mono), monospace;

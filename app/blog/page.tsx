@@ -94,7 +94,7 @@ export default async function BlogPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
       />
       <SiteHeader />
-      <main className="min-h-screen">
+      <main>
         <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Blog" }]} />
 
         <header className="container-site pt-8 pb-12">

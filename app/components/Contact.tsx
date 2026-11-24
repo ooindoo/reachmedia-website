@@ -97,7 +97,7 @@ export default function Contact() {
   const fieldClass = (key: keyof Errors) => `field ${errors[key] ? "field-error" : ""}`;
 
   return (
-    <section id="contatti" className="container-site pt-28">
+    <section id="contatti" className="container-site pt-[var(--section-gap)]">
       <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
         <header>
           <p className="section-label mb-3">Contatti</p>

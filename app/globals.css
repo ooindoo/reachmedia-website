@@ -20,6 +20,8 @@
   --danger: #c2410c;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
   --shadow: 0 1px 2px rgb(11 12 14 / 0.04), 0 8px 24px -12px rgb(11 12 14 / 0.12);
+  /* Vertical rhythm: 72px on phones, growing to 112px on desktop */
+  --section-gap: clamp(72px, 10vw, 112px);
   --shadow-lift: 0 1px 2px rgb(11 12 14 / 0.05), 0 16px 32px -16px rgb(11 12 14 / 0.2);
 
   /* RGB triplets (Tailwind colors with alpha) */

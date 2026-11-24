@@ -194,7 +194,7 @@ export default async function ArticlePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
       <SiteHeader />
-      <main className="min-h-screen">
+      <main>
         <Breadcrumb
           items={[
             { label: "Home", href: "/" },

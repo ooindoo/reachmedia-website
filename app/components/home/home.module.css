@@ -14,7 +14,6 @@
   gap: 64px;
   align-items: center;
   padding-top: 88px;
-  padding-bottom: 40px;
 }
 @media (max-width: 960px) { .hero { grid-template-columns: 1fr; gap: 48px; padding-top: 56px; } }
 .eyebrow {
@@ -140,7 +139,7 @@
 .nodeTitle { margin: 6px 0 2px; font-weight: 600; letter-spacing: -0.015em; }
 
 /* ── Sections ────────────────────────────────────────── */
-.section { padding-top: 112px; }
+.section { padding-top: var(--section-gap); }
 .sectionHead { margin-bottom: 40px; }
 .h2 {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -196,7 +195,7 @@
 }
 
 /* Tools — original logos, monochrome so they sit in the palette */
-.toolsRow { padding-top: 88px; }
+.toolsRow { padding-top: clamp(56px, 8vw, 88px); }
 .marquee {
   margin-top: 24px;
   overflow: hidden;
@@ -332,7 +331,7 @@
 .stack { position: relative; }
 .panel {
   position: relative;
-  padding-bottom: 112px;
+  padding-bottom: var(--section-gap);
   border-radius: 32px 32px 0 0;
   background-color: var(--bg);
   background-image: radial-gradient(rgb(11 12 14 / 0.07) 1px, transparent 1px);
@@ -347,10 +346,9 @@
 .panelSticky {
   position: sticky;
   top: 0;
-  min-height: 100dvh;
 }
 @media (prefers-reduced-motion: reduce) {
-  .panelSticky { position: relative; min-height: 0; top: auto !important; }
+  .panelSticky { position: relative; top: auto !important; }
   .panel { border-radius: 0; box-shadow: none; }
 }
 
