@@ -97,7 +97,11 @@ export default function Home() {
           >
             <div className={s.canvasHead}>
               <span className={s.mono}>flow / carrello-abbandonato</span>
-              <span className={s.statusOn}>attivo</span>
+              {/* Klaviyo's own flow status: a "Live" switch, not a status dot */}
+              <span className={s.statusOn}>
+                Live
+                <span className={s.switch} aria-hidden="true" />
+              </span>
             </div>
             <ol className={s.flow}>
               {FLOW.map((n, i) => (
