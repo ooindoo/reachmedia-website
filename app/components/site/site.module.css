@@ -27,13 +27,6 @@
   font-weight: 600;
   letter-spacing: -0.02em;
 }
-.logoDot {
-  width: 9px;
-  height: 9px;
-  border-radius: 2px;
-  background: var(--accent);
-  outline: 1px solid rgb(11 12 14 / 0.25);
-}
 .logoTld { color: var(--dim); }
 .logoTldDark { color: #7d828a; }
 

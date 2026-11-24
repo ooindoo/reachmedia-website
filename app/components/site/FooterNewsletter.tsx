@@ -38,7 +38,7 @@ export default function FooterNewsletter() {
     <div className={s.newsletter}>
       <p className={s.footerHead}>Insights mensili</p>
       <p className={s.newsletterCopy}>
-        Un approfondimento al mese su email marketing ed e-commerce. Niente spam, solo roba utile.
+        Una lettura al mese su email marketing per e-commerce premium. Senza spam.
       </p>
       {done ? (
         <p className={s.newsletterDone}>Aggiunto alla lista. Grazie.</p>

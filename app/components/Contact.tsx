@@ -105,7 +105,7 @@ export default function Contact() {
             Parliamo.
           </h2>
           <p className="mt-4 text-secondary text-[0.9375rem] leading-relaxed max-w-md">
-            Vuoi capire se ha senso lavorare insieme? Scrivici. Ti rispondo entro 24 ore.
+            Vuoi capire se ha senso lavorare insieme? Scrivici: ti rispondiamo entro 24 ore.
           </p>
           <a
             href="mailto:info@reachmedia.it"
@@ -120,7 +120,7 @@ export default function Contact() {
             <div className="quiz-enter" role="status">
               <span className="inline-block w-2.5 h-2.5 rounded-[3px] bg-accent outline outline-1 outline-primary/20 mb-4" />
               <p className="text-2xl font-semibold tracking-[-0.03em] mb-2">Messaggio ricevuto.</p>
-              <p className="text-secondary text-[0.9375rem]">Ti rispondo entro 24 ore.</p>
+              <p className="text-secondary text-[0.9375rem]">Ti rispondiamo entro 24 ore.</p>
             </div>
           ) : (
             <form onSubmit={onSubmit} className="flex flex-col gap-5" noValidate>

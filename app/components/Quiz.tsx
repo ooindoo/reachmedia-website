@@ -58,19 +58,19 @@ const RESULTS = [
     // `title` is sent to Klaviyo as quiz_result — keep it unchanged so
     // existing segments/flows keep matching. `label` is what we display.
     title: "IL TUO EMAIL MARKETING NON ESISTE ANCORA.",
-    label: "Il tuo email marketing non esiste ancora.",
+    label: "Il canale email è ancora tutto da costruire.",
     body: "Hai un potenziale significativo non sfruttato. Con un e-commerce attivo, un sistema email ben costruito genera mediamente tra il 15% e il 30% del fatturato totale. Parti dalla guida gratuita per capire da dove iniziare.",
     cta: {
       type: "low" as const,
       primary: { label: "Scarica la guida gratuita", href: "/rm_guida_zero.pdf" },
-      secondary: { label: "Parliamo, ti dico da dove partire", href: "#contatti" },
+      secondary: { label: "Parliamone: ti indichiamo da dove partire", href: "#contatti" },
     },
   },
   {
     min: 6,
     max: 10,
     title: "STAI LASCIANDO SOLDI SUL TAVOLO OGNI MESE.",
-    label: "Stai lasciando soldi sul tavolo ogni mese.",
+    label: "Le basi ci sono. Il margine è ancora ampio.",
     body: "Hai le basi ma i gap sono significativi. Flow incompleti, segmentazione assente o campagne non ottimizzate si traducono in revenue persa ogni settimana. La checklist ti mostra esattamente dove intervenire.",
     cta: {
       type: "mid" as const,
@@ -81,7 +81,7 @@ const RESULTS = [
     min: 11,
     max: 15,
     title: "STAI LAVORANDO BENE. MA C'È ANCORA MARGINE.",
-    label: "Stai lavorando bene. Ma c'è ancora margine.",
+    label: "Il canale funziona. Ora si tratta di affinarlo.",
     body: "Il tuo email marketing è già un canale attivo. Le ottimizzazioni avanzate (segmentazione predittiva, test sistematici, espansione internazionale) sono il prossimo livello. Scarica i flow avanzati per identificare i gap residui.",
     cta: {
       type: "high" as const,
@@ -197,7 +197,7 @@ export default function Quiz() {
     <section id="quiz" className="container-site pt-28">
       <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start">
         <header>
-          <p className="section-label mb-3">Quiz gratuito</p>
+          <p className="section-label mb-3">Valutazione gratuita</p>
           <h2 className="text-[clamp(2rem,4vw,3rem)] leading-[1.08] tracking-[-0.04em] font-semibold text-balance max-w-[22ch]">
             Quanto sta rendendo il tuo email marketing?
           </h2>

@@ -114,7 +114,7 @@ export default function Home() {
             </ol>
             <div className={s.canvasFoot}>
               <span className={s.mono}>esempio di flow</span>
-              <span className={s.footValue}>Lavora mentre dormi.</span>
+              <span className={s.footValue}>Attivo 24 ore su 24.</span>
             </div>
           </div>
         </section>
@@ -175,7 +175,7 @@ export default function Home() {
         <section id="risultati" className={`container-site ${s.section}`}>
           <header className={s.sectionHead}>
             <p className="section-label">Case history</p>
-            <h2 className={s.h2}>Risultati concreti, non metriche di vanità.</h2>
+            <h2 className={s.h2}>Risultati misurati sul fatturato.</h2>
           </header>
           <article className={`${s.dark} ${s.reveal}`}>
             <div className={s.darkTop}>

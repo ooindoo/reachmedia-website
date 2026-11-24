@@ -77,10 +77,10 @@ export default function ChecklistPopup() {
             La checklist audit email in 10 punti.
           </p>
           <p className="text-sm text-secondary mb-5 leading-relaxed">
-            Scopri dove stai perdendo revenue ogni mese. Fai il quiz e ricevi la tua analisi personalizzata.
+            I dieci punti che controlliamo per primi in ogni audit. Rispondi a cinque domande e ricevi la tua analisi.
           </p>
           <button onClick={scrollToQuiz} className="btn btn-ink w-full">
-            Fai il quiz gratis <span className="arrow" aria-hidden="true">→</span>
+            Inizia la valutazione <span className="arrow" aria-hidden="true">→</span>
           </button>
         </div>
       </div>

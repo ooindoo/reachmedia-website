@@ -52,14 +52,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Reach Media | Email Marketing che Genera Revenue",
     description:
-      "Fai il quiz gratuito di 2 minuti e scopri dove stai perdendo soldi con l'email marketing. Strategia Klaviyo e automazioni per e-commerce premium italiani.",
+      "Valuta in tre minuti quanto rende il tuo email marketing. Strategia Klaviyo, flow e campagne per e-commerce premium di moda, lusso e lifestyle.",
     type: "website",
     locale: "it_IT",
     url: "https://reachmedia.it",
     siteName: "Reach Media",
     images: [
       {
-        url: "/og-image.png?v=3",
+        url: "/og-image.png?v=4",
         width: 1200,
         height: 630,
         alt: "Reach Media – Email Marketing che Genera Revenue",
@@ -70,8 +70,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Reach Media | Email Marketing che Genera Revenue",
     description:
-      "Fai il quiz gratuito di 2 minuti e scopri dove stai perdendo soldi con l'email marketing. Strategia Klaviyo e automazioni per e-commerce premium italiani.",
-    images: ["/og-image.png?v=3"],
+      "Valuta in tre minuti quanto rende il tuo email marketing. Strategia Klaviyo, flow e campagne per e-commerce premium di moda, lusso e lifestyle.",
+    images: ["/og-image.png?v=4"],
   },
   robots: {
     index: true,

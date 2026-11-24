@@ -1,19 +1,19 @@
 // Copy and data for the home page.
 
 export const HERO = {
-  eyebrow: "Email marketing · Klaviyo · Shopify",
+  eyebrow: "Per e-commerce premium · Klaviyo · Shopify",
   title: ["Email marketing", "che genera revenue."],
   titleMuted: "Non solo aperture.",
-  body: "Progettiamo strategie email che trasformano ogni campagna in un motore di entrate. Niente metriche di vanità. Solo risultati concreti per il tuo e-commerce.",
-  cta: { label: "Fai il quiz gratuito", href: "#quiz" },
-  note: "Risultati in 3 minuti. Nessuna registrazione richiesta.",
+  body: "Strategia, flow e campagne Klaviyo per e-commerce di moda, lusso e lifestyle. Un canale che vende, curato con la stessa attenzione che metti nel tuo marchio.",
+  cta: { label: "Valuta il tuo email marketing", href: "#quiz" },
+  note: "Cinque domande, tre minuti. Nessuna registrazione.",
 };
 
 export const STATS = [
   { label: "Esperienza", value: "3+", unit: "anni nel settore" },
   { label: "Brand seguiti", value: "15+", unit: "clienti attivi" },
   { label: "Campagne inviate", value: "686", unit: "campagne totali" },
-  { label: "Open rate medio", value: "58%", unit: "benchmark settore 21%" },
+  { label: "Quota email sul fatturato", value: "22%", unit: "case moda multibrand" },
 ];
 
 // Same logo set as the live site's LogoBar.
@@ -48,14 +48,14 @@ export const STEPS = [
   {
     num: "03",
     title: "Esecuzione",
-    desc: "Produciamo, testiamo e ottimizziamo. Report bi-settimanali con dati reali, non metriche di vanità.",
+    desc: "Produciamo, testiamo e ottimizziamo. Ogni due settimane un report letto sul fatturato, non sulle aperture.",
   },
 ];
 
 export const SERVICES = [
   {
     index: "01",
-    kpi: "58,7% open rate medio",
+    kpi: "Calendario mensile",
     title: "Email strategy",
     body: "Pianificazione editoriale mensile, segmentazione avanzata e A/B testing sistematico. Ogni campagna ha un obiettivo di conversione misurabile.",
   },
@@ -63,13 +63,13 @@ export const SERVICES = [
     index: "02",
     kpi: "15+ store ottimizzati",
     title: "Automazioni",
-    body: "Flow di benvenuto, carrello abbandonato, win-back e post-acquisto. Automazioni che lavorano mentre dormi.",
+    body: "Benvenuto, carrello abbandonato, post-acquisto e win-back. Sequenze costruite sul comportamento dei tuoi clienti, sempre attive.",
   },
   {
     index: "03",
     kpi: "Report in 72h",
     title: "Analytics & report",
-    body: "Dashboard personalizzata, report bi-settimanali con dati attributi e raccomandazioni azionabili. Zero metriche di vanità.",
+    body: "Dashboard dedicata e report ogni due settimane, con revenue attribuita e una raccomandazione concreta accanto a ogni numero.",
   },
 ];
 
@@ -106,7 +106,7 @@ export const MINIS = [
 export const FAQS = [
   {
     q: "Quanto costa lavorare con Reach Media?",
-    a: "I progetti partono da una fase di audit e strategia. Il costo dipende dal perimetro di lavoro. Parliamo quando hai fatto il quiz e capisci dove sei.",
+    a: "I progetti partono da una fase di audit e strategia. Il costo dipende dal perimetro di lavoro. Ne parliamo dopo la valutazione, quando è chiaro da dove si parte.",
   },
   {
     q: "In quanto tempo si vedono i risultati?",
@@ -126,7 +126,7 @@ export const FAQS = [
   },
   {
     q: "Come faccio a sapere se siete la scelta giusta per me?",
-    a: "Fai il quiz. In 2 minuti capisci dove sei e cosa ti manca. Se ha senso lavorare insieme, lo vedi dai risultati.",
+    a: "Parti dalla valutazione gratuita: in tre minuti capisci a che punto sei e cosa manca. Se ha senso lavorare insieme, lo vedi dai risultati.",
   },
 ];
 

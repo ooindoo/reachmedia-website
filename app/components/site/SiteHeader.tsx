@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import s from "./site.module.css";
+import BrandMark from "./BrandMark";
 import { NAV_LINKS } from "./nav";
 
 /**
@@ -38,7 +39,7 @@ export default function SiteHeader() {
               }
             }}
           >
-            <span className={s.logoDot} aria-hidden="true" />
+            <BrandMark size={18} outline />
             <span>
               reachmedia<span className={s.logoTld}>.it</span>
             </span>
@@ -55,7 +56,7 @@ export default function SiteHeader() {
           </ul>
 
           <Link href="/#quiz" className={`btn btn-ink ${s.navCta}`}>
-            Quiz gratuito
+            Valutazione gratuita
           </Link>
 
           <button

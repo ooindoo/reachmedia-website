@@ -1,5 +1,6 @@
 import Link from "next/link";
 import s from "./site.module.css";
+import BrandMark from "./BrandMark";
 import FooterNewsletter from "./FooterNewsletter";
 import { NAV_LINKS } from "./nav";
 import CookiePrefsButton from "./CookiePrefsButton";
@@ -19,10 +20,10 @@ export default function SiteFooter({ showCta = true }: { showCta?: boolean }) {
         {showCta && (
           <div className={s.ctaRow}>
             <h2 className={s.ctaTitle}>
-              Vuoi sapere quanto <span className={s.ctaMark}>stai perdendo</span>?
+              Quanto può <span className={s.ctaMark}>rendere</span> la tua email?
             </h2>
             <Link href="/#quiz" className="btn btn-accent">
-              Fai il quiz gratuito <span className="arrow" aria-hidden="true">→</span>
+              Valuta il tuo email marketing <span className="arrow" aria-hidden="true">→</span>
             </Link>
           </div>
         )}
@@ -30,7 +31,7 @@ export default function SiteFooter({ showCta = true }: { showCta?: boolean }) {
         <div className={s.footerGrid}>
           <div className={s.footerBrand}>
             <Link href="/" className={s.logo}>
-              <span className={s.logoDot} aria-hidden="true" />
+              <BrandMark size={18} />
               <span>
                 reachmedia<span className={s.logoTldDark}>.it</span>
               </span>

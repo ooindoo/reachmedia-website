@@ -53,7 +53,7 @@ export default function MobileQuizBar() {
             href={quizDone ? "/#contatti" : "/#quiz"}
             className="btn btn-accent w-full h-11 rounded-[10px]"
           >
-            {quizDone ? "Parliamo" : "Fai il quiz gratuito"} <span className="arrow" aria-hidden="true">→</span>
+            {quizDone ? "Parliamo" : "Valuta il tuo email marketing"} <span className="arrow" aria-hidden="true">→</span>
           </a>
         </div>
       </div>
