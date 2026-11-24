@@ -11,7 +11,7 @@ const FLOW = [
   { kind: "Trigger", title: "Prodotto aggiunto al carrello", meta: "Shopify · evento live" },
   { kind: "Attesa", title: "4 ore", meta: "se non ha completato l'ordine" },
   { kind: "Email", title: "Hai dimenticato qualcosa?", meta: "template + oggetto in A/B test" },
-  { kind: "Split", title: "Ha aperto l'email?", meta: "sì → sconto · no → SMS" },
+  { kind: "Filtro", title: "Ha completato l'ordine?", meta: "sì → esce dal flow · no → email 2" },
 ];
 
 function Chart() {
