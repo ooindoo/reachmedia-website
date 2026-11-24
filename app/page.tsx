@@ -7,7 +7,6 @@ import SiteHeader from "./components/site/SiteHeader";
 import SiteFooter from "./components/site/SiteFooter";
 import Quiz from "./components/Quiz";
 import Contact from "./components/Contact";
-import StackPanel from "./components/home/StackPanel";
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -233,33 +232,25 @@ export default function Home() {
           </ol>
         </section>
 
-        {/* From here the page scrolls as stacked panels: each one holds
-            while the next slides over it. */}
-        <div className={s.stack}>
-          <StackPanel>
-            <Quiz />
-          </StackPanel>
-          <StackPanel>
-            {/* FAQ */}
-            <section id="faq" className={`container-site ${s.section} ${s.faqGrid}`}>
-              <header className={s.sectionHead}>
-                <p className="section-label">FAQ</p>
-                <h2 className={s.h2}>Domande frequenti.</h2>
-              </header>
-              <div className={s.faq}>
-                {FAQS.map((f) => (
-                  <details key={f.q} name="faq" className={s.faqItem}>
-                    <summary>{f.q}<span className={s.chev} aria-hidden="true" /></summary>
-                    <p>{f.a}</p>
-                  </details>
-                ))}
-              </div>
-            </section>
-          </StackPanel>
-          <StackPanel sticky={false}>
-            <Contact />
-          </StackPanel>
-        </div>
+        <Quiz />
+
+        {/* FAQ */}
+        <section id="faq" className={`container-site ${s.section} ${s.faqGrid}`}>
+          <header className={s.sectionHead}>
+            <p className="section-label">FAQ</p>
+            <h2 className={s.h2}>Domande frequenti.</h2>
+          </header>
+          <div className={s.faq}>
+            {FAQS.map((f) => (
+              <details key={f.q} name="faq" className={s.faqItem}>
+                <summary>{f.q}<span className={s.chev} aria-hidden="true" /></summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <Contact />
       </main>
 
       <SiteFooter />

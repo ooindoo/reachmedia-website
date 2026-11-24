@@ -113,7 +113,7 @@
 
 /* ── Footer ─────────────────────────────────────────────── */
 .footer {
-  margin-top: clamp(40px, 6vw, 72px);
+  margin-top: var(--section-gap);
   padding: clamp(56px, 8vw, 72px) 0 32px;
   background: var(--ink);
   color: #f2f3ef;
