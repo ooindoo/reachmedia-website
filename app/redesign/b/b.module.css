@@ -35,22 +35,24 @@
   color: var(--dim);
 }
 
-/* ── Nav — floating glass pill ───────────────────────── */
+/* ── Nav — floating glass bar, aligned to the content column ── */
 .navWrap {
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 12px 16px 0;
+  padding: 12px 24px 0;
 }
 .nav {
-  max-width: 1200px;
+  /* Same width as .container's content box (1200 − 2 × 24px) */
+  max-width: 1152px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 24px;
   padding: 7px 7px 7px 20px;
   border: 1px solid var(--line-strong);
-  border-radius: 999px;
+  /* Concentric with the CTA inside: 10px radius + 7px padding */
+  border-radius: 17px;
   background: rgb(255 255 255 / 0.7);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -66,7 +68,7 @@
 }
 .logoTld { color: var(--dim); }
 .navLinks { display: flex; gap: 4px; margin-left: auto; font-size: 0.875rem; }
-.navLinks a { display: block; padding: 6px 12px; border-radius: 999px; color: var(--muted); transition: color 150ms ease, background-color 150ms ease; }
+.navLinks a { display: block; padding: 6px 12px; border-radius: 8px; color: var(--muted); transition: color 150ms ease, background-color 150ms ease; }
 @media (hover: hover) and (pointer: fine) {
   .navLinks a:hover { color: var(--ink); background: rgb(11 12 14 / 0.05); }
 }
@@ -90,7 +92,7 @@
   transition: transform 160ms var(--ease-out), background-color 150ms ease, color 150ms ease;
 }
 .btn:active { transform: scale(0.97); }
-.btnSm { height: 38px; padding: 0 16px; font-size: 0.875rem; border-radius: 999px; }
+.btnSm { height: 38px; padding: 0 16px; font-size: 0.875rem; border-radius: 10px; }
 .btnInk { background: var(--ink); color: #fff; }
 .btnAccent { background: var(--accent); color: var(--ink); }
 .arrow { transition: transform 200ms var(--ease-out); }
