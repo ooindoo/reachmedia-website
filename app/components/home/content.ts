@@ -11,8 +11,8 @@ export const HERO = {
 
 export const STATS = [
   { label: "Esperienza", value: "3+", unit: "anni nel settore" },
-  { label: "Brand seguiti", value: "15+", unit: "clienti attivi" },
-  { label: "Campagne inviate", value: "686", unit: "campagne totali" },
+  { label: "Brand seguiti", value: "7", unit: "e-commerce premium" },
+  { label: "Campagne inviate", value: "1.000+", unit: "dal 2024" },
   { label: "Quota email sul fatturato", value: "22%", unit: "case moda multibrand" },
 ];
 
@@ -48,7 +48,7 @@ export const STEPS = [
   {
     num: "03",
     title: "Esecuzione",
-    desc: "Produciamo, testiamo e ottimizziamo. Ogni due settimane un report letto sul fatturato, non sulle aperture.",
+    desc: "Produciamo, testiamo e ottimizziamo. Segui tutto da una dashboard live, letta sul fatturato e non sulle aperture.",
   },
 ];
 
@@ -61,15 +61,15 @@ export const SERVICES = [
   },
   {
     index: "02",
-    kpi: "15+ store ottimizzati",
+    kpi: "Flow su misura",
     title: "Automazioni",
     body: "Benvenuto, carrello abbandonato, post-acquisto e win-back. Sequenze costruite sul comportamento dei tuoi clienti, sempre attive.",
   },
   {
     index: "03",
-    kpi: "Report in 72h",
-    title: "Analytics & report",
-    body: "Dashboard dedicata e report ogni due settimane, con revenue attribuita e una raccomandazione concreta accanto a ogni numero.",
+    kpi: "Sempre aggiornata",
+    title: "Dashboard & analytics",
+    body: "Una dashboard live, sempre aggiornata, con la revenue attribuita a ogni flow e campagna e una raccomandazione concreta accanto a ogni numero.",
   },
 ];
 
@@ -91,16 +91,19 @@ export const FEATURED = {
   ],
   sector: "Moda / Multibrand premium",
   title: "Da newsletter occasionali a €519k di revenue email",
-  body: "Negozio multibrand di moda premium. Prima l'email era qualche newsletter sporadica inviata da Shopify, senza strategia né automazioni. Abbiamo portato tutto su Klaviyo: lista, segmentazione, template, flow e calendario editoriale. Oggi l'email genera in media il 22% del fatturato online, e l'81% di quella revenue arriva dalle automazioni.",
+  body: "Negozio multibrand di moda premium. Prima l'email era qualche newsletter sporadica inviata da Shopify, senza strategia né automazioni. Abbiamo portato tutto su Klaviyo: lista, segmentazione, template, flow e calendario editoriale. Oggi l'email genera in media il 22% del fatturato online, e l'82% di quella revenue arriva dalle automazioni.",
   tags: ["Klaviyo", "Shopify", "Flow", "Segmentazione"],
   // Cumulative email-attributed revenue (k€) per month, Mar 2025 → Nov 2026.
   // Source: Klaviyo, Placed Order attributed to email (flows + campaigns).
   series: [13.5, 37.7, 60.1, 85.5, 107.0, 123.8, 154.3, 189.5, 216.3, 242.2, 273.7, 296.9, 323.6, 351.5, 377.7, 394.1, 422.5, 441.1, 466.6, 496.0, 518.7],
 };
 
+// Verified in Klaviyo (Nov 2026).
 export const MINIS = [
-  { stat: "56,8%", statLabel: "Open rate campagne", sector: "Orologi di lusso, settore lifestyle premium" },
-  { stat: "28,4%", statLabel: "Revenue email su totale", sector: "Second-hand luxury, marketplace pre-loved" },
+  // Squale: 110 campaigns, Apr 2025 → Nov 2026, unique clicks / delivered
+  { stat: "9,2%", statLabel: "Click rate campagne", sector: "Orologeria svizzera premium · 110 campagne" },
+  // Cappelletto: €423k of €519k email-attributed revenue came from flows
+  { stat: "82%", statLabel: "Revenue email da automazioni", sector: "Moda multibrand premium · welcome, checkout, carrello" },
 ];
 
 export const FAQS = [
